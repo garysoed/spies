@@ -17,30 +17,60 @@
     describe('Spy', function() {
       describe('#spy', function() {
         describe('on function', function() {
-          var S = {};
+          var C = {};
 
           beforeEach(function(done) {
-            S.fn = function() { return 1; };
+            C.fn = function() { return 1; };
             done();
           });
 
-          it('should verify single call on function with no arguments', function() {
-            Spies.spy(S, 'fn');
 
-            expect(S.fn()).to.equal(1);
-            Spies.verify(S.fn)().to.have.length(1);
-            Spies.verify(S.fn)(2).to.have.length(0);
+          it('should verify single call on function with no arguments', function() {
+            Spies.spy(C, 'fn');
+
+            expect(C.fn()).to.equal(1);
+            Spies.verify(C.fn)().called();
+            Spies.verify(C.fn)(2).called.times(0);
           });  
 
-          it('should reset when calling reset', function() {
-            Spies.spy(S, 'fn');
-            S.fn();
 
-            Spies.reset(S.fn);
-            expect(S.fn()).to.equal(1);
-            Spies.verify(S.fn, 0)();
+          it('should reset when calling reset', function() {
+            Spies.spy(C, 'fn');
+            C.fn();
+
+            Spies.reset(C.fn);
+            Spies.spy(C, 'fn');
+            Spies.verify(C.fn)().called.times(0);
           });
-        })
+        });
+
+        describe('on class', function() {
+          var C = function() {};
+          C.prototype.fn1 = function() { return 1; };
+          C.prototype.fn2 = function() { return 2; };
+
+          it('should spy on all functions in a class', function() {
+            var c = new C();
+            Spies.spy(c);
+
+            expect(c.fn1()).to.equal(1);
+            expect(c.fn2()).to.equal(2);
+            Spies.verify(c.fn1)().called();
+            Spies.verify(c.fn2)().called();
+          });
+
+          it('should reset when calling reset', function() {
+            var c = new C();
+            Spies.spy(c);
+
+            c.fn1();
+            c.fn2();
+            Spies.reset(c);
+            Spies.spy(c);
+            Spies.verify(c.fn1)().called.times(0);
+            Spies.verify(c.fn2)().called.times(0);
+          });
+        });
       });
     });
   </script>

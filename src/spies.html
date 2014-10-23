@@ -3,8 +3,44 @@
 // 'use strict';
 
 (function(exports) {
-  var origFns = {};
-  var records = {};
+  var spiedFns = {};
+  var getSpiedFn = function(scope, name) {
+    if (!spiedFns[scope]) {
+      return null;
+    }
+    if (!spiedFns[scope][name]) {
+      return null;
+    }
+
+    return spiedFns[scope][name];
+  };
+
+  var addSpiedFn = function(scope, name, fn) {
+    if (!spiedFns[scope]) {
+      spiedFns[scope] = {};
+    }
+    // Keep track of the original function.
+    spiedFns[scope][name] = new SpiedFn(scope, name, fn);
+  };
+
+  var deleteSpiedFn = function(scope, name) {
+    if (spiedFns[scope] && spiedFns[scope][name]) {
+      delete spiedFns[scope][name];
+    }
+  };
+
+  var SpiedFn = function(scope, name, fn) {
+    this.scope = scope;
+    this.name = name;
+    this.fn = fn;
+    this.records = [];
+  };
+  SpiedFn.prototype.restore = function() {
+    this.scope[this.name] = this.fn;
+  };
+  SpiedFn.prototype.record = function(args) {
+    this.records.push(args);
+  };
 
   /**
    * Deep equals the two objects.
@@ -48,36 +84,83 @@
   var Record = function() {};
 
   var Spies = {};
-  Spies.spy = function(scope, name) {
+  var spyOnFunction = function(scope, name) {
+    // We are spying on a function
     var origFn = scope[name];
 
     var newFunction = function() {
       var argArray = Array.prototype.slice.call(arguments);
-      records[newFunction].push(argArray);
+      getSpiedFn(scope, name).record(argArray);
       return origFn.call(this, argArray);
     };
+    newFunction.scope = scope;
+    newFunction.fnName = name;
 
-    records[newFunction] = [];
-
-    // Keep track of the original function.
-    origFns[newFunction] = origFn;
+    addSpiedFn(scope, name, origFn);
 
     // Override the original function.
     scope[name] = newFunction;
   };
 
+  var spyOnObject = function(object) {
+    for (var key in object) {
+      if (object[key] instanceof Function) {
+        spyOnFunction(object, key);
+      } else if (object[key] instanceof Object) {
+        spyOnFunction(object[key]);
+      }
+    }
+  };
+
+  Spies.spy = function(scope, name) {
+    if (name === undefined) {
+      spyOnObject(scope);
+    } else {
+      spyOnFunction(scope, name);
+    }
+  };
+
   Spies.verify = function(target) {
-    var record = records[target];
+    var spiedFn = getSpiedFn(target.scope, target.fnName);
+    var record = spiedFn ? spiedFn.records : [];
     return function() {
       var argArray = Array.prototype.slice.call(arguments);
+      var invocations = record.filter(
+        function(args) { return deepEqual(args, argArray); 
+      });
 
-      // TODO: why isn't chai loaded at this point?
-      return chai.expect(record.filter(function(args) { return deepEqual(args, argArray); }));
+      var called = function() {
+        chai.expect(invocations).to.have.length.of.at.least(1);
+      };
+      called.times = function(number) {
+        chai.expect(invocations).to.have.length.of(number);
+      };
+
+      return {called: called};
     };
   };
 
-  Spies.reset = function(target) {
+  var resetSpiedFunction = function(target) {
+    var spiedFn = getSpiedFn(target.scope, target.fnName);
+    if (spiedFn) {
+      spiedFn.restore();
+    }
+    
+    deleteSpiedFn(target.scope, target.name);
+  };
 
+  var resetSpiedObject = function(object) {
+    for (var key in object) {
+      Spies.reset(object[key]);
+    }
+  };
+
+  Spies.reset = function(target) {
+    if (target instanceof Function) {
+      resetSpiedFunction(target);
+    } else {
+      resetSpiedObject(target);
+    }
   };
 
   // Exports.
