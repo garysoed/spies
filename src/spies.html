@@ -1,0 +1,86 @@
+<link rel="import" href="../node_modules/chai/chai.js">
+<script>
+// 'use strict';
+
+(function(exports) {
+  var origFns = {};
+  var records = {};
+
+  /**
+   * Deep equals the two objects.
+   * 
+   * @param  {*} obj1 The first object to compare.
+   * @param  {*} obj2 The second object to compare.
+   * @return {boolean} True iff the two objects are deeply equal.
+   * 
+   * @static
+   * @private
+   */
+  function deepEqual(obj1, obj2) {
+    if (obj1 === obj2) {
+      return true;
+    }
+
+    if (!(obj1 instanceof Object) || !(obj2 instanceof Object)) {
+      return obj1 === obj2;
+    }
+
+    if (obj1.equals instanceof Function) {
+      return obj1.equals(obj2);
+    }
+
+    if (obj2.equals instanceof Function) {
+      return obj2.equals(obj1);
+    }
+
+    if (obj1 instanceof Array && obj1.length !== obj2.length) {
+      return false;
+    }
+
+    for (var key in obj1) {
+      if (!deepEqual(obj1[key], obj2[key])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  var Record = function() {};
+
+  var Spies = {};
+  Spies.spy = function(scope, name) {
+    var origFn = scope[name];
+
+    var newFunction = function() {
+      var argArray = Array.prototype.slice.call(arguments);
+      records[newFunction].push(argArray);
+      return origFn.call(this, argArray);
+    };
+
+    records[newFunction] = [];
+
+    // Keep track of the original function.
+    origFns[newFunction] = origFn;
+
+    // Override the original function.
+    scope[name] = newFunction;
+  };
+
+  Spies.verify = function(target) {
+    var record = records[target];
+    return function() {
+      var argArray = Array.prototype.slice.call(arguments);
+
+      // TODO: why isn't chai loaded at this point?
+      return chai.expect(record.filter(function(args) { return deepEqual(args, argArray); }));
+    };
+  };
+
+  Spies.reset = function(target) {
+
+  };
+
+  // Exports.
+  exports.Spies = Spies;
+})(window);
+</script>
