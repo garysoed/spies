@@ -15,10 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/*.js',
+      { pattern: 'src/*.js', included: false },
       'src/*.html',
       'node_modules/chai/chai.js',
-      'test/*.html'
+      'node_modules/traceur/bin/traceur-runtime.js'
     ],
 
 
@@ -63,6 +63,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
   });
 };
