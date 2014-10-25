@@ -2,34 +2,19 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    // 'traceur': {
-    //   options: {
-    //     modules: 'inline'
-    //   },
-
-    //   custom: {
-    //     files: [{
-    //       expand: true,
-    //       cwd: 'src/',
-    //       src: ['*.es6'],
-    //       dest: 'src/',
-    //       ext: '.js'
-    //     }]
-    //   },
-    // },
 
     'shell': {
       'traceur': {
-        command: 'traceur --out=js.js src/spies.es6 --modules=inline'
+        command: 'traceur --out=js.js src/spies.es6 --modules=inline --source-maps=file'
       }
     },
 
     'watch': {
       'traceur': {
         files: [
-          'src/**/*.es6'
+          'src/**/*.es6.js'
         ],
-        tasks: [ 'traceur-sh' ],
+        tasks: [ 'shell:traceur' ],
         options: {
           atBegin: true
         }

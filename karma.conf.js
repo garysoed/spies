@@ -15,11 +15,18 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'src/*.js', included: false },
+      // Generated files
       { pattern: 'js.js', included: false },
+      { pattern: 'main.html', included: false },
+      { pattern: 'js.map', included: false },
+
+      // For source maps
+      { pattern: 'src/**/*.js', included: false },
+
+      // Deps
+      { pattern: 'node_modules/**/*.js', included: false },
+
       'src/*.html',
-      'node_modules/chai/chai.js',
-      'node_modules/traceur/bin/traceur-runtime.js'
     ],
 
 
