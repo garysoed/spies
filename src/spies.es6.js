@@ -12,12 +12,12 @@ function getSpiedFn(scope, name) {
   return spiedFns[scope][name];
 };
 
-function addSpiedFn(scope, name, fn) {
+function addSpiedFn(scope, name) {
   if (!spiedFns[scope]) {
     spiedFns[scope] = {};
   }
   // Keep track of the original function.
-  spiedFns[scope][name] = new SpiedFn(scope, name, fn);
+  spiedFns[scope][name] = new SpiedFn(scope, name);
 };
 
 function deleteSpiedFn(scope, name) {
@@ -79,7 +79,7 @@ function spyOnFunction(scope, name) {
   newFunction.scope = scope;
   newFunction.fnName = name;
 
-  addSpiedFn(scope, name, origFn);
+  addSpiedFn(scope, name);
 
   // Override the original function.
   scope[name] = newFunction;
@@ -147,4 +147,4 @@ var Spies = {
   }
 };
 
-window.Spies = Spies;
+export default Spies;

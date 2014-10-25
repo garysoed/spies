@@ -11,8 +11,8 @@
   <div id="qunit-fixture"></div>
   <script>
     'use strict';
-    console.log('test ' + Spies);
 
+    var Spies = System.get('src/spies.es6').default;
     var expect = chai.expect;
 
     describe('Spy', function() {
@@ -29,7 +29,7 @@
           it('should verify single call on function with no arguments', function() {
             Spies.spy(C, 'fn');
 
-            chai.expect(C.fn()).to.equal(1);
+            expect(C.fn()).to.equal(1);
             Spies.verify(C.fn)().called();
             Spies.verify(C.fn)(2).called.times(0);
           });  
@@ -54,8 +54,8 @@
             var c = new C();
             Spies.spy(c);
 
-            chai.expect(c.fn1()).to.equal(1);
-            chai.expect(c.fn2()).to.equal(2);
+            expect(c.fn1()).to.equal(1);
+            expect(c.fn2()).to.equal(2);
             Spies.verify(c.fn1)().called();
             Spies.verify(c.fn2)().called();
           });

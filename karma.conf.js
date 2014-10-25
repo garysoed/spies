@@ -26,7 +26,7 @@ module.exports = function(config) {
       // Deps
       { pattern: 'node_modules/**/*.js', included: false },
 
-      'src/*.html',
+      'test/*.html',
     ],
 
 

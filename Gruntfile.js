@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 
     'shell': {
       'traceur': {
-        command: 'traceur --out=js.js src/spies.es6 --modules=inline --source-maps=file'
+        command: 'traceur --out=js.js src/spies.es6 --source-maps=file'
       }
     },
 
