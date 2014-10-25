@@ -17,13 +17,14 @@ module.exports = function(config) {
     files: [
       // Generated files
       { pattern: 'js.js', included: false },
-      { pattern: 'main.html', included: false },
       { pattern: 'js.map', included: false },
 
       // For source maps
       { pattern: 'src/**/*.js', included: false },
 
       // Deps
+      { pattern: 'main_test.html', included: false },
+      { pattern: 'main.html', included: false },
       { pattern: 'node_modules/**/*.js', included: false },
 
       'test/*.html',
