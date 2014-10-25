@@ -1,8 +1,14 @@
+// --symbols
+var _scope = Symbol();
+var _name = Symbol();
+var _origFn = Symbol();
+var _records = Symbol();
+
 /**
  * @class Represents a function that is spied.
  * @module src/spiedfn.es6
  */
-export default class SpiedFn {
+export default class SpiedFn extends Function {
 
   /**
    * @param {!Object} scope The scope that the function is in.
@@ -10,10 +16,23 @@ export default class SpiedFn {
    * @constructor
    */
   constructor(scope, name) {
-    this.scope = scope;
-    this.name = name;
-    this.fn = scope[name];
-    this.records = [];
+    let origFn = scope[name];
+
+    var f = function(...args) {
+      f.record(args);
+      return origFn.call(this, args);
+    };
+    f.__proto__ = SpiedFn.prototype;
+    f.constructor = SpiedFn;
+    f[_scope] = scope;
+    f[_name] = name;
+    f[_origFn] = origFn;
+    f.records = [];
+
+    // Override the original function.
+    scope[name] = f;
+
+    return f;
   }
 
   /**
@@ -21,7 +40,7 @@ export default class SpiedFn {
    * @method
    */
   restore() {
-    this.scope[this.name] = this.fn;
+    this[_scope][this[_name]] = this[_origFn];
   }
 
   /**
@@ -32,3 +51,5 @@ export default class SpiedFn {
     this.records.push(args);
   }
 }
+
+SpiedFn.prototype.scope = null;

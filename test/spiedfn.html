@@ -12,30 +12,39 @@
     var expect = chai.expect;
 
     describe('SpiedFn', function() {
-      var C = {};
+      var TestClass = {};
 
       beforeEach(function(done) {
-        C.fn = function() { return 1; };
+        TestClass.fn = function() { return 1; };
         done();
+      });
+
+      describe('ctor', function() {
+        it('should override the original function', function() {
+          var origFn = TestClass.fn;
+          var spiedFn = new SpiedFn(TestClass, 'fn');
+          expect(TestClass.fn).to.not.equal(origFn);
+          expect(TestClass.fn()).to.equal(origFn());
+        });
       });
 
       describe('#restore', function() {
         it('should restore original function', function() {
-          var spiedFn = new SpiedFn(C, 'fn');
+          var spiedFn = new SpiedFn(TestClass, 'fn');
 
           // Replace the function.
-          C.fn = function() { return 2; };
-          expect(C.fn()).to.equal(2);
+          TestClass.fn = function() { return 2; };
+          expect(TestClass.fn()).to.equal(2);
 
           // Now restore the function.
           spiedFn.restore();
-          expect(C.fn()).to.equal(1);
+          expect(TestClass.fn()).to.equal(1);
         });  
       });
 
       describe('#record', function() {
         it('should record the arguments', function() {
-          var spiedFn = new SpiedFn(C, 'fn');
+          var spiedFn = new SpiedFn(TestClass, 'fn');
           var args1 = [1, 2, 3, 4];
           var args2 = [5, 6, 7];
 

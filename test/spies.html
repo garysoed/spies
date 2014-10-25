@@ -11,62 +11,65 @@
     var Spies = System.get('src/spies.es6').default;
     var expect = chai.expect;
 
-    describe('Spy', function() {
+    describe('Spies', function() {
+      var TestSubClass = function() {};
+      TestSubClass.prototype.fn = function() { return 3; };
+
+      var TestClass = function() {};
+      TestClass.prototype.fn1 = function() { return 1; };
+      TestClass.prototype.fn2 = function() { return 2; };
+      TestClass.prototype.sub = new TestSubClass();
+      
       describe('#spy', function() {
-        describe('on function', function() {
-          var C = {};
 
-          beforeEach(function(done) {
-            C.fn = function() { return 1; };
-            done();
-          });
+        it('should record calls on functions', function() {
+          var c = new TestClass();
+          Spies.spy(c, 'fn1');
 
-
-          it('should verify single call on function with no arguments', function() {
-            Spies.spy(C, 'fn');
-
-            expect(C.fn()).to.equal(1);
-            Spies.verify(C.fn)().called();
-            Spies.verify(C.fn)(2).called.times(0);
-          });  
-
-
-          it('should reset when calling reset', function() {
-            Spies.spy(C, 'fn');
-            C.fn();
-
-            Spies.reset(C.fn);
-            Spies.spy(C, 'fn');
-            Spies.verify(C.fn)().called.times(0);
-          });
+          expect(c.fn1()).to.equal(1);
+          expect(Spies.callCountOf(c.fn1)()).to.equal(1);
+          expect(Spies.callCountOf(c.fn1)(2)).to.equal(0);
         });
 
-        describe('on class', function() {
-          var C = function() {};
-          C.prototype.fn1 = function() { return 1; };
-          C.prototype.fn2 = function() { return 2; };
+        it('should record calls on functions in the class', function() {
+          var c = new TestClass();
+          Spies.spy(c);
 
-          it('should spy on all functions in a class', function() {
-            var c = new C();
-            Spies.spy(c);
+          // Call the spied functions
+          expect(c.fn1()).to.equal(1);
+          expect(c.fn2()).to.equal(2);
+          expect(c.sub.fn()).to.equal(3);
 
-            expect(c.fn1()).to.equal(1);
-            expect(c.fn2()).to.equal(2);
-            Spies.verify(c.fn1)().called();
-            Spies.verify(c.fn2)().called();
-          });
+          expect(Spies.callCountOf(c.fn1)()).to.equal(1);
+          expect(Spies.callCountOf(c.fn2)()).to.equal(1);
+          expect(Spies.callCountOf(c.sub.fn)()).to.equal(1);
+        });
+      });
 
-          it('should reset when calling reset', function() {
-            var c = new C();
-            Spies.spy(c);
+      describe('#reset', function() {
+        it('should reset spied function', function() {
+          var c = new TestClass();
+          Spies.spy(c, 'fn1');
+          c.fn1();
 
-            c.fn1();
-            c.fn2();
-            Spies.reset(c);
-            Spies.spy(c);
-            Spies.verify(c.fn1)().called.times(0);
-            Spies.verify(c.fn2)().called.times(0);
-          });
+          Spies.reset(c.fn1);
+          expect(Spies.callCountOf(c.fn1)()).to.equal(0);
+        });
+
+        it('should ignore unspied function', function() {
+          Spies.reset((new TestClass()).fn1);
+        });
+
+        it('should reset spied class', function() {
+          var c = new TestClass();
+          Spies.spy(c);
+
+          c.fn1();
+          c.fn2();
+          Spies.reset(c);
+          Spies.spy(c);
+          expect(Spies.callCountOf(c.fn1)()).to.equal(0);
+          expect(Spies.callCountOf(c.fn2)()).to.equal(0);
         });
       });
     });
