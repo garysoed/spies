@@ -5,7 +5,7 @@
 export default class SpiedFn {
 
   /**
-   * @param {Object} scope The scope that the function is in.
+   * @param {!Object} scope The scope that the function is in.
    * @param {string} name The name of the function that is spied.
    * @constructor
    */

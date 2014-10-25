@@ -1,133 +1,56 @@
 import SpiedFn from 'src/spiedfn.es6';
+import { deepEqual } from 'src/utils.es6';
+import SpiedFnMap from 'src/spiedfnmap.es6'
 
-var spiedFns = {};
-function getSpiedFn(scope, name) {
-  if (!spiedFns[scope]) {
-    return null;
-  }
-  if (!spiedFns[scope][name]) {
-    return null;
-  }
+var spiedFns = new SpiedFnMap();
 
-  return spiedFns[scope][name];
-};
+export default {
 
-function addSpiedFn(scope, name) {
-  if (!spiedFns[scope]) {
-    spiedFns[scope] = {};
-  }
-  // Keep track of the original function.
-  spiedFns[scope][name] = new SpiedFn(scope, name);
-};
-
-function deleteSpiedFn(scope, name) {
-  if (spiedFns[scope] && spiedFns[scope][name]) {
-    delete spiedFns[scope][name];
-  }
-};
-
-
-/**
- * Deep equals the two objects.
- * 
- * @param  {*} obj1 The first object to compare.
- * @param  {*} obj2 The second object to compare.
- * @return {boolean} True iff the two objects are deeply equal.
- * 
- * @static
- * @private
- */
-function deepEqual(obj1, obj2) {
-  if (obj1 === obj2) {
-    return true;
-  }
-
-  if (!(obj1 instanceof Object) || !(obj2 instanceof Object)) {
-    return obj1 === obj2;
-  }
-
-  if (obj1.equals instanceof Function) {
-    return obj1.equals(obj2);
-  }
-
-  if (obj2.equals instanceof Function) {
-    return obj2.equals(obj1);
-  }
-
-  if (obj1 instanceof Array && obj1.length !== obj2.length) {
-    return false;
-  }
-
-  for (var key in obj1) {
-    if (!deepEqual(obj1[key], obj2[key])) {
-      return false;
-    }
-  }
-  return true;
-}
-
-
-function spyOnFunction(scope, name) {
-  // We are spying on a function
-  var origFn = scope[name];
-
-  var newFunction = function() {
-    var argArray = Array.prototype.slice.call(arguments);
-    getSpiedFn(scope, name).record(argArray);
-    return origFn.call(this, argArray);
-  };
-  newFunction.scope = scope;
-  newFunction.fnName = name;
-
-  addSpiedFn(scope, name);
-
-  // Override the original function.
-  scope[name] = newFunction;
-};
-
-function spyOnObject(object) {
-  for (var key in object) {
-    if (object[key] instanceof Function) {
-      spyOnFunction(object, key);
-    } else if (object[key] instanceof Object) {
-      spyOnFunction(object[key]);
-    }
-  }
-};
-
-
-function resetSpiedFunction(target) {
-  var spiedFn = getSpiedFn(target.scope, target.fnName);
-  if (spiedFn) {
-    spiedFn.restore();
-  }
-  
-  deleteSpiedFn(target.scope, target.name);
-};
-
-function resetSpiedObject(object) {
-  for (var key in object) {
-    Spies.reset(object[key]);
-  }
-};
-
-var Spies = {
+  /**
+   * Spies the given function, or recursively all functions in the given object.
+   *
+   * @param  {!Object} scope The Object to be spied on, or the object containing the function to 
+   *     be spied on. 
+   * @param  {string=} name The name of the function to be spied on.
+   */
   spy: function(scope, name) {
     if (name === undefined) {
-      spyOnObject(scope);
+      // We are spying on an object.
+      for (let key in scope) {
+        if (scope[key] instanceof Function) {
+          this.spy(scope, key);
+        } else if (scope[key] instanceof Object) {
+          this.spy(scope[key]);
+        }
+      }
     } else {
-      spyOnFunction(scope, name);
+      // We are spying on a function
+      let origFn = scope[name];
+
+      // Create the new function.
+      let newFunction = (...args) => {
+        spiedFns.get(scope, name).record(args);
+        return origFn.call(this, args);
+      };
+      newFunction.scope = scope;
+      newFunction.fnName = name;
+
+      spiedFns.put(scope, name);
+
+      // Override the original function.
+      scope[name] = newFunction;
     }
   },
 
   verify: function(target) {
-    var spiedFn = getSpiedFn(target.scope, target.fnName);
-    var record = spiedFn ? spiedFn.records : [];
-    return function() {
-      var argArray = Array.prototype.slice.call(arguments);
-      var invocations = record.filter(args => deepEqual(args, argArray));
+    let spiedFn = spiedFns.get(target.scope, target.fnName);
+    let record = spiedFn ? spiedFn.records : [];
+    return (...args) => {
+      let invocations = record.filter(recordedArgs => {
+        return deepEqual(recordedArgs, args);
+      });
 
-      var called = function() {
+      let called = function() {
         chai.expect(invocations).to.have.length.of.at.least(1);
       };
       called.times = function(number) {
@@ -138,13 +61,20 @@ var Spies = {
     };
   },
 
+  /**
+   * Restores the given function or recursively all functions in the given object to its original
+   * implementation and removes all records related to it.
+   *
+   * @param  {Function} target The function or object to be reset.
+   */
   reset: function(target) {
     if (target instanceof Function) {
-      resetSpiedFunction(target);
+      spiedFns.restore(target.scope, target.name);
     } else {
-      resetSpiedObject(target);
+      // Go through every member of the object and resets it.
+      for (let key in target) {
+        this.reset(target[key]);
+      }
     }
   }
 };
-
-export default Spies;
