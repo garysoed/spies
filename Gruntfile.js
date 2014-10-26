@@ -6,6 +6,9 @@ module.exports = function(grunt) {
     'shell': {
       'traceur': {
         command: 'traceur --out=js.js src/spies.es6 --source-maps=file --symbols=true'
+      },
+      'karma': {
+        command: 'karma start karma.conf.js'
       }
     },
 
