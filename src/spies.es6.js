@@ -11,9 +11,9 @@ export default {
    * @return {!Object} The stub object.
    */
   stub(ctor) {
-    let stub = {};
-    stub.__proto__ = ctor.prototype;
-    return stub;
+    return {
+      __proto__: ctor.prototype
+    };
   },
 
   /**
