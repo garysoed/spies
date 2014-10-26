@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chai Expect Plugin Unit Tests</title>
+  <link rel="import" href="../../main_test.html">
+  <link rel="import" href="../../main_chai_expect.html">
+</head>
+<body>
+  <script>
+    'use strict';
+
+    var Spies = System.get('src/spies.es6').default;
+    var expect = chai.expect;
+
+    describe('Chai Plugin', function() {
+      describe('#calledWith', function() {
+        it('should assert call of at least once', function() {
+          var TestClass = {};
+          TestClass.fn = function() { };
+          Spies.spy(TestClass, 'fn');
+          TestClass.fn();
+          expect(TestClass.fn).to.be.calledWith().at.least(1);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

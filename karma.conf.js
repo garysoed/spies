@@ -23,11 +23,10 @@ module.exports = function(config) {
       { pattern: 'src/**/*.js', included: false },
 
       // Deps
-      { pattern: 'main_test.html', included: false },
-      { pattern: 'main.html', included: false },
+      { pattern: '*.html', included: false },
       { pattern: 'node_modules/**/*.js', included: false },
 
-      'test/*.html',
+      'test/**/*.html',
     ],
 
 
