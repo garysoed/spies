@@ -72,6 +72,29 @@
           expect(Spies.callCountOf(c.fn2)()).to.equal(0);
         });
       });
+
+      describe('#callCountOf', function() {
+        it('should return correct number of invocations', function() {
+          var c = new TestClass();
+          Spies.spy(c, 'fn1');
+          c.fn1();
+          c.fn1();
+          c.fn1();
+
+          expect(Spies.callCountOf(c.fn1)()).to.equal(3);
+        });
+      });
+
+      describe('#stub', function() {
+        it('should preserve the class type and prototypes of stubbed class', function() {
+          var stub = Spies.stub(TestClass);
+
+          expect(stub.fn1()).to.equal(1);
+          expect(stub.fn2()).to.equal(2);
+          expect(stub.sub.fn()).to.equal(3);
+          expect(stub).to.be.instanceof(TestClass);
+        });
+      });
     });
   </script>
 </body>

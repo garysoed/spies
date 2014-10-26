@@ -4,6 +4,19 @@ import { deepEqual } from 'src/utils.es6';
 export default {
 
   /**
+   * Creates a stub for the given constructor.
+   *
+   * @param  {!Function} ctor The constructor to be stubbed.
+   * 
+   * @return {!Object} The stub object.
+   */
+  stub(ctor) {
+    let stub = {};
+    stub.__proto__ = ctor.prototype;
+    return stub;
+  },
+
+  /**
    * Spies the given function, or recursively all functions in the given object.
    *
    * @param  {!Object} scope The Object to be spied on, or the object containing the function to 
