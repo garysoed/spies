@@ -1,5 +1,5 @@
-import SpiedFn from 'src/spiedfn.es6';
-import { deepEqual } from 'src/utils.es6';
+import SpiedFn from 'src_spiedfn.es6';
+import { deepEqual } from 'src_utils.es6';
 
 export default {
 

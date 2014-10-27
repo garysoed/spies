@@ -1,7 +1,10 @@
 <!-- Import this to use the library -->
 <script src="node_modules/chai/chai.js"></script>
-<script src="node_modules/traceur/bin/traceur-runtime.js"></script>
-<script src="js.js"></script>
+
+<script src="node_modules/grunt-traceur/node_modules/traceur/bin/traceur-runtime.js"></script>
+<script src="out/utils.es6.js"></script>
+<script src="out/spiedfn.es6.js"></script>
+<script src="out/spies.es6.js"></script>
 <script>
-  window.Spies = System.get('src/spies.es6').default;
+  window.Spies = System.get('src_spies.es6').default;
 </script>

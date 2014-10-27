@@ -12,6 +12,22 @@ module.exports = function(grunt) {
       }
     },
 
+    'traceur': {
+      options: {
+        sourceMaps: 'file',
+        symbols: true,
+        blockBinding: true
+      },
+      custom: {
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: ['**/*.es6.js'],
+          dest: 'out'
+        }]
+      },
+    },
+
     'watch': {
       'traceur': {
         files: [

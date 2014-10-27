@@ -1,4 +1,4 @@
-// --symbols
+// symbols
 var _scope = Symbol();
 var _name = Symbol();
 var _origFn = Symbol();
