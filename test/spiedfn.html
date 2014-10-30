@@ -21,10 +21,19 @@
 
       describe('ctor', function() {
         it('should override the original function', function() {
-          var origFn = TestClass.fn;
-          var spiedFn = new SpiedFn(TestClass, 'fn');
-          expect(TestClass.fn).to.not.equal(origFn);
-          expect(TestClass.fn()).to.equal(origFn());
+          var C = {};
+          var rv = 1;
+          var receivedArgs = [];
+          C.fn = function() {
+            receivedArgs = Array.prototype.slice.call(arguments);
+            return rv;
+          };
+
+          var origFn = C.fn;
+          var spiedFn = new SpiedFn(C, 'fn');
+          expect(C.fn).to.not.equal(origFn);
+          expect(C.fn(1, 2, 3)).to.equal(rv);
+          expect(receivedArgs).to.eql([1, 2, 3]);
         });
       });
 

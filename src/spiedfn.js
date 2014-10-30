@@ -19,7 +19,7 @@ export default class SpiedFn extends Function {
 
     var f = function(...args) {
       f.record(args);
-      return origFn.call(this, args);
+      return origFn.apply(this, args);
     };
     f.__proto__ = SpiedFn.prototype;
     f.constructor = SpiedFn;
