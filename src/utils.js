@@ -2,6 +2,8 @@
  * Contains various utility functions.
  */
 
+import Matcher from 'src/matcher/matcher';
+
 /**
  * Deep equals the two objects.
  * 
@@ -14,16 +16,16 @@ export function deepEqual(obj1, obj2) {
     return true;
   }
 
+  if (obj1 instanceof Matcher) {
+    return obj1.registerInvocation(obj2);
+  }
+
+  if (obj2 instanceof Matcher) {
+    return obj2.registerInvocation(obj1);
+  }
+
   if (!(obj1 instanceof Object) || !(obj2 instanceof Object)) {
     return obj1 === obj2;
-  }
-
-  if (obj1.equals instanceof Function) {
-    return obj1.equals(obj2);
-  }
-
-  if (obj2.equals instanceof Function) {
-    return obj2.equals(obj1);
   }
 
   if (obj1 instanceof Array && obj1.length !== obj2.length) {

@@ -6,7 +6,6 @@ var _records = Symbol();
 
 /**
  * @class Represents a function that is spied.
- * @module src/spiedfn.es6
  */
 export default class SpiedFn extends Function {
 
@@ -37,7 +36,6 @@ export default class SpiedFn extends Function {
 
   /**
    * Restores the spied function.
-   * @method
    */
   restore() {
     this[_scope][this[_name]] = this[_origFn];

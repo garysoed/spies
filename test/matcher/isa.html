@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IsA Unit Tests</title>
+  <link rel="import" href="../../main_test.html">
+</head>
+<body>
+  <script>
+    'use strict';
+
+    var deepEqual = System.get('src/matcher/matchers').default;
+    var expect = chai.expect;
+
+    describe('IsA', function() {
+      it('should match by typeof when given a string', function() {
+        var C = function() { };
+        expect(Matchers.isA('object').matches(new C())).to.be.true;
+        expect(Matchers.isA('number').matches(1)).to.be.true;
+        expect(Matchers.isA('object').matches(1)).to.be.false;
+      });
+
+      it('should match by instanceof when given a ctor', function() {
+        var C = function() {};
+        var C2 = function() {};
+        expect(Matchers.isA(C).matches(new C())).to.be.true;
+        expect(Matchers.isA(C).matches(new C2())).to.be.false;
+      });
+    });
+  </script>
+</body>
+</html>

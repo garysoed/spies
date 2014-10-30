@@ -7,9 +7,7 @@ module.exports = function(grunt) {
 
     'shell': {
       'traceur': {
-        command: function(src, out) {
-          return 'traceur --out=' + out + ' ' + src + ' --source-maps=file --symbols=true';
-        }
+        command: 'traceur --out main.js src/main.js --source-maps=file --symbols=true'
       },
       'karma': {
         command: 'karma start karma.conf.js'
@@ -24,7 +22,7 @@ module.exports = function(grunt) {
     'multi-traceur': {
       out: 'out',
       modules: [
-        'src/spies'
+        'src/main',
       ]
     },
 
@@ -33,7 +31,7 @@ module.exports = function(grunt) {
         files: [
           'src/**/*.js'
         ],
-        tasks: [ 'multi-traceur' ],
+        tasks: [ 'shell:traceur' ],
         options: {
           atBegin: true
         }
@@ -45,22 +43,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   // Default task(s).
-  grunt.registerTask('multi-traceur', 'runs traceur on all modules', function() {
-    grunt.config.requires('multi-traceur.modules');
-    grunt.config('multi-traceur.modules').forEach(function(module) {
-      var outDir = grunt.config('multi-traceur.out');
-      var fileName = module.match(/[^\/]*$/);
-      var outJs = fileName + '.js';
-      var outMap = fileName + '.map';
-      var moduleOut = module.replace('src/', 'out/');
 
-      grunt.task.run('shell:traceur:' + module + ':' + outJs);
-      grunt.file.mkdir(outDir);
-
-      grunt.task.run('shell:mv:' + outJs + ':' + moduleOut + '.js');
-      grunt.task.run('shell:mv:' + outMap + ':' + moduleOut + '.map');
-    });
-  });
 
   grunt.registerTask('karma', 'shell:karma');
 };

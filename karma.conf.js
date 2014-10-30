@@ -16,8 +16,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // Generated files
-      { pattern: 'out/**/*.js', included: false },
-      { pattern: 'out/**/*.map', included: false },
+      { pattern: 'main.js', included: false },
+      { pattern: 'main.map', included: false },
 
       // For source maps
       { pattern: 'src/**/*.js', included: false },

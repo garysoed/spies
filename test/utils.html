@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Utils Unit Tests</title>
+  <link rel="import" href="../main_test.html">
+</head>
+<body>
+  <script>
+    'use strict';
+
+    var deepEqual = System.get('src/utils').deepEqual;
+    var Matcher = System.get('src/matcher/matcher').default;
+    var expect = chai.expect;
+
+    describe('Utils', function() {
+      describe('#deepEqual', function() {
+        it('should handle ===', function() {
+          var a = {};
+          expect(deepEqual(a, a)).to.be.true;
+        });
+
+        it('should handle 2 primitives', function() {
+          expect(deepEqual(0, 0)).to.be.true;
+          expect(deepEqual(0, '')).to.be.false;
+          expect(deepEqual(true, {})).to.be.false;
+        });
+
+        it('should handle one primitive', function() {
+          expect(deepEqual(0, {})).to.be.false;
+        });
+
+        it('should handle Matcher', function() {
+          var m = new Matcher();
+          m.registerInvocation = function() { return true; };
+          expect(deepEqual(4, m)).to.be.true;
+          expect(deepEqual(m, 4)).to.be.true;
+
+          m.registerInvocation = function() { return false; };
+          expect(deepEqual(4, m)).to.be.false;
+          expect(deepEqual(m, 4)).to.be.false;
+        });
+
+        it('should check array length', function() {
+          expect(deepEqual([null, null], [null, null])).to.be.true;
+          expect(deepEqual([null], [null, null])).to.be.false;
+        });
+
+        it('should recurse in object', function() {
+          var a1 = {
+            a: 1,
+            b: {
+              a: 1
+            }
+          };
+
+          var a2 = {
+            a: 1,
+            b: {
+              a: 1
+            }
+          };
+
+          var diff = {
+            a: 1,
+            b: {
+              a: 2
+            }
+          };
+
+          expect(deepEqual(a1, a2)).to.be.true;
+          expect(deepEqual(a1, diff)).to.be.false;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
