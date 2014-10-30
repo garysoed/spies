@@ -51,5 +51,3 @@ export default class SpiedFn extends Function {
     this.records.push(args);
   }
 }
-
-SpiedFn.prototype.scope = null;
