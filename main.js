@@ -22,8 +22,10 @@ System.register("src/matcher/isa", [], function() {
   var __moduleName = "src/matcher/isa";
   var Matcher = System.get("src/matcher/matcher").default;
   var IsA = function IsA(expectedType) {
+    $traceurRuntime.superCall(this, $IsA.prototype, "constructor", []);
     this.expectedType = expectedType;
   };
+  var $IsA = IsA;
   ($traceurRuntime.createClass)(IsA, {matches: function(arg) {
       if (this.expectedType instanceof Function) {
         return arg instanceof this.expectedType;
