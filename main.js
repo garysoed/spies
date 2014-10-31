@@ -28,8 +28,10 @@ var $__src_47_matcher_47_isa__ = (function() {
   var __moduleName = "src/matcher/isa";
   var Matcher = ($__src_47_matcher_47_matcher__).default;
   var IsA = function IsA(expectedType) {
+    $traceurRuntime.superCall(this, $IsA.prototype, "constructor", []);
     this.expectedType = expectedType;
   };
+  var $IsA = IsA;
   ($traceurRuntime.createClass)(IsA, {matches: function(arg) {
       if (this.expectedType instanceof Function) {
         return arg instanceof this.expectedType;

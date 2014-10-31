@@ -11,6 +11,7 @@ export default class IsA extends Matcher {
    * @constructor
    */
   constructor(expectedType) {
+    super();
     this.expectedType = expectedType;
   }
 
