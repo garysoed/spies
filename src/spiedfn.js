@@ -49,3 +49,11 @@ export default class SpiedFn extends Function {
     this.records.push(args);
   }
 }
+
+if (TEST_MODE) {
+  if (!window.spies) {
+    window.spies = {};
+  }
+
+  window.spies.SpiedFn = SpiedFn;
+}

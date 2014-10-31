@@ -24,3 +24,11 @@ export default class Matcher {
     return false;
   }
 };
+
+if (TEST_MODE) {
+  if (!window.spies) {
+    window.spies = {};
+  }
+
+  window.spies.Matcher = Matcher;
+}

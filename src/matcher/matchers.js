@@ -1,6 +1,6 @@
 import IsA from 'src/matcher/isa';
 
-export default {
+var Matchers = {
 
   /**
    * @see  src/matcher/isa
@@ -9,3 +9,11 @@ export default {
     return new IsA(expectedType);
   }
 };
+
+export default Matchers;
+
+if (!window.spies) {
+  window.spies = {};
+}
+
+window.spies.Matchers = Matchers;

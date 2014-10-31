@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
     'shell': {
       'traceur': {
-        command: 'traceur --out main.js src/main.js --source-maps=file --symbols=true'
+        command: 'traceur --out main.js src/main.js --source-maps=file --symbols=true --modules=inline'
       },
       'karma': {
         command: 'karma start karma.conf.js'

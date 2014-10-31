@@ -1,7 +1,7 @@
 import SpiedFn from 'src/spiedfn';
 import { deepEqual } from 'src/utils';
 
-export default {
+var Spies = {
 
   /**
    * Creates a stub for the given constructor.
@@ -78,3 +78,10 @@ export default {
     }
   }
 };
+
+export default Spies;
+
+if (!window.spies) {
+  window.spies = {};
+}
+window.spies.Spies = Spies;

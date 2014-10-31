@@ -39,3 +39,13 @@ export function deepEqual(obj1, obj2) {
   }
   return true;
 }
+
+if (TEST_MODE) {
+  if (!window.spies) {
+    window.spies = {};
+  }
+
+  window.spies.Utils = {
+    deepEqual
+  }
+}

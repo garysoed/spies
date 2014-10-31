@@ -8,8 +8,8 @@
   <script>
     'use strict';
 
-    var deepEqual = System.get('src/utils').deepEqual;
-    var Matcher = System.get('src/matcher/matcher').default;
+    var deepEqual = spies.Utils.deepEqual;
+    var Matcher = spies.Matcher;
     var expect = chai.expect;
 
     describe('Utils', function() {

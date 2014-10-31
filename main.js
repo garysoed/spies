@@ -1,4 +1,4 @@
-System.register("src/matcher/matcher", [], function() {
+var $__src_47_matcher_47_matcher__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/matcher";
   var Matcher = function Matcher() {
@@ -13,14 +13,20 @@ System.register("src/matcher/matcher", [], function() {
     }}, {});
   var $__default = Matcher;
   ;
+  if (TEST_MODE) {
+    if (!window.spies) {
+      window.spies = {};
+    }
+    window.spies.Matcher = Matcher;
+  }
   return {get default() {
       return $__default;
     }};
-});
-System.register("src/matcher/isa", [], function() {
+})();
+var $__src_47_matcher_47_isa__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/isa";
-  var Matcher = System.get("src/matcher/matcher").default;
+  var Matcher = ($__src_47_matcher_47_matcher__).default;
   var IsA = function IsA(expectedType) {
     this.expectedType = expectedType;
   };
@@ -35,19 +41,24 @@ System.register("src/matcher/isa", [], function() {
   return {get default() {
       return $__default;
     }};
-});
-System.register("src/matcher/matchers", [], function() {
+})();
+var $__src_47_matcher_47_matchers__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/matchers";
-  var IsA = System.get("src/matcher/isa").default;
-  var $__default = {isA: function(expectedType) {
+  var IsA = ($__src_47_matcher_47_isa__).default;
+  var Matchers = {isA: function(expectedType) {
       return new IsA(expectedType);
     }};
+  var $__default = Matchers;
+  if (!window.spies) {
+    window.spies = {};
+  }
+  window.spies.Matchers = Matchers;
   return {get default() {
       return $__default;
     }};
-});
-System.register("src/spiedfn", [], function() {
+})();
+var $__src_47_spiedfn__ = (function() {
   "use strict";
   var __moduleName = "src/spiedfn";
   var _scope = Symbol();
@@ -82,14 +93,20 @@ System.register("src/spiedfn", [], function() {
     }
   }, {}, Function);
   var $__default = SpiedFn;
+  if (TEST_MODE) {
+    if (!window.spies) {
+      window.spies = {};
+    }
+    window.spies.SpiedFn = SpiedFn;
+  }
   return {get default() {
       return $__default;
     }};
-});
-System.register("src/utils", [], function() {
+})();
+var $__src_47_utils__ = (function() {
   "use strict";
   var __moduleName = "src/utils";
-  var Matcher = System.get("src/matcher/matcher").default;
+  var Matcher = ($__src_47_matcher_47_matcher__).default;
   function deepEqual(obj1, obj2) {
     if (obj1 === obj2) {
       return true;
@@ -114,16 +131,22 @@ System.register("src/utils", [], function() {
       }
     return true;
   }
+  if (TEST_MODE) {
+    if (!window.spies) {
+      window.spies = {};
+    }
+    window.spies.Utils = {deepEqual: deepEqual};
+  }
   return {get deepEqual() {
       return deepEqual;
     }};
-});
-System.register("src/spies", [], function() {
+})();
+var $__src_47_spies__ = (function() {
   "use strict";
   var __moduleName = "src/spies";
-  var SpiedFn = System.get("src/spiedfn").default;
-  var deepEqual = System.get("src/utils").deepEqual;
-  var $__default = {
+  var SpiedFn = ($__src_47_spiedfn__).default;
+  var deepEqual = ($__src_47_utils__).deepEqual;
+  var Spies = {
     stub: function(ctor) {
       return {__proto__: ctor.prototype};
     },
@@ -164,17 +187,21 @@ System.register("src/spies", [], function() {
       }
     }
   };
+  var $__default = Spies;
+  if (!window.spies) {
+    window.spies = {};
+  }
+  window.spies.Spies = Spies;
   return {get default() {
       return $__default;
     }};
-});
-System.register("src/main", [], function() {
+})();
+var $__src_47_main__ = (function() {
   "use strict";
   var __moduleName = "src/main";
-  var Spies = System.get("src/spies").default;
-  var Matchers = System.get("src/matcher/matchers").default;
+  var Spies = ($__src_47_spies__).default;
+  var Matchers = ($__src_47_matcher_47_matchers__).default;
   return {};
-});
-System.get("src/main" + '');
+})();
 
 //# sourceMappingURL=main.map
