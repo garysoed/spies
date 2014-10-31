@@ -25,7 +25,7 @@ export default class Matcher {
   }
 };
 
-if (TEST_MODE) {
+if (window.TEST_MODE) {
   if (!window.spies) {
     window.spies = {};
   }

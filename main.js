@@ -13,7 +13,7 @@ var $__src_47_matcher_47_matcher__ = (function() {
     }}, {});
   var $__default = Matcher;
   ;
-  if (TEST_MODE) {
+  if (window.TEST_MODE) {
     if (!window.spies) {
       window.spies = {};
     }
@@ -95,7 +95,7 @@ var $__src_47_spiedfn__ = (function() {
     }
   }, {}, Function);
   var $__default = SpiedFn;
-  if (TEST_MODE) {
+  if (window.TEST_MODE) {
     if (!window.spies) {
       window.spies = {};
     }
@@ -133,7 +133,7 @@ var $__src_47_utils__ = (function() {
       }
     return true;
   }
-  if (TEST_MODE) {
+  if (window.TEST_MODE) {
     if (!window.spies) {
       window.spies = {};
     }

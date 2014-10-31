@@ -50,7 +50,7 @@ export default class SpiedFn extends Function {
   }
 }
 
-if (TEST_MODE) {
+if (window.TEST_MODE) {
   if (!window.spies) {
     window.spies = {};
   }
