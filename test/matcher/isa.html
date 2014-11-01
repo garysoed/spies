@@ -12,7 +12,7 @@
     var expect = chai.expect;
 
     describe('IsA', function() {
-      describe('#matches', function() {
+      describe(' #matches', function() {
         it('should match by typeof when given a string', function() {
           var C = function() { };
           expect(Matchers.isA('object').matches(new C())).to.be.true;

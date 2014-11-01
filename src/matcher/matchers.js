@@ -1,4 +1,5 @@
 import IsA from 'src/matcher/isa';
+import Any from 'src/matcher/any';
 
 var Matchers = {
 
@@ -7,6 +8,13 @@ var Matchers = {
    */
   isA(expectedType) {
     return new IsA(expectedType);
+  },
+
+  /**
+   * @see  src/matcher/any
+   */
+  any() {
+    return new Any();
   }
 };
 

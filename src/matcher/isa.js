@@ -1,4 +1,4 @@
-import Matcher from 'src/matcher/matcher'
+import Matcher from 'src/matcher/matcher';
 
 /**
  * @class Matches arguments that is the instance of the given ctor, or has the expected type.

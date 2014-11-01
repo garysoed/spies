@@ -23,6 +23,22 @@ var $__src_47_matcher_47_matcher__ = (function() {
       return $__default;
     }};
 })();
+var $__src_47_matcher_47_any__ = (function() {
+  "use strict";
+  var __moduleName = "src/matcher/any";
+  var Matcher = ($__src_47_matcher_47_matcher__).default;
+  var Any = function Any() {
+    $traceurRuntime.superCall(this, $Any.prototype, "constructor", []);
+  };
+  var $Any = Any;
+  ($traceurRuntime.createClass)(Any, {matches: function() {
+      return true;
+    }}, {}, Matcher);
+  var $__default = Any;
+  return {get default() {
+      return $__default;
+    }};
+})();
 var $__src_47_matcher_47_isa__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/isa";
@@ -48,9 +64,15 @@ var $__src_47_matcher_47_matchers__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/matchers";
   var IsA = ($__src_47_matcher_47_isa__).default;
-  var Matchers = {isA: function(expectedType) {
+  var Any = ($__src_47_matcher_47_any__).default;
+  var Matchers = {
+    isA: function(expectedType) {
       return new IsA(expectedType);
-    }};
+    },
+    any: function() {
+      return new Any();
+    }
+  };
   var $__default = Matchers;
   if (!window.spies) {
     window.spies = {};
