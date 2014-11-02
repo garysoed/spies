@@ -19,23 +19,26 @@ var Spies = {
   /**
    * Spies the given function, or recursively all functions in the given object.
    *
-   * @param  {!Object} scope The Object to be spied on, or the object containing the function to 
+   * @param {!Object} scope The Object to be spied on, or the object containing the function to 
    *     be spied on. 
-   * @param  {string=} name The name of the function to be spied on.
+   * @param {string=} name The name of the function to be spied on. If not specified, this will
+   *     spy all functions in the scope recursively.
+   * @param {boolean=} callOriginal True iff the original function should be called. Defaults to 
+   *     true.
    */
-  spy(scope, name) {
+  spy(scope, name, callOriginal = true) {
     if (name === undefined) {
       // We are spying on an object.
       for (let key in scope) {
         if (scope[key] instanceof Function) {
-          this.spy(scope, key);
+          this.spy(scope, key, callOriginal);
         } else if (scope[key] instanceof Object) {
-          this.spy(scope[key]);
+          this.spy(scope[key], undefined, callOriginal);
         }
       }
     } else {
       // We are spying on a function
-      new SpiedFn(scope, name);
+      new SpiedFn(scope, name, callOriginal);
     }
   },
 

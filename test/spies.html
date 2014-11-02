@@ -13,12 +13,17 @@
 
     describe('Spies', function() {
       var TestSubClass = function() {};
-      TestSubClass.prototype.fn = function() { return 3; };
 
       var TestClass = function() {};
-      TestClass.prototype.fn1 = function() { return 1; };
-      TestClass.prototype.fn2 = function() { return 2; };
-      TestClass.prototype.sub = new TestSubClass();
+
+      beforeEach(function(done) {
+        TestSubClass.prototype.fn = function() { return 3; };
+          
+        TestClass.prototype.fn1 = function() { return 1; };
+        TestClass.prototype.fn2 = function() { return 2; };
+        TestClass.prototype.sub = new TestSubClass();
+        done();
+      });
       
       describe('#spy', function() {
 
@@ -31,6 +36,14 @@
           expect(Spies.callCountOf(c.fn1)(2)).to.equal(0);
         });
 
+        it('should not call original function when callOriginal is false', function() {
+          var c = new TestClass();
+          Spies.spy(c, 'fn1', false);
+
+          expect(c.fn1()).to.be.undefined;
+          expect(Spies.callCountOf(c.fn1)()).to.equal(1);
+        });
+
         it('should record calls on functions in the class', function() {
           var c = new TestClass();
           Spies.spy(c);
@@ -39,6 +52,20 @@
           expect(c.fn1()).to.equal(1);
           expect(c.fn2()).to.equal(2);
           expect(c.sub.fn()).to.equal(3);
+
+          expect(Spies.callCountOf(c.fn1)()).to.equal(1);
+          expect(Spies.callCountOf(c.fn2)()).to.equal(1);
+          expect(Spies.callCountOf(c.sub.fn)()).to.equal(1);
+        });
+
+        it('should not call original functions in a class when callOriginal is false', function() {
+          var c = new TestClass();
+          Spies.spy(c, undefined, false);
+
+          // Call the spied functions
+          expect(c.fn1()).to.be.undefined;
+          expect(c.fn2()).to.be.undefined;
+          expect(c.sub.fn()).to.be.undefined;
 
           expect(Spies.callCountOf(c.fn1)()).to.equal(1);
           expect(Spies.callCountOf(c.fn2)()).to.equal(1);

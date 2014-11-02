@@ -89,14 +89,17 @@ var $__src_47_spiedfn__ = (function() {
   var _name = Symbol();
   var _origFn = Symbol();
   var _records = Symbol();
-  var SpiedFn = function SpiedFn(scope, name) {
+  var SpiedFn = function SpiedFn(scope, name, callOriginal) {
     var origFn = scope[$traceurRuntime.toProperty(name)];
     var f = function() {
       for (var args = [],
           $__1 = 0; $__1 < arguments.length; $__1++)
         args[$traceurRuntime.toProperty($__1)] = arguments[$traceurRuntime.toProperty($__1)];
       f.record(args);
-      return origFn.apply(this, args);
+      if (callOriginal) {
+        return origFn.apply(this, args);
+      }
+      return undefined;
     };
     f.__proto__ = $SpiedFn.prototype;
     f.constructor = $SpiedFn;
@@ -175,17 +178,18 @@ var $__src_47_spies__ = (function() {
       return {__proto__: ctor.prototype};
     },
     spy: function(scope, name) {
+      var callOriginal = arguments[2] !== (void 0) ? arguments[2] : true;
       if (name === undefined) {
         for (var key in scope)
           if (!$traceurRuntime.isSymbolString(key)) {
             if (scope[$traceurRuntime.toProperty(key)] instanceof Function) {
-              this.spy(scope, key);
+              this.spy(scope, key, callOriginal);
             } else if (scope[$traceurRuntime.toProperty(key)] instanceof Object) {
-              this.spy(scope[$traceurRuntime.toProperty(key)]);
+              this.spy(scope[$traceurRuntime.toProperty(key)], undefined, callOriginal);
             }
           }
       } else {
-        new SpiedFn(scope, name);
+        new SpiedFn(scope, name, callOriginal);
       }
     },
     callCountOf: function(target) {

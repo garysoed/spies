@@ -30,16 +30,32 @@
           };
 
           var origFn = C.fn;
-          var spiedFn = new SpiedFn(C, 'fn');
+          var spiedFn = new SpiedFn(C, 'fn', true);
           expect(C.fn).to.not.equal(origFn);
           expect(C.fn(1, 2, 3)).to.equal(rv);
           expect(receivedArgs).to.eql([1, 2, 3]);
+        });
+
+        it('should not call original function if callOriginal is false', function() {
+          var C = {};
+          var rv = 1;
+          var receivedArgs = null;
+          C.fn = function() {
+            receivedArgs = Array.prototype.slice.call(arguments);
+            return rv;
+          };
+
+          var origFn = C.fn;
+          var spiedFn = new SpiedFn(C, 'fn', false);
+          expect(C.fn).to.not.equal(origFn);
+          expect(C.fn(1, 2, 3)).to.equal(undefined);
+          expect(receivedArgs).to.eql(null);
         });
       });
 
       describe('#restore', function() {
         it('should restore original function', function() {
-          var spiedFn = new SpiedFn(TestClass, 'fn');
+          var spiedFn = new SpiedFn(TestClass, 'fn', true);
 
           // Replace the function.
           TestClass.fn = function() { return 2; };
@@ -53,7 +69,7 @@
 
       describe('#record', function() {
         it('should record the arguments', function() {
-          var spiedFn = new SpiedFn(TestClass, 'fn');
+          var spiedFn = new SpiedFn(TestClass, 'fn', true);
           var args1 = [1, 2, 3, 4];
           var args2 = [5, 6, 7];
 

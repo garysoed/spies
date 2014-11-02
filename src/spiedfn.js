@@ -12,14 +12,18 @@ export default class SpiedFn extends Function {
   /**
    * @param {!Object} scope The scope that the function is in.
    * @param {string} name The name of the function that is spied.
+   * @param {boolean} callOriginal True iff the original should be called.
    * @constructor
    */
-  constructor(scope, name) {
+  constructor(scope, name, callOriginal) {
     let origFn = scope[name];
 
     var f = function(...args) {
       f.record(args);
-      return origFn.apply(this, args);
+      if (callOriginal) {
+        return origFn.apply(this, args);
+      }
+      return undefined;
     };
     f.__proto__ = SpiedFn.prototype;
     f.constructor = SpiedFn;
