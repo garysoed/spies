@@ -26,7 +26,6 @@
       });
       
       describe('#spy', function() {
-
         it('should record calls on functions', function() {
           var c = new TestClass();
           Spies.spy(c, 'fn1');
@@ -109,6 +108,18 @@
           c.fn1();
 
           expect(Spies.callCountOf(c.fn1)()).to.equal(3);
+        });
+      });
+
+      describe('#anyCallCountOf', function() {
+        it('should return the number of invocations with any arguments', function() {
+          var c = new TestClass();
+          Spies.spy(c, 'fn1');
+          c.fn1(1);
+          c.fn1(2);
+          c.fn1(3);
+
+          expect(Spies.anyCallCountOf(c.fn1)).to.equal(3);
         });
       });
 

@@ -63,6 +63,16 @@ var Spies = {
   },
 
   /**
+   * Returns the number of call counts for the target of any arguments.
+   *
+   * @param {!Function} target The function whose call count should be returned.
+   * @return {number} Number of invocations on the given function.
+   */
+  anyCallCountOf(target) {
+    return target.records.length;
+  },
+
+  /**
    * Restores the given function or recursively all functions in the given object to its original
    * implementation and removes all records related to it.
    *

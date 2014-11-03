@@ -4,4 +4,9 @@ chai.use(function(chai, utils) {
     var obj = utils.flag(this, 'object'); 
     return expect(Spies.callCountOf(obj).apply(null, args));
   });
+
+  utils.addMethod(chai.Assertion.prototype, 'called', function() {
+    var obj = utils.flag(this, 'object'); 
+    return expect(Spies.anyCallCountOf(obj));
+  });
 });

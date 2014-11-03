@@ -22,6 +22,16 @@
           expect(TestClass.fn).to.be.calledWith().at.least(1);
         });
       });
+
+      describe('#called', function() {
+        it('should assert call of any arguments', function() {
+          var TestClass = {};
+          TestClass.fn = function() {};
+          Spies.spy(TestClass, 'fn');
+          TestClass.fn();
+          expect(TestClass.fn).called().at.least(1);
+        });
+      });
     });
   </script>
 </body>

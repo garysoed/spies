@@ -204,6 +204,9 @@ var $__src_47_spies__ = (function() {
         return invocations.length;
       });
     },
+    anyCallCountOf: function(target) {
+      return target.records.length;
+    },
     reset: function(target) {
       if (target instanceof SpiedFn) {
         target.restore();
