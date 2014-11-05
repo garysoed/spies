@@ -1,7 +1,9 @@
 import SpiedFn from 'src/spiedfn';
 import { deepEqual } from 'src/utils';
 
-var Spies = {
+let spiedFns = [];
+
+let Spies = {
 
   /**
    * Creates a stub for the given constructor.
@@ -38,7 +40,9 @@ var Spies = {
       }
     } else {
       // We are spying on a function
-      new SpiedFn(scope, name, callOriginal);
+      let spiedFn = new SpiedFn(scope, name, callOriginal);
+      spiedFns.push(spiedFn);
+      return spiedFn;
     }
   },
 
@@ -74,13 +78,18 @@ var Spies = {
 
   /**
    * Restores the given function or recursively all functions in the given object to its original
-   * implementation and removes all records related to it.
+   * implementation and removes all records related to it. Or, restores all known functions, if no
+   * arguments is given.
    *
-   * @param  {Function} target The function or object to be reset.
+   * @param {Function|Object|undefined} target The function or object to be reset, or undefined.
    */
   reset(target) {
-    if (target instanceof SpiedFn) {
+    if (!target) {
+      spiedFns.forEach(spiedFn => spiedFn.restore());
+      spiedFns = [];
+    } else if (target instanceof SpiedFn) {
       target.restore();
+      spiedFns.splice(spiedFns.indexOf(target), 1);
     } else if (target instanceof Function) {
       // Do nothing, this is an unspied function.
     } else {

@@ -97,6 +97,24 @@
           expect(Spies.callCountOf(c.fn1)()).to.equal(0);
           expect(Spies.callCountOf(c.fn2)()).to.equal(0);
         });
+
+        it('should reset all functions when given no arguments', function() {
+          var c = new TestClass();
+          var c2 = new TestClass();
+          Spies.spy(c, 'fn1');
+          Spies.spy(c2);
+
+          c.fn1();
+          c2.fn1();
+          c2.fn2();
+          Spies.reset();
+
+          Spies.spy(c, 'fn1');
+          Spies.spy(c2)
+          expect(Spies.callCountOf(c.fn1)()).to.equal(0);
+          expect(Spies.callCountOf(c2.fn1)()).to.equal(0);
+          expect(Spies.callCountOf(c2.fn2)()).to.equal(0);
+        });
       });
 
       describe('#callCountOf', function() {
