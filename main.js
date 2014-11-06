@@ -1,3 +1,23 @@
+var $__src_47_fakes__ = (function() {
+  "use strict";
+  var __moduleName = "src/fakes";
+  var Fakes = {NodeList: function(data) {
+      return {
+        length: data.length,
+        item: function(i) {
+          return data[$traceurRuntime.toProperty(i)];
+        }
+      };
+    }};
+  var $__default = Fakes;
+  if (!window.spies) {
+    window.spies = {};
+  }
+  window.spies.Fakes = Fakes;
+  return {get default() {
+      return $__default;
+    }};
+})();
 var $__src_47_matcher_47_matcher__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/matcher";
@@ -230,6 +250,7 @@ var $__src_47_spies__ = (function() {
 var $__src_47_main__ = (function() {
   "use strict";
   var __moduleName = "src/main";
+  var Fakes = ($__src_47_fakes__).default;
   var Spies = ($__src_47_spies__).default;
   var Matchers = ($__src_47_matcher_47_matchers__).default;
   return {};
