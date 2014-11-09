@@ -1,6 +1,9 @@
 var $__src_47_fakes__ = (function() {
   "use strict";
   var __moduleName = "src/fakes";
+  function require(path) {
+    return $traceurRuntime.require("src/fakes", path);
+  }
   var Fakes = {NodeList: function(data) {
       return {
         length: data.length,
@@ -21,6 +24,9 @@ var $__src_47_fakes__ = (function() {
 var $__src_47_matcher_47_matcher__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/matcher";
+  function require(path) {
+    return $traceurRuntime.require("src/matcher/matcher", path);
+  }
   var Matcher = function Matcher() {
     this.matchingArgs = [];
   };
@@ -46,9 +52,12 @@ var $__src_47_matcher_47_matcher__ = (function() {
 var $__src_47_matcher_47_any__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/any";
+  function require(path) {
+    return $traceurRuntime.require("src/matcher/any", path);
+  }
   var Matcher = ($__src_47_matcher_47_matcher__).default;
   var Any = function Any() {
-    $traceurRuntime.superCall(this, $Any.prototype, "constructor", []);
+    $traceurRuntime.superConstructor($Any).call(this);
   };
   var $Any = Any;
   ($traceurRuntime.createClass)(Any, {matches: function() {
@@ -62,9 +71,12 @@ var $__src_47_matcher_47_any__ = (function() {
 var $__src_47_matcher_47_isa__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/isa";
+  function require(path) {
+    return $traceurRuntime.require("src/matcher/isa", path);
+  }
   var Matcher = ($__src_47_matcher_47_matcher__).default;
   var IsA = function IsA(expectedType) {
-    $traceurRuntime.superCall(this, $IsA.prototype, "constructor", []);
+    $traceurRuntime.superConstructor($IsA).call(this);
     this.expectedType = expectedType;
   };
   var $IsA = IsA;
@@ -83,6 +95,9 @@ var $__src_47_matcher_47_isa__ = (function() {
 var $__src_47_matcher_47_matchers__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/matchers";
+  function require(path) {
+    return $traceurRuntime.require("src/matcher/matchers", path);
+  }
   var IsA = ($__src_47_matcher_47_isa__).default;
   var Any = ($__src_47_matcher_47_any__).default;
   var Matchers = {
@@ -105,6 +120,9 @@ var $__src_47_matcher_47_matchers__ = (function() {
 var $__src_47_spiedfn__ = (function() {
   "use strict";
   var __moduleName = "src/spiedfn";
+  function require(path) {
+    return $traceurRuntime.require("src/spiedfn", path);
+  }
   var _scope = Symbol();
   var _name = Symbol();
   var _origFn = Symbol();
@@ -153,6 +171,9 @@ var $__src_47_spiedfn__ = (function() {
 var $__src_47_utils__ = (function() {
   "use strict";
   var __moduleName = "src/utils";
+  function require(path) {
+    return $traceurRuntime.require("src/utils", path);
+  }
   var Matcher = ($__src_47_matcher_47_matcher__).default;
   function deepEqual(obj1, obj2) {
     if (obj1 === obj2) {
@@ -191,8 +212,12 @@ var $__src_47_utils__ = (function() {
 var $__src_47_spies__ = (function() {
   "use strict";
   var __moduleName = "src/spies";
+  function require(path) {
+    return $traceurRuntime.require("src/spies", path);
+  }
   var SpiedFn = ($__src_47_spiedfn__).default;
   var deepEqual = ($__src_47_utils__).deepEqual;
+  var spiedFns = [];
   var Spies = {
     stub: function(ctor) {
       return {__proto__: ctor.prototype};
@@ -209,7 +234,9 @@ var $__src_47_spies__ = (function() {
             }
           }
       } else {
-        new SpiedFn(scope, name, callOriginal);
+        var spiedFn = new SpiedFn(scope, name, callOriginal);
+        spiedFns.push(spiedFn);
+        return spiedFn;
       }
     },
     callCountOf: function(target) {
@@ -228,8 +255,14 @@ var $__src_47_spies__ = (function() {
       return target.records.length;
     },
     reset: function(target) {
-      if (target instanceof SpiedFn) {
+      if (!target) {
+        spiedFns.forEach((function(spiedFn) {
+          return spiedFn.restore();
+        }));
+        spiedFns = [];
+      } else if (target instanceof SpiedFn) {
         target.restore();
+        spiedFns.splice(spiedFns.indexOf(target), 1);
       } else if (target instanceof Function) {} else {
         for (var key in target)
           if (!$traceurRuntime.isSymbolString(key)) {
@@ -250,6 +283,9 @@ var $__src_47_spies__ = (function() {
 var $__src_47_main__ = (function() {
   "use strict";
   var __moduleName = "src/main";
+  function require(path) {
+    return $traceurRuntime.require("src/main", path);
+  }
   var Fakes = ($__src_47_fakes__).default;
   var Spies = ($__src_47_spies__).default;
   var Matchers = ($__src_47_matcher_47_matchers__).default;
