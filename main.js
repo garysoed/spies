@@ -57,7 +57,7 @@ var $__src_47_matcher_47_any__ = (function() {
   }
   var Matcher = ($__src_47_matcher_47_matcher__).default;
   var Any = function Any() {
-    $traceurRuntime.superConstructor($Any).call(this);
+    $traceurRuntime.superGet(this, $Any.prototype, "constructor").call(this);
   };
   var $Any = Any;
   ($traceurRuntime.createClass)(Any, {matches: function() {
@@ -76,7 +76,7 @@ var $__src_47_matcher_47_isa__ = (function() {
   }
   var Matcher = ($__src_47_matcher_47_matcher__).default;
   var IsA = function IsA(expectedType) {
-    $traceurRuntime.superConstructor($IsA).call(this);
+    $traceurRuntime.superGet(this, $IsA.prototype, "constructor").call(this);
     this.expectedType = expectedType;
   };
   var $IsA = IsA;

@@ -6,7 +6,7 @@ import Matcher from 'src/matcher/matcher';
 
 export default class Any extends Matcher {
   constructor() {
-    super();
+    super.constructor();
   }
 
   /**
