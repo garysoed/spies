@@ -6,16 +6,28 @@ let spiedFns = [];
 let Spies = {
 
   /**
-   * Creates a stub for the given constructor.
+   * Creates a stub for the given constructor or object. All functions will be replaced by a noop
+   * function.
    *
-   * @param  {!Function} ctor The constructor to be stubbed.
+   * @param  {!Function|Object} ctor The constructor to be stubbed, or object.
    * 
    * @return {!Object} The stub object.
    */
-  stub(ctor) {
-    return {
-      __proto__: ctor.prototype
-    };
+  stub(target) {
+    let source = (typeof target === 'function')
+        ? target.prototype
+        : target;
+
+    let obj = { __proto__: source };
+    for (let prop in source) {
+      if (typeof source[prop] === 'function') {
+        obj[prop] = function() {};
+      } else if (typeof source[prop] === 'object') {
+        obj[prop] = this.stub(source[prop]);
+      }
+    }
+
+    return obj;
   },
 
   /**

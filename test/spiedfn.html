@@ -35,22 +35,6 @@
           expect(C.fn(1, 2, 3)).to.equal(rv);
           expect(receivedArgs).to.eql([1, 2, 3]);
         });
-
-        it('should not call original function if callOriginal is false', function() {
-          var C = {};
-          var rv = 1;
-          var receivedArgs = null;
-          C.fn = function() {
-            receivedArgs = Array.prototype.slice.call(arguments);
-            return rv;
-          };
-
-          var origFn = C.fn;
-          var spiedFn = new SpiedFn(C, 'fn', false);
-          expect(C.fn).to.not.equal(origFn);
-          expect(C.fn(1, 2, 3)).to.equal(undefined);
-          expect(receivedArgs).to.eql(null);
-        });
       });
 
       describe('#restore', function() {
@@ -77,6 +61,40 @@
           spiedFn.record(args2);
 
           expect(spiedFn.records).to.deep.equal([args1, args2]);
+        });
+      });
+
+      describe('#overrideReturn', function() {
+        it('should not call the original function', function() {
+          var C = {};
+          var rv = 1;
+          var receivedArgs = null;
+          C.fn = function() {
+            receivedArgs = Array.prototype.slice.call(arguments);
+            return rv;
+          };
+
+          var origFn = C.fn;
+          var spiedFn = new SpiedFn(C, 'fn').overrideReturn();
+          expect(C.fn).to.not.equal(origFn);
+          expect(C.fn(1, 2, 3)).to.be.undefined;
+          expect(receivedArgs).to.eql(null);
+        });
+
+        it('should return the given return value', function() {
+          var C = {};
+          var rv = 1;
+          var receivedArgs = null;
+          C.fn = function() {
+            receivedArgs = Array.prototype.slice.call(arguments);
+            return 123;
+          };
+
+          var origFn = C.fn;
+          var spiedFn = new SpiedFn(C, 'fn').overrideReturn(rv);
+          expect(C.fn).to.not.equal(origFn);
+          expect(C.fn(1, 2, 3)).to.be.equal(rv);
+          expect(receivedArgs).to.eql(null);
         });
       });
     });

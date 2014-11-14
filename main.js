@@ -4,14 +4,19 @@ var $__src_47_fakes__ = (function() {
   function require(path) {
     return $traceurRuntime.require("src/fakes", path);
   }
-  var Fakes = {NodeList: function(data) {
+  var Fakes = {
+    ofType: function(ctor) {
+      return {__proto__: ctor.prototype};
+    },
+    NodeList: function(data) {
       return {
         length: data.length,
         item: function(i) {
           return data[$traceurRuntime.toProperty(i)];
         }
       };
-    }};
+    }
+  };
   var $__default = Fakes;
   if (!window.spies) {
     window.spies = {};
@@ -127,23 +132,27 @@ var $__src_47_spiedfn__ = (function() {
   var _name = Symbol();
   var _origFn = Symbol();
   var _records = Symbol();
-  var SpiedFn = function SpiedFn(scope, name, callOriginal) {
+  var _callOriginal = Symbol();
+  var _returnValue = Symbol();
+  var SpiedFn = function SpiedFn(scope, name) {
     var origFn = scope[$traceurRuntime.toProperty(name)];
     var f = function() {
       for (var args = [],
           $__1 = 0; $__1 < arguments.length; $__1++)
         args[$traceurRuntime.toProperty($__1)] = arguments[$traceurRuntime.toProperty($__1)];
       f.record(args);
-      if (callOriginal) {
+      if (f[$traceurRuntime.toProperty(_callOriginal)]) {
         return origFn.apply(this, args);
       }
-      return undefined;
+      return f[$traceurRuntime.toProperty(_returnValue)];
     };
     f.__proto__ = $SpiedFn.prototype;
     f.constructor = $SpiedFn;
     f[$traceurRuntime.toProperty(_scope)] = scope;
     f[$traceurRuntime.toProperty(_name)] = name;
     f[$traceurRuntime.toProperty(_origFn)] = origFn;
+    f[$traceurRuntime.toProperty(_callOriginal)] = true;
+    f[$traceurRuntime.toProperty(_returnValue)] = undefined;
     f.records = [];
     scope[$traceurRuntime.toProperty(name)] = f;
     return f;
@@ -155,6 +164,10 @@ var $__src_47_spiedfn__ = (function() {
     },
     record: function(args) {
       this.records.push(args);
+    },
+    overrideReturn: function(returnValue) {
+      this[$traceurRuntime.toProperty(_callOriginal)] = false;
+      this[$traceurRuntime.toProperty(_returnValue)] = returnValue;
     }
   }, {}, Function);
   var $__default = SpiedFn;
@@ -219,8 +232,18 @@ var $__src_47_spies__ = (function() {
   var deepEqual = ($__src_47_utils__).deepEqual;
   var spiedFns = [];
   var Spies = {
-    stub: function(ctor) {
-      return {__proto__: ctor.prototype};
+    stub: function(target) {
+      var source = (typeof target === 'function') ? target.prototype : target;
+      var obj = {__proto__: source};
+      for (var prop in source)
+        if (!$traceurRuntime.isSymbolString(prop)) {
+          if (typeof source[$traceurRuntime.toProperty(prop)] === 'function') {
+            obj[$traceurRuntime.toProperty(prop)] = function() {};
+          } else if ($traceurRuntime.typeof(source[$traceurRuntime.toProperty(prop)]) === 'object') {
+            obj[$traceurRuntime.toProperty(prop)] = this.stub(source[$traceurRuntime.toProperty(prop)]);
+          }
+        }
+      return obj;
     },
     spy: function(scope, name) {
       var callOriginal = arguments[2] !== (void 0) ? arguments[2] : true;

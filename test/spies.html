@@ -8,7 +8,7 @@
   <script>
     'use strict';
 
-    var Spies = spies.Spies;
+    var _ = spies.Spies;
     var expect = chai.expect;
 
     describe('Spies', function() {
@@ -28,127 +28,118 @@
       describe('#spy', function() {
         it('should record calls on functions', function() {
           var c = new TestClass();
-          Spies.spy(c, 'fn1');
+          _.spy(c, 'fn1');
 
           expect(c.fn1()).to.equal(1);
-          expect(Spies.callCountOf(c.fn1)()).to.equal(1);
-          expect(Spies.callCountOf(c.fn1)(2)).to.equal(0);
-        });
-
-        it('should not call original function when callOriginal is false', function() {
-          var c = new TestClass();
-          Spies.spy(c, 'fn1', false);
-
-          expect(c.fn1()).to.be.undefined;
-          expect(Spies.callCountOf(c.fn1)()).to.equal(1);
+          expect(_.callCountOf(c.fn1)()).to.equal(1);
+          expect(_.callCountOf(c.fn1)(2)).to.equal(0);
         });
 
         it('should record calls on functions in the class', function() {
           var c = new TestClass();
-          Spies.spy(c);
+          _.spy(c);
 
           // Call the spied functions
           expect(c.fn1()).to.equal(1);
           expect(c.fn2()).to.equal(2);
           expect(c.sub.fn()).to.equal(3);
 
-          expect(Spies.callCountOf(c.fn1)()).to.equal(1);
-          expect(Spies.callCountOf(c.fn2)()).to.equal(1);
-          expect(Spies.callCountOf(c.sub.fn)()).to.equal(1);
-        });
-
-        it('should not call original functions in a class when callOriginal is false', function() {
-          var c = new TestClass();
-          Spies.spy(c, undefined, false);
-
-          // Call the spied functions
-          expect(c.fn1()).to.be.undefined;
-          expect(c.fn2()).to.be.undefined;
-          expect(c.sub.fn()).to.be.undefined;
-
-          expect(Spies.callCountOf(c.fn1)()).to.equal(1);
-          expect(Spies.callCountOf(c.fn2)()).to.equal(1);
-          expect(Spies.callCountOf(c.sub.fn)()).to.equal(1);
+          expect(_.callCountOf(c.fn1)()).to.equal(1);
+          expect(_.callCountOf(c.fn2)()).to.equal(1);
+          expect(_.callCountOf(c.sub.fn)()).to.equal(1);
         });
       });
 
       describe('#reset', function() {
         it('should reset spied function', function() {
           var c = new TestClass();
-          Spies.spy(c, 'fn1');
+          _.spy(c, 'fn1');
           c.fn1();
 
-          Spies.reset(c.fn1);
-          expect(Spies.callCountOf(c.fn1)()).to.equal(0);
+          _.reset(c.fn1);
+          expect(_.callCountOf(c.fn1)()).to.equal(0);
         });
 
         it('should ignore unspied function', function() {
-          Spies.reset((new TestClass()).fn1);
+          _.reset((new TestClass()).fn1);
         });
 
         it('should reset spied class', function() {
           var c = new TestClass();
-          Spies.spy(c);
+          _.spy(c);
 
           c.fn1();
           c.fn2();
-          Spies.reset(c);
-          Spies.spy(c);
-          expect(Spies.callCountOf(c.fn1)()).to.equal(0);
-          expect(Spies.callCountOf(c.fn2)()).to.equal(0);
+          _.reset(c);
+          _.spy(c);
+          expect(_.callCountOf(c.fn1)()).to.equal(0);
+          expect(_.callCountOf(c.fn2)()).to.equal(0);
         });
 
         it('should reset all functions when given no arguments', function() {
           var c = new TestClass();
           var c2 = new TestClass();
-          Spies.spy(c, 'fn1');
-          Spies.spy(c2);
+          _.spy(c, 'fn1');
+          _.spy(c2);
 
           c.fn1();
           c2.fn1();
           c2.fn2();
-          Spies.reset();
+          _.reset();
 
-          Spies.spy(c, 'fn1');
-          Spies.spy(c2)
-          expect(Spies.callCountOf(c.fn1)()).to.equal(0);
-          expect(Spies.callCountOf(c2.fn1)()).to.equal(0);
-          expect(Spies.callCountOf(c2.fn2)()).to.equal(0);
+          _.spy(c, 'fn1');
+          _.spy(c2)
+          expect(_.callCountOf(c.fn1)()).to.equal(0);
+          expect(_.callCountOf(c2.fn1)()).to.equal(0);
+          expect(_.callCountOf(c2.fn2)()).to.equal(0);
         });
       });
 
       describe('#callCountOf', function() {
         it('should return correct number of invocations', function() {
           var c = new TestClass();
-          Spies.spy(c, 'fn1');
+          _.spy(c, 'fn1');
           c.fn1();
           c.fn1();
           c.fn1();
 
-          expect(Spies.callCountOf(c.fn1)()).to.equal(3);
+          expect(_.callCountOf(c.fn1)()).to.equal(3);
         });
       });
 
       describe('#anyCallCountOf', function() {
         it('should return the number of invocations with any arguments', function() {
           var c = new TestClass();
-          Spies.spy(c, 'fn1');
+          _.spy(c, 'fn1');
           c.fn1(1);
           c.fn1(2);
           c.fn1(3);
 
-          expect(Spies.anyCallCountOf(c.fn1)).to.equal(3);
+          expect(_.anyCallCountOf(c.fn1)).to.equal(3);
         });
       });
 
       describe('#stub', function() {
         it('should preserve the class type and prototypes of stubbed class', function() {
-          var stub = Spies.stub(TestClass);
+          var stub = _.stub(TestClass);
 
-          expect(stub.fn1()).to.equal(1);
-          expect(stub.fn2()).to.equal(2);
-          expect(stub.sub.fn()).to.equal(3);
+          expect(stub.fn1()).to.be.undefined;
+          expect(stub.fn2()).to.be.undefined;
+          expect(stub.sub.fn()).to.be.undefined;
           expect(stub).to.be.instanceof(TestClass);
+        });
+        it('should stub an object', function() {
+          var o = {
+            a: {
+              a: function() {},
+              b: 1
+            },
+            b: function() {}
+          };
+
+          var stub = _.stub(o);
+          expect(stub.a.a()).to.be.undefined;
+          expect(stub.b()).to.be.undefined;
         });
       });
     });
