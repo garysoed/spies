@@ -142,6 +142,15 @@
           expect(stub.b()).to.be.undefined;
         });
       });
+
+      describe('#spiedFunction', function() {
+        it('should generate spied anonymous function', function() {
+          var fn = _.spiedFunction();
+          fn.overrideReturn(1);
+          expect(fn()).to.be.equal(1);
+          expect(_.callCountOf(fn)()).to.be.equal(1);
+        });
+      });
     });
   </script>
 </body>

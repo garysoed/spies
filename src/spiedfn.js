@@ -12,12 +12,13 @@ let _returnValue = Symbol();
 export default class SpiedFn extends Function {
 
   /**
-   * @param {!Object} scope The scope that the function is in.
-   * @param {string} name The name of the function that is spied.
+   * @param {Object=} scope The scope that the function is in. If undefined, then the original 
+   *     function will never be called and #restore will do nothing.
+   * @param {string} name The name of the function that is spied, or undefined if scope is null.
    * @constructor
    */
   constructor(scope, name) {
-    let origFn = scope[name];
+    let origFn = scope ? scope[name] : null;
 
     let f = function(...args) {
       f.record(args);
@@ -31,12 +32,14 @@ export default class SpiedFn extends Function {
     f[_scope] = scope;
     f[_name] = name;
     f[_origFn] = origFn;
-    f[_callOriginal] = true;
+    f[_callOriginal] = !!origFn;
     f[_returnValue] = undefined;
     f.records = [];
 
-    // Override the original function.
-    scope[name] = f;
+    // Override the original function, if any.
+    if (scope) {
+      scope[name] = f;
+    }
 
     return f;
   }
@@ -45,7 +48,9 @@ export default class SpiedFn extends Function {
    * Restores the spied function.
    */
   restore() {
-    this[_scope][this[_name]] = this[_origFn];
+    if (this[_scope]) {
+      this[_scope][this[_name]] = this[_origFn];
+    }
   }
 
   /**

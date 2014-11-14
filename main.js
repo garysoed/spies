@@ -135,7 +135,7 @@ var $__src_47_spiedfn__ = (function() {
   var _callOriginal = Symbol();
   var _returnValue = Symbol();
   var SpiedFn = function SpiedFn(scope, name) {
-    var origFn = scope[$traceurRuntime.toProperty(name)];
+    var origFn = scope ? scope[$traceurRuntime.toProperty(name)] : null;
     var f = function() {
       for (var args = [],
           $__1 = 0; $__1 < arguments.length; $__1++)
@@ -151,16 +151,20 @@ var $__src_47_spiedfn__ = (function() {
     f[$traceurRuntime.toProperty(_scope)] = scope;
     f[$traceurRuntime.toProperty(_name)] = name;
     f[$traceurRuntime.toProperty(_origFn)] = origFn;
-    f[$traceurRuntime.toProperty(_callOriginal)] = true;
+    f[$traceurRuntime.toProperty(_callOriginal)] = !!origFn;
     f[$traceurRuntime.toProperty(_returnValue)] = undefined;
     f.records = [];
-    scope[$traceurRuntime.toProperty(name)] = f;
+    if (scope) {
+      scope[$traceurRuntime.toProperty(name)] = f;
+    }
     return f;
   };
   var $SpiedFn = SpiedFn;
   ($traceurRuntime.createClass)(SpiedFn, {
     restore: function() {
-      this[$traceurRuntime.toProperty(_scope)][$traceurRuntime.toProperty(this[$traceurRuntime.toProperty(_name)])] = this[$traceurRuntime.toProperty(_origFn)];
+      if (this[$traceurRuntime.toProperty(_scope)]) {
+        this[$traceurRuntime.toProperty(_scope)][$traceurRuntime.toProperty(this[$traceurRuntime.toProperty(_name)])] = this[$traceurRuntime.toProperty(_origFn)];
+      }
     },
     record: function(args) {
       this.records.push(args);
@@ -246,18 +250,17 @@ var $__src_47_spies__ = (function() {
       return obj;
     },
     spy: function(scope, name) {
-      var callOriginal = arguments[2] !== (void 0) ? arguments[2] : true;
       if (name === undefined) {
         for (var key in scope)
           if (!$traceurRuntime.isSymbolString(key)) {
             if (scope[$traceurRuntime.toProperty(key)] instanceof Function) {
-              this.spy(scope, key, callOriginal);
+              this.spy(scope, key);
             } else if (scope[$traceurRuntime.toProperty(key)] instanceof Object) {
-              this.spy(scope[$traceurRuntime.toProperty(key)], undefined, callOriginal);
+              this.spy(scope[$traceurRuntime.toProperty(key)], undefined);
             }
           }
       } else {
-        var spiedFn = new SpiedFn(scope, name, callOriginal);
+        var spiedFn = new SpiedFn(scope, name);
         spiedFns.push(spiedFn);
         return spiedFn;
       }
@@ -292,6 +295,11 @@ var $__src_47_spies__ = (function() {
             this.reset(target[$traceurRuntime.toProperty(key)]);
           }
       }
+    },
+    spiedFunction: function() {
+      var fn = new SpiedFn();
+      spiedFns.push(fn);
+      return fn;
     }
   };
   var $__default = Spies;

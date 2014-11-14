@@ -37,22 +37,20 @@ let Spies = {
    *     be spied on. 
    * @param {string=} name The name of the function to be spied on. If not specified, this will
    *     spy all functions in the scope recursively.
-   * @param {boolean=} callOriginal True iff the original function should be called. Defaults to 
-   *     true.
    */
-  spy(scope, name, callOriginal = true) {
+  spy(scope, name) {
     if (name === undefined) {
       // We are spying on an object.
       for (let key in scope) {
         if (scope[key] instanceof Function) {
-          this.spy(scope, key, callOriginal);
+          this.spy(scope, key);
         } else if (scope[key] instanceof Object) {
-          this.spy(scope[key], undefined, callOriginal);
+          this.spy(scope[key], undefined);
         }
       }
     } else {
       // We are spying on a function
-      let spiedFn = new SpiedFn(scope, name, callOriginal);
+      let spiedFn = new SpiedFn(scope, name);
       spiedFns.push(spiedFn);
       return spiedFn;
     }
@@ -110,6 +108,16 @@ let Spies = {
         this.reset(target[key]);
       }
     }
+  },
+
+  /**
+   * Creates a spied function.
+   * @return {Function} Spied function.
+   */
+  spiedFunction() {
+    let fn = new SpiedFn();
+    spiedFns.push(fn);
+    return fn;
   }
 };
 
