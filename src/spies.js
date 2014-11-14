@@ -37,6 +37,7 @@ let Spies = {
    *     be spied on. 
    * @param {string=} name The name of the function to be spied on. If not specified, this will
    *     spy all functions in the scope recursively.
+   * @return {Object|Function} The spied function, or the spied object.
    */
   spy(scope, name) {
     if (name === undefined) {
@@ -48,6 +49,7 @@ let Spies = {
           this.spy(scope[key], undefined);
         }
       }
+      return scope;
     } else {
       // We are spying on a function
       let spiedFn = new SpiedFn(scope, name);
