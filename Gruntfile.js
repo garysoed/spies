@@ -36,11 +36,26 @@ module.exports = function(grunt) {
           atBegin: true
         }
       }
-    }
+    },
+
+    mox: {
+      gen: {
+        sourceFiles : ['src'],
+        options: {
+          name: "Grunt-Mox",
+          version:"0.1.0",
+          template : "default",
+          outputFile: "outputFile.md",
+          moxJsonFile : "moxJsonFile.json",
+          htmlFile : "htmlOutput.html"
+        }
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-mox');
 
   // Default task(s).
 

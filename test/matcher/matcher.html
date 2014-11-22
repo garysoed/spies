@@ -8,42 +8,44 @@
   <script>
     'use strict';
 
-    var Matcher = spies.Matcher;
-    var expect = chai.expect;
+    (function() {
+      var Matcher = spies.Matcher;
+      var expect = chai.expect;
 
-    describe('Matcher', function() {
-      describe('#registerInvocation', function() {
-        it('should record if matches', function() {
-          var arg = 2;
-          var m = new Matcher();
+      describe('Matcher', function() {
+        describe('#registerInvocation', function() {
+          it('should record if matches', function() {
+            var arg = 2;
+            var m = new Matcher();
 
-          var receivedArg;
-          m.matches = function(arg) { 
-            receivedArg = arg;
-            return true;
-          };
-          expect(m.registerInvocation(arg)).to.be.true;
-          expect(m.matchingArgs).to.be.eql([arg]);
-          expect(receivedArg).to.be.eql(arg);
+            var receivedArg;
+            m.matches = function(arg) { 
+              receivedArg = arg;
+              return true;
+            };
+            expect(m.registerInvocation(arg)).to.be.true;
+            expect(m.matchingArgs).to.be.eql([arg]);
+            expect(receivedArg).to.be.eql(arg);
 
-          m.registerInvocation(3);
-          expect(m.matchingArgs).to.be.eql([arg, 3]);
-        });
+            m.registerInvocation(3);
+            expect(m.matchingArgs).to.be.eql([arg, 3]);
+          });
 
-        it('should not record if no match', function() {
-          var m = new Matcher();
+          it('should not record if no match', function() {
+            var m = new Matcher();
 
-          var receivedArg;
-          m.matches = function(arg) {
-            receivedArg = arg;
-            return false;
-          };
-          expect(m.registerInvocation(3)).to.be.false;
-          expect(m.matchingArgs).to.be.eql([]);
-          expect(receivedArg).to.be.eql(3);
+            var receivedArg;
+            m.matches = function(arg) {
+              receivedArg = arg;
+              return false;
+            };
+            expect(m.registerInvocation(3)).to.be.false;
+            expect(m.matchingArgs).to.be.eql([]);
+            expect(receivedArg).to.be.eql(3);
+          });
         });
       });
-    });
+    })();
   </script>
 </body>
 </html>

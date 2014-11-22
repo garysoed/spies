@@ -8,16 +8,18 @@
   <script>
     'use strict';
 
-    var Matchers = spies.Matchers;
-    var expect = chai.expect;
+    (function() {
+      var Matchers = window.spies.Matchers;
+      var expect = chai.expect;
 
-    describe('Any', function() {
-      describe('#matches', function() {
-        it('should return true', function() {
-          expect(Matchers.any().matches('anything')).to.be.true;
+      describe('Any', function() {
+        describe('#matches', function() {
+          it('should return true', function() {
+            expect(Matchers.any().matches('anything')).to.be.true;
+          });
         });
       });
-    });
+    })();
   </script>
 </body>
 </html>

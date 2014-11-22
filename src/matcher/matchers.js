@@ -1,10 +1,20 @@
 import IsA from 'src/matcher/isa';
 import Any from 'src/matcher/any';
 
-var Matchers = {
+/**
+ * Static class to create "Matcher" objects.
+ *
+ * @class Matchers
+ * @static
+ */
+let Matchers = {
 
   /**
-   * @see  src/matcher/isa
+   * Creates a matcher that matches by type.
+   *
+   * @method isA
+   * @param {Function|string} expectedType Type to be checked.
+   * @return {IsA} The IsA object.
    */
   isA(expectedType) {
     return new IsA(expectedType);

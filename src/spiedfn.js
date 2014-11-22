@@ -7,7 +7,9 @@ let _callOriginal = Symbol();
 let _returnValue = Symbol();
 
 /**
- * @class Represents a function that is spied.
+ * Represents a function that is spied.
+ * @class SpiedFn
+ * @extends Function
  */
 export default class SpiedFn extends Function {
 
@@ -46,6 +48,7 @@ export default class SpiedFn extends Function {
 
   /**
    * Restores the spied function.
+   * @method restore
    */
   restore() {
     if (this[_scope]) {
@@ -55,7 +58,9 @@ export default class SpiedFn extends Function {
 
   /**
    * Records a function call.
-   * @param {Array.<*>} args Array containing arguments to the function call.
+   * 
+   * @method record
+   * @param {Array} args Array containing arguments to the function call.
    */
   record(args) {
     this.records.push(args);
@@ -63,6 +68,8 @@ export default class SpiedFn extends Function {
 
   /**
    * Returns the given return value instead of the original function's.
+   *
+   * @method overrideReturn
    * @param {Object=} returnValue Return value to return instead of calling the original function.
    */
   overrideReturn(returnValue) {

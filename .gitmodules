@@ -1,0 +1,6 @@
+[submodule "yuimarkdown"]
+	path = yuimarkdown
+	url = https://github.com/garysoed/yuimarkdown.git
+[submodule "docs"]
+	path = docs
+	url = https://github.com/garysoed/spies.wiki.git

@@ -3,14 +3,20 @@ import { deepEqual } from 'src/utils';
 
 let spiedFns = [];
 
+/**
+ * Root object for the library.
+ *
+ * @class Spies
+ * @static
+ */
 let Spies = {
 
   /**
    * Creates a stub for the given constructor or object. All functions will be replaced by a noop
    * function.
    *
+   * @method stub
    * @param  {!Function|Object} ctor The constructor to be stubbed, or object.
-   * 
    * @return {!Object} The stub object.
    */
   stub(target) {
@@ -33,6 +39,7 @@ let Spies = {
   /**
    * Spies the given function, or recursively all functions in the given object.
    *
+   * @method spy
    * @param {!Object} scope The Object to be spied on, or the object containing the function to 
    *     be spied on. 
    * @param {string=} name The name of the function to be spied on. If not specified, this will
@@ -64,7 +71,8 @@ let Spies = {
    * fn was called with arguments (1, 2).
    *
    * If the passed in function is not a spy, this will return 0.
-   * 
+   *
+   * @method callCountOf
    * @param {!Function} target The function whose call count should be returned.
    * @return {!Function} Function that returns the call counts of the given function.
    */
@@ -81,6 +89,7 @@ let Spies = {
   /**
    * Returns the number of call counts for the target of any arguments.
    *
+   * @method anyCallCountOf
    * @param {!Function} target The function whose call count should be returned.
    * @return {number} Number of invocations on the given function.
    */
@@ -93,6 +102,7 @@ let Spies = {
    * implementation and removes all records related to it. Or, restores all known functions, if no
    * arguments is given.
    *
+   * @method reset
    * @param {Function|Object|undefined} target The function or object to be reset, or undefined.
    */
   reset(target) {
@@ -114,7 +124,9 @@ let Spies = {
 
   /**
    * Creates a spied function.
-   * @return {Function} Spied function.
+   *
+   * @method spiedFunction
+   * @return {SpiedFn} Spied function.
    */
   spiedFunction() {
     let fn = new SpiedFn();

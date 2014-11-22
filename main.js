@@ -8,12 +8,13 @@ var $__src_47_fakes__ = (function() {
     ofType: function(ctor) {
       return {__proto__: ctor.prototype};
     },
-    NodeList: function(data) {
+    nodeList: function(data) {
       return {
         length: data.length,
         item: function(i) {
           return data[$traceurRuntime.toProperty(i)];
-        }
+        },
+        __proto__: NodeList.prototype
       };
     }
   };
@@ -80,16 +81,17 @@ var $__src_47_matcher_47_isa__ = (function() {
     return $traceurRuntime.require("src/matcher/isa", path);
   }
   var Matcher = ($__src_47_matcher_47_matcher__).default;
+  var _expectedType = Symbol();
   var IsA = function IsA(expectedType) {
     $traceurRuntime.superGet(this, $IsA.prototype, "constructor").call(this);
-    this.expectedType = expectedType;
+    this[$traceurRuntime.toProperty(_expectedType)] = expectedType;
   };
   var $IsA = IsA;
   ($traceurRuntime.createClass)(IsA, {matches: function(arg) {
-      if (this.expectedType instanceof Function) {
-        return arg instanceof this.expectedType;
+      if (this[$traceurRuntime.toProperty(_expectedType)] instanceof Function) {
+        return arg instanceof this[$traceurRuntime.toProperty(_expectedType)];
       } else {
-        return (typeof arg === 'undefined' ? 'undefined' : $traceurRuntime.typeof(arg)) === this.expectedType;
+        return (typeof arg === 'undefined' ? 'undefined' : $traceurRuntime.typeof(arg)) === this[$traceurRuntime.toProperty(_expectedType)];
       }
     }}, {}, Matcher);
   var $__default = IsA;
@@ -259,6 +261,7 @@ var $__src_47_spies__ = (function() {
               this.spy(scope[$traceurRuntime.toProperty(key)], undefined);
             }
           }
+        return scope;
       } else {
         var spiedFn = new SpiedFn(scope, name);
         spiedFns.push(spiedFn);
