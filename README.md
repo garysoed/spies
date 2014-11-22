@@ -117,5 +117,5 @@ documentations.
 Spies comes with a Chai-expect plugin. To use it, HTML import the `main_chai_expect.html` file.
 
 # Release Notes
-- v 1.0
+- v 0.1
   - Initial release
