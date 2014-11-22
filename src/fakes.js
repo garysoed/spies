@@ -1,8 +1,6 @@
 /**
  * Static class to create various fake objects.
  *
- * TODO: test this
- *
  * @class Fakes
  * @static
  */
@@ -35,7 +33,7 @@ let Fakes = {
       item(i) {
         return data[i];
       },
-      __proto__: NodeList.prototype
+      __proto__: NodeList.prototype 
     };
   }
 };
