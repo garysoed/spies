@@ -107,10 +107,10 @@ isAFunction.matchingArgs[0]();
 expect(_.callCountOf(object.fn)()).to.be.equal(1);
 ```
 
-For more list of Matchers, go to the [[Matchers|Matchers]] page.
+For more list of Matchers, go to the [Matchers](https://github.com/garysoed/spies/wiki/Matchers) page.
 
 ## Fakes
-Spies also comes with a convenience library to create fake objects. Look at [[Fakes|Fakes]] for more
+Spies also comes with a convenience library to create fake objects. Look at [Fakes](https://github.com/garysoed/spies/wiki/Fakes) for more
 documentations.
 
 ## Plugins
