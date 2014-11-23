@@ -71,10 +71,12 @@ export default class SpiedFn extends Function {
    *
    * @method overrideReturn
    * @param {Object=} returnValue Return value to return instead of calling the original function.
+   * @return {SpiedFn} The current object.
    */
   overrideReturn(returnValue) {
     this[_callOriginal] = false;
     this[_returnValue] = returnValue;
+    return this;
   }
 }
 

@@ -174,6 +174,7 @@ var $__src_47_spiedfn__ = (function() {
     overrideReturn: function(returnValue) {
       this[$traceurRuntime.toProperty(_callOriginal)] = false;
       this[$traceurRuntime.toProperty(_returnValue)] = returnValue;
+      return this;
     }
   }, {}, Function);
   var $__default = SpiedFn;
