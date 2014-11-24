@@ -14,14 +14,17 @@ let Matchers = {
    *
    * @method isA
    * @param {Function|string} expectedType Type to be checked.
-   * @return {IsA} The IsA object.
+   * @return {IsA} The IsA matcher.
    */
   isA(expectedType) {
     return new IsA(expectedType);
   },
 
   /**
-   * @see  src/matcher/any
+   * Creates a matcher that matches anything.
+   *
+   * @method any
+   * @return {Any} The Any matcher.
    */
   any() {
     return new Any();
