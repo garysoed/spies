@@ -34,7 +34,7 @@ export default class Matcher {
 
     return false;
   }
-};
+}
 
 if (window.TEST_MODE) {
   if (!window.spies) {

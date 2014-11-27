@@ -15,9 +15,7 @@ let Fakes = {
    * @return {!Object} The fake object.
    */
   ofType(ctor) {
-    return {
-      __proto__: ctor.prototype
-    }
+    return Object.setPrototypeOf({} , ctor.prototype);
   },
 
   /**
@@ -25,16 +23,15 @@ let Fakes = {
    *
    * @method nodeList
    * @param {!Array} data Array that represents the data in the NodeList.
-   * @return {!Object} A fake object mimicking a NodeList.
+   * @return {!NodeList} A fake object mimicking a `NodeList`.
    */
   nodeList(data) {
-    return {
+    return Object.setPrototypeOf({
       length: data.length,
       item(i) {
         return data[i];
-      },
-      __proto__: NodeList.prototype 
-    };
+      }
+    }, NodeList.prototype);
   }
 };
 

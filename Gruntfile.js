@@ -19,11 +19,11 @@ module.exports = function(grunt) {
       }
     },
 
-    'multi-traceur': {
-      out: 'out',
-      modules: [
-        'src/main',
-      ]
+    'jshint': {
+      options: {
+        'esnext': true
+      },
+      all: ['src/**/*.js']
     },
 
     'watch': {
@@ -31,34 +31,17 @@ module.exports = function(grunt) {
         files: [
           'src/**/*.js'
         ],
-        tasks: [ 'shell:traceur' ],
+        tasks: [ 'jshint', 'shell:traceur', 'karma' ],
         options: {
           atBegin: true
         }
       }
-    },
-
-    mox: {
-      gen: {
-        sourceFiles : ['src'],
-        options: {
-          name: "Grunt-Mox",
-          version:"0.1.0",
-          template : "default",
-          outputFile: "outputFile.md",
-          moxJsonFile : "moxJsonFile.json",
-          htmlFile : "htmlOutput.html"
-        }
-      },
-    },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-mox');
-
-  // Default task(s).
-
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('karma', 'shell:karma');
 };

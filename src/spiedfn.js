@@ -16,20 +16,19 @@ export default class SpiedFn extends Function {
   /**
    * @param {Object=} scope The scope that the function is in. If undefined, then the original 
    *     function will never be called and #restore will do nothing.
-   * @param {string} name The name of the function that is spied, or undefined if scope is null.
+   * @param {string=} name The name of the function that is spied, if scope is given.
    * @constructor
    */
   constructor(scope, name) {
     let origFn = scope ? scope[name] : null;
 
-    let f = function(...args) {
+    let f = Object.setPrototypeOf((...args) => {
       f.record(args);
       if (f[_callOriginal]) {
         return origFn.apply(this, args);
       }
       return f[_returnValue];
-    };
-    f.__proto__ = SpiedFn.prototype;
+    }, SpiedFn.prototype);
     f.constructor = SpiedFn;
     f[_scope] = scope;
     f[_name] = name;

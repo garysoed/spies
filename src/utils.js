@@ -51,5 +51,5 @@ if (window.TEST_MODE) {
 
   window.spies.Utils = {
     deepEqual
-  }
+  };
 }

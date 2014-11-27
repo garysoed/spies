@@ -6,16 +6,15 @@ var $__src_47_fakes__ = (function() {
   }
   var Fakes = {
     ofType: function(ctor) {
-      return {__proto__: ctor.prototype};
+      return Object.setPrototypeOf({}, ctor.prototype);
     },
     nodeList: function(data) {
-      return {
+      return Object.setPrototypeOf({
         length: data.length,
         item: function(i) {
           return data[$traceurRuntime.toProperty(i)];
-        },
-        __proto__: NodeList.prototype
-      };
+        }
+      }, NodeList.prototype);
     }
   };
   var $__default = Fakes;
@@ -44,7 +43,6 @@ var $__src_47_matcher_47_matcher__ = (function() {
       return false;
     }}, {});
   var $__default = Matcher;
-  ;
   if (window.TEST_MODE) {
     if (!window.spies) {
       window.spies = {};
@@ -137,18 +135,18 @@ var $__src_47_spiedfn__ = (function() {
   var _callOriginal = Symbol();
   var _returnValue = Symbol();
   var SpiedFn = function SpiedFn(scope, name) {
+    var $__0 = this;
     var origFn = scope ? scope[$traceurRuntime.toProperty(name)] : null;
-    var f = function() {
+    var f = Object.setPrototypeOf((function() {
       for (var args = [],
-          $__1 = 0; $__1 < arguments.length; $__1++)
-        args[$traceurRuntime.toProperty($__1)] = arguments[$traceurRuntime.toProperty($__1)];
+          $__2 = 0; $__2 < arguments.length; $__2++)
+        args[$traceurRuntime.toProperty($__2)] = arguments[$traceurRuntime.toProperty($__2)];
       f.record(args);
       if (f[$traceurRuntime.toProperty(_callOriginal)]) {
-        return origFn.apply(this, args);
+        return origFn.apply($__0, args);
       }
       return f[$traceurRuntime.toProperty(_returnValue)];
-    };
-    f.__proto__ = $SpiedFn.prototype;
+    }), $SpiedFn.prototype);
     f.constructor = $SpiedFn;
     f[$traceurRuntime.toProperty(_scope)] = scope;
     f[$traceurRuntime.toProperty(_name)] = name;
@@ -241,7 +239,7 @@ var $__src_47_spies__ = (function() {
   var Spies = {
     stub: function(target) {
       var source = (typeof target === 'function') ? target.prototype : target;
-      var obj = {__proto__: source};
+      var obj = Object.setPrototypeOf({}, source);
       for (var prop in source)
         if (!$traceurRuntime.isSymbolString(prop)) {
           if (typeof source[$traceurRuntime.toProperty(prop)] === 'function') {

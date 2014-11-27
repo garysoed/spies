@@ -20,11 +20,10 @@ let Spies = {
    * @return {!Object} The stub object.
    */
   stub(target) {
-    let source = (typeof target === 'function')
-        ? target.prototype
-        : target;
+    let source = (typeof target === 'function') ?
+        target.prototype : target;
 
-    let obj = { __proto__: source };
+    let obj = Object.setPrototypeOf({}, source);
     for (let prop in source) {
       if (typeof source[prop] === 'function') {
         obj[prop] = function() {};
