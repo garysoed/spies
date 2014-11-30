@@ -1,0 +1,25 @@
+{
+  "name": "spies",
+  "version": "0.1.2",
+  "homepage": "https://github.com/garysoed/spies",
+  "authors": [
+    "Gary Soedarsono <garysoed@gmail.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "test",
+    "spy",
+    "fake"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
