@@ -119,6 +119,8 @@ Spies comes with a Chai-expect plugin. To use it, HTML import the `main_chai_exp
 # Release History
 - v 0.1.0
   - Initial release
-- v 0.1.1
-  - Updated docs
-  - Switched to gulp
+  - v 0.1.1
+    - Updated docs
+    - Switched to gulp
+  - v 0.1.2
+    - Fixed bug where SpiedFn wasn't called using the right scope 
