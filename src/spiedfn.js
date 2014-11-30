@@ -22,7 +22,7 @@ export default class SpiedFn extends Function {
   constructor(scope, name) {
     let origFn = scope ? scope[name] : null;
 
-    let f = Object.setPrototypeOf((...args) => {
+    let f = Object.setPrototypeOf(function(...args) {
       f.record(args);
       if (f[_callOriginal]) {
         return origFn.apply(this, args);

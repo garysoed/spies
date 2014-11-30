@@ -117,18 +117,17 @@ var $__src_47_spiedfn__ = (function() {
   var _callOriginal = Symbol();
   var _returnValue = Symbol();
   var SpiedFn = function SpiedFn(scope, name) {
-    var $__0 = this;
     var origFn = scope ? scope[$traceurRuntime.toProperty(name)] : null;
-    var f = Object.setPrototypeOf((function() {
+    var f = Object.setPrototypeOf(function() {
       for (var args = [],
-          $__2 = 0; $__2 < arguments.length; $__2++)
-        args[$traceurRuntime.toProperty($__2)] = arguments[$traceurRuntime.toProperty($__2)];
+          $__1 = 0; $__1 < arguments.length; $__1++)
+        args[$traceurRuntime.toProperty($__1)] = arguments[$traceurRuntime.toProperty($__1)];
       f.record(args);
       if (f[$traceurRuntime.toProperty(_callOriginal)]) {
-        return origFn.apply($__0, args);
+        return origFn.apply(this, args);
       }
       return f[$traceurRuntime.toProperty(_returnValue)];
-    }), $SpiedFn.prototype);
+    }, $SpiedFn.prototype);
     f.constructor = $SpiedFn;
     f[$traceurRuntime.toProperty(_scope)] = scope;
     f[$traceurRuntime.toProperty(_name)] = name;

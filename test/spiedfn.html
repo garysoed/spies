@@ -24,8 +24,10 @@
           var C = {};
           var rv = 1;
           var receivedArgs = [];
+          var receivedContext = null;
           C.fn = function() {
             receivedArgs = Array.prototype.slice.call(arguments);
+            receivedContext = this;
             return rv;
           };
 
@@ -34,6 +36,7 @@
           expect(C.fn).to.not.equal(origFn);
           expect(C.fn(1, 2, 3)).to.equal(rv);
           expect(receivedArgs).to.eql([1, 2, 3]);
+          expect(receivedContext).to.be.equal(C);
         });
         it('should handle no scope or name', function() {
           var fn = new SpiedFn();
