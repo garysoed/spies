@@ -4,3 +4,12 @@
 [submodule "docs"]
 	path = docs
 	url = https://github.com/garysoed/spies.wiki.git
+[submodule "lib/yuimd"]
+	path = lib/yuimd
+	url = https://github.com/garysoed/yuimd.git
+[submodule "spies.wiki"]
+	path = spies.wiki
+	url = https://github.com/garysoed/spies.wiki.git
+[submodule "doc"]
+	path = doc
+	url = https://github.com/garysoed/spies.wiki.git

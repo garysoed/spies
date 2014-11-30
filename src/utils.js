@@ -11,8 +11,8 @@ import Matcher from 'src/matcher/matcher';
  * Deep equals the two objects.
  *
  * @method deepEqual
- * @param  {*} obj1 The first object to compare.
- * @param  {*} obj2 The second object to compare.
+ * @param  {Object} obj1 The first object to compare.
+ * @param  {Object} obj2 The second object to compare.
  * @return {boolean} True iff the two objects are deeply equal.
  */
 export function deepEqual(obj1, obj2) {
