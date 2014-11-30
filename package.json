@@ -1,8 +1,7 @@
 {
   "name": "spies",
-  "version": "0.0.0",
+  "version": "0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start --single-run --browsers Firefox"
   },
