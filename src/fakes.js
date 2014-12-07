@@ -32,6 +32,21 @@ let Fakes = {
         return data[i];
       }
     }, NodeList.prototype);
+  },
+
+  /**
+   * Creates a fake implementation of an Attr.
+   *
+   * @method attr
+   * @param {string} name Name of the attribute.
+   * @param {Object=} value Value of the attribute.
+   * @return {!Attr} A fake object mimicking an `Attr`.
+   */
+  attr(name, value) {
+    return Object.setPrototypeOf({
+      name,
+      value
+    }, Attr.prototype);
   }
 };
 

@@ -41,7 +41,21 @@
           it('should be an instance of NodeList', function() {
             expect(_F.nodeList([])).to.be.an.instanceof(NodeList);
           });
-        })
+        });
+
+        describe('#attr', function() {
+          it('should return a fake attribute with correct name', function() {
+            var name = 'name';
+            expect(_F.attr(name, 'value').name).to.be.equal(name);
+          });
+          it('should return a fake attribute with correct value', function() {
+            var value = 1234;
+            expect(_F.attr('name', value).value).to.be.equal(value);
+          });
+          it('should be an instance of Attr', function() {
+            expect(_F.attr('name', 'value')).to.be.an.instanceof(Attr);
+          });
+        });
       });
     })();
   </script>

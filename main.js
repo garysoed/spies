@@ -12,6 +12,12 @@ var $__src_47_fakes__ = (function() {
           return data[$traceurRuntime.toProperty(i)];
         }
       }, NodeList.prototype);
+    },
+    attr: function(name, value) {
+      return Object.setPrototypeOf({
+        name: name,
+        value: value
+      }, Attr.prototype);
     }
   };
   var $__default = Fakes;
