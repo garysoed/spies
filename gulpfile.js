@@ -57,9 +57,7 @@ gulp.task('doc', function() {
       .pipe(gulp.dest('doc'));
 });
 
-gulp.task('push', ['test', 'doc'], function() {
-  shell('git push');
-});
+gulp.task('push', ['test', 'doc'], shell.task('git push'));
 
 gulp.task('watch', function() {
   gulp.watch(['src/**/*.js', 'test/**/*.html'], ['traceur']);
