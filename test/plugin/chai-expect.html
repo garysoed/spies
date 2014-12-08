@@ -21,6 +21,17 @@
             TestClass.fn();
             expect(TestClass.fn).to.be.calledWith().at.least(1);
           });
+          it('should work with matcher', function() {
+            var spiedFn = _.spiedFunction();
+            var isAFunction = spies.Matchers.isA(Function);
+            var fn = function() {};
+
+            spiedFn(fn);
+
+            expect(spiedFn).calledWith(isAFunction).at.least(1);
+            expect(isAFunction.matchingArgs).to.be.eql([fn]);
+          });
+
         });
 
         describe('#called', function() {

@@ -36,10 +36,12 @@ chai.use(function(chai, utils) {
       return compareBefore(prevInvocations, laterInvocations);
     } else {
       var obj = utils.flag(this, 'object'); 
+      // Don't use Spies.callCountOf since it will double count the matcher.
+      var invocations = Spies.invocationsOf(obj).apply(null, args);
       return addFlag(
-          chai.expect(Spies.callCountOf(obj).apply(null, args)),
+          chai.expect(invocations.length),
           FLAG_RECORD, 
-          Spies.invocationsOf(obj).apply(null, args));
+          invocations);
     }
   });
 
