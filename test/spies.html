@@ -107,6 +107,22 @@
         });
       });
 
+      describe('#callCountOf', function() {
+        it('should return the correct invocations', function() {
+          var c = new TestClass();
+          _.spy(c, 'fn1');
+          c.fn1();
+          c.fn1();
+          c.fn1();
+
+          var invocations = _.invocationsOf(c.fn1)();
+          expect(invocations.length).to.be.equal(3);
+          expect(invocations[0].timestamp).to.be.lessThan(invocations[1].timestamp);
+          expect(invocations[0].timestamp).to.be.lessThan(invocations[2].timestamp);
+          expect(invocations[1].timestamp).to.be.lessThan(invocations[2].timestamp);
+        });
+      });
+
       describe('#anyCallCountOf', function() {
         it('should return the number of invocations with any arguments', function() {
           var c = new TestClass();

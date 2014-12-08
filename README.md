@@ -116,6 +116,34 @@ documentations.
 ## Plugins
 Spies comes with a Chai-expect plugin. To use it, HTML import the `main_chai_expect.html` file.
 
+### Examples
+#### Basic usage
+```javascript
+/**
+ * Test Code
+ */
+var _ = spies.Spies;
+_.spy(object, 'fn');
+
+object.fn(1);
+object.fn();
+
+expect(object.fn).calledWith(1).at.least(1);
+expect(object.fn).called().at.least(2);
+```
+
+#### Asserting order
+```javascript
+var _ = spies.Spies;
+_.spy(object, 'fn');
+
+object.fn(1);
+object.fn();
+
+expect(object.fn).calledWith(1).before(object.fn).calledWith();
+expect(object.fn).called().before(object.fn).calledWith();
+```
+
 # Release History
 - v 0.1.0
   - Initial release
@@ -124,3 +152,5 @@ Spies comes with a Chai-expect plugin. To use it, HTML import the `main_chai_exp
     - Switched to gulp
   - v 0.1.2
     - Fixed bug where SpiedFn wasn't called using the right scope 
+  - v 0.1.3
+    - Added a way to assert ordering

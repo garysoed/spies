@@ -71,7 +71,8 @@
           spiedFn.record(args1);
           spiedFn.record(args2);
 
-          expect(spiedFn.records).to.deep.equal([args1, args2]);
+          expect(spiedFn.records[0].args).to.deep.equal(args1);
+          expect(spiedFn.records[1].args).to.deep.equal(args2);
         });
       });
 

@@ -6,6 +6,11 @@ var shell = require('gulp-shell');
 
 var yuimd = require('yuimd');
 
+var handleError = function(error) {
+  console.log(error.toString());
+  this.emit('end');
+};
+
 gulp.task('jshint', function() {
   return gulp.src('./src/**/*.js')
       .pipe(jshint({
@@ -35,6 +40,12 @@ gulp.task('test', ['traceur'], function() {
     });
 });
 
+gulp.task('test-dev', ['traceur'], function() {
+  return gulp.src('karma.conf.js')
+      .pipe(shell(['karma start <%= file.path %>']))
+      .on('error', handleError);
+});
+
 gulp.task('doc', function() {
   return gulp.src('gulpfile.js')
       .pipe(yuimd({
@@ -49,5 +60,5 @@ gulp.task('doc', function() {
 gulp.task('push', ['test', 'doc'], shell.task('git push'));
 
 gulp.task('watch', function() {
-  gulp.watch(['src/**/*.js', 'test/**/*.html'], ['test']);
+  gulp.watch(['src/**/*.js', 'test/**/*.html'], ['traceur']);
 });
