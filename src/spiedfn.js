@@ -1,10 +1,12 @@
 // symbols
-let _scope = Symbol();
-let _name = Symbol();
-let _origFn = Symbol();
-let _records = Symbol();
-let _callOriginal = Symbol();
-let _returnValue = Symbol();
+const _scope = Symbol();
+const _name = Symbol();
+const _origFn = Symbol();
+const _records = Symbol();
+const _callOriginal = Symbol();
+const _returnValue = Symbol();
+
+let timestamp = 0;
 
 /**
  * Represents a function that is spied.
@@ -62,7 +64,8 @@ export default class SpiedFn extends Function {
    * @param {Array} args Array containing arguments to the function call.
    */
   record(args) {
-    this.records.push(args);
+    timestamp++;
+    this.records.push({timestamp, args});
   }
 
   /**

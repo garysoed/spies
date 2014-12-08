@@ -116,6 +116,7 @@ var $__src_47_spiedfn__ = (function() {
   var _records = Symbol();
   var _callOriginal = Symbol();
   var _returnValue = Symbol();
+  var timestamp = 0;
   var SpiedFn = function SpiedFn(scope, name) {
     var $__0 = this;
     var origFn = scope ? scope[$traceurRuntime.toProperty(name)] : null;
@@ -149,7 +150,11 @@ var $__src_47_spiedfn__ = (function() {
       }
     },
     record: function(args) {
-      this.records.push(args);
+      timestamp++;
+      this.records.push({
+        timestamp: timestamp,
+        args: args
+      });
     },
     overrideReturn: function(returnValue) {
       this[$traceurRuntime.toProperty(_callOriginal)] = false;
@@ -244,15 +249,23 @@ var $__src_47_spies__ = (function() {
       }
     },
     callCountOf: function(target) {
-      var record = target.records || [];
       return (function() {
         for (var args = [],
             $__2 = 0; $__2 < arguments.length; $__2++)
           args[$traceurRuntime.toProperty($__2)] = arguments[$traceurRuntime.toProperty($__2)];
-        var invocations = record.filter((function(recordedArgs) {
-          return deepEqual(recordedArgs, args);
+        return Spies.invocationsOf(target).apply(target, args).length;
+      });
+    },
+    invocationsOf: function(target) {
+      var records = target.records || [];
+      return (function() {
+        for (var args = [],
+            $__2 = 0; $__2 < arguments.length; $__2++)
+          args[$traceurRuntime.toProperty($__2)] = arguments[$traceurRuntime.toProperty($__2)];
+        var invocations = records.filter((function(record) {
+          return deepEqual(record.args, args);
         }));
-        return invocations.length;
+        return invocations;
       });
     },
     anyCallCountOf: function(target) {

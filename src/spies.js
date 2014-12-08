@@ -66,22 +66,42 @@ let Spies = {
 
   /**
    * Returns a function that returns the call count of the given target when called with the given
-   * arguments. For example: Spies.callCountOf(fn)(1, 2) returns the number of calls that function
-   * fn was called with arguments (1, 2).
+   * arguments. For example: `Spies.callCountOf(fn)(1, 2)` returns the number of calls that function
+   * fn was called with arguments `(1, 2)`.
    *
    * If the passed in function is not a spy, this will return 0.
    *
    * @method callCountOf
-   * @param {!Function} target The function whose call count should be returned.
+   * @param {!SpiedFn} target The function whose call count should be returned.
    * @return {!Function} Function that returns the call counts of the given function.
    */
   callCountOf(target) {
-    let record = target.records || [];
     return (...args) => {
-      let invocations = record.filter(recordedArgs => {
-        return deepEqual(recordedArgs, args);
+      return Spies.invocationsOf(target).apply(target, args).length;
+    };
+  },
+
+  /**
+   * Returns a function that returns the invocations of the given target when called with the given
+   * arguments. For example: `Spies.invocationsOf(fn)(1, 2)` returns an array of invocations
+   * matching when `fn` is called with arguments `(1, 2)`.
+   *
+   * An invocation object consists of two values:
+   * - `timestamp`: This is the timestamp of the call. This only determines ordering, not actual 
+   *   time.
+   * - `args`: This is an array of arguments that the function received at that time.
+   *
+   * @method invocationsOf
+   * @param {!SpiedFn} target The function whose invocations should be returned.
+   * @return {!Function} Function thar returns the invocations of the given function.
+   */
+  invocationsOf(target) {
+    let records = target.records || [];
+    return (...args) => {
+      let invocations = records.filter(record => {
+        return deepEqual(record.args, args);
       });
-      return invocations.length;
+      return invocations;
     };
   },
 

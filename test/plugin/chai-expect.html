@@ -8,31 +8,63 @@
 <body>
   <script>
     'use strict';
+    (function() {
+      var _ = spies.Spies;
+      var expect = chai.expect;
 
-    var Spies = spies.Spies;
-    var expect = chai.expect;
+      describe('Chai Plugin', function() {
+        describe('#calledWith', function() {
+          it('should assert call of at least once', function() {
+            var TestClass = {};
+            TestClass.fn = function() { };
+            _.spy(TestClass, 'fn');
+            TestClass.fn();
+            expect(TestClass.fn).to.be.calledWith().at.least(1);
+          });
+        });
 
-    describe('Chai Plugin', function() {
-      describe('#calledWith', function() {
-        it('should assert call of at least once', function() {
-          var TestClass = {};
-          TestClass.fn = function() { };
-          Spies.spy(TestClass, 'fn');
-          TestClass.fn();
-          expect(TestClass.fn).to.be.calledWith().at.least(1);
+        describe('#called', function() {
+          it('should assert call of any arguments', function() {
+            var TestClass = {};
+            TestClass.fn = function() {};
+            _.spy(TestClass, 'fn');
+            TestClass.fn();
+            expect(TestClass.fn).called().at.least(1);
+          });
+        });
+
+        describe('#before', function() {
+          it('should assert calls by order', function() { 
+            var TestClass = {
+              f1: function() {},
+              f2: function() {}
+            };
+
+            _.spy(TestClass, 'f1');
+            _.spy(TestClass, 'f2');
+
+            TestClass.f1(1);
+            TestClass.f2(1);
+            TestClass.f1(2);
+
+            expect(TestClass.f1).calledWith(1).before(TestClass.f2).calledWith(1);
+            expect(TestClass.f1).calledWith(1).before(TestClass.f1).calledWith(2);
+            expect(TestClass.f2).calledWith(1).before(TestClass.f1).calledWith(2);
+
+            // Test ignoring the arguments.
+            expect(TestClass.f1).called().before(TestClass.f2).called();
+            expect(TestClass.f1).calledWith(1).before(TestClass.f2).called();
+            expect(TestClass.f1).called().before(TestClass.f2).calledWith(1);
+            expect(TestClass.f2).called().before(TestClass.f1).calledWith(2);
+          });
+        });
+
+        afterEach(function(done) {
+          _.reset();
+          done();
         });
       });
-
-      describe('#called', function() {
-        it('should assert call of any arguments', function() {
-          var TestClass = {};
-          TestClass.fn = function() {};
-          Spies.spy(TestClass, 'fn');
-          TestClass.fn();
-          expect(TestClass.fn).called().at.least(1);
-        });
-      });
-    });
+    })();
   </script>
 </body>
 </html>
