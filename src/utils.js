@@ -1,11 +1,11 @@
+import Matcher from 'src/matcher/matcher';
+
 /**
  * Contains various utility functions.
  *
  * @class Utils
  * @static
  */
-
-import Matcher from 'src/matcher/matcher';
 
 /**
  * Deep equals the two objects.

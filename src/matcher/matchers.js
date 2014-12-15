@@ -7,14 +7,14 @@ import Any from 'src/matcher/any';
  * @class Matchers
  * @static
  */
-let Matchers = {
+const Matchers = {
 
   /**
    * Creates a matcher that matches by type.
    *
    * @method isA
    * @param {Function|string} expectedType Type to be checked.
-   * @return {IsA} The IsA matcher.
+   * @return {matcher.IsA} The IsA matcher.
    */
   isA(expectedType) {
     return new IsA(expectedType);
@@ -24,7 +24,7 @@ let Matchers = {
    * Creates a matcher that matches anything.
    *
    * @method any
-   * @return {Any} The Any matcher.
+   * @return {matcher.Any} The Any matcher.
    */
   any() {
     return new Any();

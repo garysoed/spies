@@ -2,22 +2,19 @@
  * Base class for matcher objects. These allow you to store arguments that have been pass into a
  * gunction call.
  * 
- * @class Matcher
+ * @class matcher.Matcher
  */
+
+// Private symbols.
+const _MATCHING_ARGS = Symbol();
+
 export default class Matcher {
 
   /**
    * @constructor
    */
   constructor() {
-
-    /**
-     * Array of recorded arguments that matches.
-     *
-     * @property matchingArgs
-     * @type Array
-     */
-    this.matchingArgs = [];
+    this[_MATCHING_ARGS] = [];
   }
 
   /**
@@ -33,6 +30,16 @@ export default class Matcher {
     }
 
     return false;
+  }
+
+  /**
+   * Array of recorded arguments that matches
+   *
+   * @property matchingArgs
+   * @type Array
+   */
+  get matchingArgs() {
+    return this[_MATCHING_ARGS];
   }
 }
 

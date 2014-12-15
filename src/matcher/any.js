@@ -2,8 +2,8 @@ import Matcher from 'src/matcher/matcher';
 
 /**
  * Matches anything.
- * @class Any
- * @extends Matcher
+ * @class matcher.Any
+ * @extends matcher.Matcher
  */
 export default class Any extends Matcher {
 

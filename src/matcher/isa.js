@@ -1,12 +1,14 @@
 import Matcher from 'src/matcher/matcher';
 
-let _expectedType = Symbol();
-
 /**
  * Matches arguments that is the instance of the given ctor, or has the expected type.
- * @class IsA
- * @extends Matcher
+ * @class matcher.IsA
+ * @extends matcher.Matcher
  */
+
+// Private symbols.
+const _EXPECTED_TYPE = Symbol();
+
 export default class IsA extends Matcher {
 
   /**
@@ -16,7 +18,7 @@ export default class IsA extends Matcher {
    */
   constructor(expectedType) {
     super.constructor();
-    this[_expectedType] = expectedType;
+    this[_EXPECTED_TYPE] = expectedType;
   }
 
   /**
@@ -25,10 +27,10 @@ export default class IsA extends Matcher {
    * @method matches
    */
   matches(arg) {
-    if (this[_expectedType] instanceof Function) {
-      return arg instanceof this[_expectedType];
+    if (this[_EXPECTED_TYPE] instanceof Function) {
+      return arg instanceof this[_EXPECTED_TYPE];
     } else {
-      return typeof arg === this[_expectedType];
+      return typeof arg === this[_EXPECTED_TYPE];
     }
   }
 }

@@ -4,7 +4,7 @@
  * @class Fakes
  * @static
  */
-let Fakes = {
+const Fakes = {
 
   /**
    * Creates a fake of the given constructor. The fake object's proto link will simply point to the

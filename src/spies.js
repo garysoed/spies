@@ -1,7 +1,5 @@
-import SpiedFn from 'src/spiedfn';
+import SpiedFn       from 'src/spiedfn';
 import { deepEqual } from 'src/utils';
-
-let spiedFns = [];
 
 /**
  * Root object for the library.
@@ -9,7 +7,10 @@ let spiedFns = [];
  * @class Spies
  * @static
  */
-let Spies = {
+
+let spiedFns = [];
+
+const Spies = {
 
   /**
    * Creates a stub for the given constructor or object. All functions will be replaced by a noop
@@ -43,7 +44,7 @@ let Spies = {
    *     be spied on. 
    * @param {string=} name The name of the function to be spied on. If not specified, this will
    *     spy all functions in the scope recursively.
-   * @return {Object|Function} The spied function, or the spied object.
+   * @return {Object|!Function} The spied function, or the spied object.
    */
   spy(scope, name) {
     if (name === undefined) {

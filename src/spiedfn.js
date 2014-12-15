@@ -1,18 +1,19 @@
-// symbols
-const _scope = Symbol();
-const _name = Symbol();
-const _origFn = Symbol();
-const _records = Symbol();
-const _callOriginal = Symbol();
-const _returnValue = Symbol();
-
-let timestamp = 0;
-
 /**
  * Represents a function that is spied.
  * @class SpiedFn
  * @extends Function
  */
+
+// Private symbols
+const _CALL_ORIGINAL = Symbol();
+const _NAME = Symbol();
+const _ORIG_FN = Symbol();
+const _RECORDS = Symbol();
+const _RETURN_VALUE = Symbol();
+const _SCOPE = Symbol();
+
+let timestamp = 0;
+
 export default class SpiedFn extends Function {
 
   /**
@@ -26,18 +27,18 @@ export default class SpiedFn extends Function {
 
     let f = Object.setPrototypeOf(function(...args) {
       f.record(args);
-      if (f[_callOriginal]) {
+      if (f[_CALL_ORIGINAL]) {
         return origFn.apply(this, args);
       }
-      return f[_returnValue];
+      return f[_RETURN_VALUE];
     }, SpiedFn.prototype);
     f.constructor = SpiedFn;
-    f[_scope] = scope;
-    f[_name] = name;
-    f[_origFn] = origFn;
-    f[_callOriginal] = !!origFn;
-    f[_returnValue] = undefined;
-    f.records = [];
+    f[_SCOPE] = scope;
+    f[_NAME] = name;
+    f[_ORIG_FN] = origFn;
+    f[_CALL_ORIGINAL] = !!origFn;
+    f[_RETURN_VALUE] = undefined;
+    f[_RECORDS] = [];
 
     // Override the original function, if any.
     if (scope) {
@@ -52,8 +53,8 @@ export default class SpiedFn extends Function {
    * @method restore
    */
   restore() {
-    if (this[_scope]) {
-      this[_scope][this[_name]] = this[_origFn];
+    if (this[_SCOPE]) {
+      this[_SCOPE][this[_NAME]] = this[_ORIG_FN];
     }
   }
 
@@ -76,9 +77,17 @@ export default class SpiedFn extends Function {
    * @return {SpiedFn} The current object.
    */
   overrideReturn(returnValue) {
-    this[_callOriginal] = false;
-    this[_returnValue] = returnValue;
+    this[_CALL_ORIGINAL] = false;
+    this[_RETURN_VALUE] = returnValue;
     return this;
+  }
+
+  /**
+   * @return {Array} Array of record objects, each containing an invocation for the function. Each 
+   *     invocation is a mapping of timestamp -> array of arguments used to invoke it.
+   */
+  get records() {
+    return this[_RECORDS];
   }
 }
 

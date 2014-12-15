@@ -32,16 +32,22 @@ var $__src_47_fakes__ = (function() {
 var $__src_47_matcher_47_matcher__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/matcher";
+  var _MATCHING_ARGS = Symbol();
   var Matcher = function Matcher() {
-    this.matchingArgs = [];
+    this[$traceurRuntime.toProperty(_MATCHING_ARGS)] = [];
   };
-  ($traceurRuntime.createClass)(Matcher, {registerInvocation: function(arg) {
+  ($traceurRuntime.createClass)(Matcher, {
+    registerInvocation: function(arg) {
       if (this.matches(arg)) {
         this.matchingArgs.push(arg);
         return true;
       }
       return false;
-    }}, {});
+    },
+    get matchingArgs() {
+      return this[$traceurRuntime.toProperty(_MATCHING_ARGS)];
+    }
+  }, {});
   var $__default = Matcher;
   if (window.TEST_MODE) {
     if (!window.spies) {
@@ -73,17 +79,17 @@ var $__src_47_matcher_47_isa__ = (function() {
   "use strict";
   var __moduleName = "src/matcher/isa";
   var Matcher = ($__src_47_matcher_47_matcher__).default;
-  var _expectedType = Symbol();
+  var _EXPECTED_TYPE = Symbol();
   var IsA = function IsA(expectedType) {
     $traceurRuntime.superCall(this, $IsA.prototype, "constructor", []);
-    this[$traceurRuntime.toProperty(_expectedType)] = expectedType;
+    this[$traceurRuntime.toProperty(_EXPECTED_TYPE)] = expectedType;
   };
   var $IsA = IsA;
   ($traceurRuntime.createClass)(IsA, {matches: function(arg) {
-      if (this[$traceurRuntime.toProperty(_expectedType)] instanceof Function) {
-        return arg instanceof this[$traceurRuntime.toProperty(_expectedType)];
+      if (this[$traceurRuntime.toProperty(_EXPECTED_TYPE)] instanceof Function) {
+        return arg instanceof this[$traceurRuntime.toProperty(_EXPECTED_TYPE)];
       } else {
-        return (typeof arg === 'undefined' ? 'undefined' : $traceurRuntime.typeof(arg)) === this[$traceurRuntime.toProperty(_expectedType)];
+        return (typeof arg === 'undefined' ? 'undefined' : $traceurRuntime.typeof(arg)) === this[$traceurRuntime.toProperty(_EXPECTED_TYPE)];
       }
     }}, {}, Matcher);
   var $__default = IsA;
@@ -116,12 +122,12 @@ var $__src_47_matcher_47_matchers__ = (function() {
 var $__src_47_spiedfn__ = (function() {
   "use strict";
   var __moduleName = "src/spiedfn";
-  var _scope = Symbol();
-  var _name = Symbol();
-  var _origFn = Symbol();
-  var _records = Symbol();
-  var _callOriginal = Symbol();
-  var _returnValue = Symbol();
+  var _CALL_ORIGINAL = Symbol();
+  var _NAME = Symbol();
+  var _ORIG_FN = Symbol();
+  var _RECORDS = Symbol();
+  var _RETURN_VALUE = Symbol();
+  var _SCOPE = Symbol();
   var timestamp = 0;
   var SpiedFn = function SpiedFn(scope, name) {
     var origFn = scope ? scope[$traceurRuntime.toProperty(name)] : null;
@@ -130,18 +136,18 @@ var $__src_47_spiedfn__ = (function() {
           $__1 = 0; $__1 < arguments.length; $__1++)
         args[$traceurRuntime.toProperty($__1)] = arguments[$traceurRuntime.toProperty($__1)];
       f.record(args);
-      if (f[$traceurRuntime.toProperty(_callOriginal)]) {
+      if (f[$traceurRuntime.toProperty(_CALL_ORIGINAL)]) {
         return origFn.apply(this, args);
       }
-      return f[$traceurRuntime.toProperty(_returnValue)];
+      return f[$traceurRuntime.toProperty(_RETURN_VALUE)];
     }, $SpiedFn.prototype);
     f.constructor = $SpiedFn;
-    f[$traceurRuntime.toProperty(_scope)] = scope;
-    f[$traceurRuntime.toProperty(_name)] = name;
-    f[$traceurRuntime.toProperty(_origFn)] = origFn;
-    f[$traceurRuntime.toProperty(_callOriginal)] = !!origFn;
-    f[$traceurRuntime.toProperty(_returnValue)] = undefined;
-    f.records = [];
+    f[$traceurRuntime.toProperty(_SCOPE)] = scope;
+    f[$traceurRuntime.toProperty(_NAME)] = name;
+    f[$traceurRuntime.toProperty(_ORIG_FN)] = origFn;
+    f[$traceurRuntime.toProperty(_CALL_ORIGINAL)] = !!origFn;
+    f[$traceurRuntime.toProperty(_RETURN_VALUE)] = undefined;
+    f[$traceurRuntime.toProperty(_RECORDS)] = [];
     if (scope) {
       scope[$traceurRuntime.toProperty(name)] = f;
     }
@@ -150,8 +156,8 @@ var $__src_47_spiedfn__ = (function() {
   var $SpiedFn = SpiedFn;
   ($traceurRuntime.createClass)(SpiedFn, {
     restore: function() {
-      if (this[$traceurRuntime.toProperty(_scope)]) {
-        this[$traceurRuntime.toProperty(_scope)][$traceurRuntime.toProperty(this[$traceurRuntime.toProperty(_name)])] = this[$traceurRuntime.toProperty(_origFn)];
+      if (this[$traceurRuntime.toProperty(_SCOPE)]) {
+        this[$traceurRuntime.toProperty(_SCOPE)][$traceurRuntime.toProperty(this[$traceurRuntime.toProperty(_NAME)])] = this[$traceurRuntime.toProperty(_ORIG_FN)];
       }
     },
     record: function(args) {
@@ -162,9 +168,12 @@ var $__src_47_spiedfn__ = (function() {
       });
     },
     overrideReturn: function(returnValue) {
-      this[$traceurRuntime.toProperty(_callOriginal)] = false;
-      this[$traceurRuntime.toProperty(_returnValue)] = returnValue;
+      this[$traceurRuntime.toProperty(_CALL_ORIGINAL)] = false;
+      this[$traceurRuntime.toProperty(_RETURN_VALUE)] = returnValue;
       return this;
+    },
+    get records() {
+      return this[$traceurRuntime.toProperty(_RECORDS)];
     }
   }, {}, Function);
   var $__default = SpiedFn;
