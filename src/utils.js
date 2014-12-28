@@ -32,6 +32,10 @@ export function deepEqual(obj1, obj2) {
     return obj1 === obj2;
   }
 
+  if (obj1 instanceof Function) {
+    return obj1 === obj2;
+  }
+
   if (obj1 instanceof Array && obj1.length !== obj2.length) {
     return false;
   }

@@ -204,6 +204,9 @@ var $__src_47_utils__ = (function() {
     if (!(obj1 instanceof Object) || !(obj2 instanceof Object)) {
       return obj1 === obj2;
     }
+    if (obj1 instanceof Function) {
+      return obj1 === obj2;
+    }
     if (obj1 instanceof Array && obj1.length !== obj2.length) {
       return false;
     }
