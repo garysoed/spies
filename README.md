@@ -154,3 +154,5 @@ expect(object.fn).called().before(object.fn).calledWith();
     - Fixed bug where SpiedFn wasn't called using the right scope 
   - v 0.1.3
     - Added a way to assert ordering
+  - v 0.1.4
+    - Fixed a bug where function comparison wasn't done correctly.
