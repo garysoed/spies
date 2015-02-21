@@ -11,7 +11,7 @@
   "options": {
     "linkNatives": "true",
     "outdir": "./doc",
-    "themedir": "./theme",
+    "themedir": "./node_modules/doctheme",
     "paths": [
       "./src"
     ]
