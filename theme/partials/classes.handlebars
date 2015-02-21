@@ -1,0 +1,86 @@
+<div class="class">
+  <section class="class-summary">
+    <header>
+      <code>{{#if static}}static {{/if}}{{moduleName}}{{#if extends}} extends {{#crossLink extends}}{{/crossLink}}{{/if}}</code>
+      
+      {{!-- TODO(gs): Add subclasses --}}
+    </header>
+
+    <div>
+      {{{classDescription}}}
+    </div>
+
+    {{#if is_constructor}}
+      <h2>Constructor</h2>
+      <div>
+        {{#is_constructor}}
+          {{>method}}
+        {{/is_constructor}}
+      </div>
+    {{/if}}
+  </section>  
+
+  {{#if properties}}
+    <section class="class-subsection">
+      <header>
+        <h2>Properties</h2>
+      </header>
+      <div>
+      {{#properties}}
+        {{>props}}
+      {{/properties}}
+      </div>
+    </section>
+  {{/if}}
+
+  {{#if methods}}
+    <section class="class-subsection">
+      <header>
+        <h2>Methods</h2>
+      </header>
+      <div>
+      {{#methods}}
+        {{>method}}
+      {{/methods}}
+      </div>
+    </section>
+  {{/if}}
+</div>
+
+{{!-- {{#if uses}}
+  Uses:
+  {{#each uses}}
+      <a href="{{this}}.html">{{this}}</a>
+  {{/each}}
+  <br>
+{{/if}}
+{{#if extension_for}}
+    Extension For:
+    {{#each extension_for}}
+        <a href="{{this}}.html">{{this}}</a>
+    {{/each}}
+    <br>
+{{/if}}
+{{#if extends}}
+    Extends: {{#crossLink extends}}{{/crossLink}}<br>
+{{/if}}
+<span class="foundat">Class defined in: <a href="../{{foundAt}}">`{{file}}:{{line}}`</a></span>
+<div class="intro">{{{classDescription}}}</div> --}}
+
+
+    {{!-- <div>
+        {{#if attrs}}
+            <div id="attrs">
+            {{#attrs}}
+                {{>attrs}}
+            {{/attrs}}
+            </div>
+        {{/if}}
+        {{#if events}}
+            <div id="events">
+            {{#events}}
+                {{>events}}
+            {{/events}}
+            </div>
+        {{/if}}
+    </div> --}}
