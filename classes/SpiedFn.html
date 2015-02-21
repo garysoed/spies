@@ -52,7 +52,7 @@
     <header>
       <code>SpiedFn extends <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code>
       
-      
+      <p>Subclasses: </p>
     </header>
 
     <div>
@@ -66,16 +66,16 @@
         
           <section class="method">
   <header>
-    <code class="method-signature"> SpiedFn(Object= scope, String= name)</code>
+    <code class="method-signature"> SpiedFn(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> scope, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> name)</code>
   </header>
   
   <table>
     
       <tr>
         
-          <td><code>scope</code></td>
+          <td><code>[scope]</code></td>
         
-        <td><code>Object=</code></td>
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
         <td>
           <p>The scope that the function is in. If undefined, then the original 
     function will never be called and #restore will do nothing.</p>
@@ -85,9 +85,9 @@
     
       <tr>
         
-          <td><code>name</code></td>
+          <td><code>[name]</code></td>
         
-        <td><code>String=</code></td>
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code></td>
         <td>
           <p>The name of the function that is spied, if scope is given.</p>
 
@@ -115,10 +115,12 @@
       
         <section class="props">
   <header>
-    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> records Array of record objects, each containing an invocation for the function. Each 
-    invocation is a mapping of timestamp -&gt; array of arguments used to invoke it.</code>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> records</code>
+    
   </header>
-  
+  <p>Array of record objects, each containing an invocation for the function. Each 
+invocation is a mapping of timestamp -&gt; array of arguments used to invoke it.</p>
+
 </section>
 
 
@@ -137,7 +139,7 @@
       
         <section class="method">
   <header>
-    <code class="method-signature"><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a> overrideReturn(Object= returnValue)</code>
+    <code class="method-signature"><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a> overrideReturn(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> returnValue)</code>
   </header>
   <p>Returns the given return value instead of the original function&#39;s.</p>
 
@@ -145,9 +147,9 @@
     
       <tr>
         
-          <td><code>returnValue</code></td>
+          <td><code>[returnValue]</code></td>
         
-        <td><code>Object=</code></td>
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
         <td>
           <p>Return value to return instead of calling the original function.</p>
 
@@ -158,7 +160,7 @@
   
     
     <div class="method-returns">
-      <strong>returns</strong> <code><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><p>The current object.</p>
+      <code><span class="keyword">return</span> <a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><p>The current object.</p>
 
     </div>
     
