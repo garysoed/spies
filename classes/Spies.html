@@ -50,9 +50,9 @@
     <section class="main-main"><div class="class">
   <section class="class-summary">
     <header>
-      <code>static Spies</code>
+      <code><span class="keyword">static</span> Spies</code>
       
-      
+      <p>Subclasses: </p>
     </header>
 
     <div>
@@ -74,7 +74,7 @@
       
         <section class="method">
   <header>
-    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> anyCallCountOf(!Function target)</code>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> anyCallCountOf(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> target)</code>
   </header>
   <p>Returns the number of call counts for the target of any arguments.</p>
 
@@ -84,7 +84,7 @@
         
           <td><code>target</code></td>
         
-        <td><code>!Function</code></td>
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code></td>
         <td>
           <p>The function whose call count should be returned.</p>
 
@@ -95,7 +95,7 @@
   
     
     <div class="method-returns">
-      <strong>returns</strong> <code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></code><p>Number of invocations on the given function.</p>
+      <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></code><p>Number of invocations on the given function.</p>
 
     </div>
     
@@ -108,7 +108,7 @@
       
         <section class="method">
   <header>
-    <code class="method-signature">!Function callCountOf(!SpiedFn target)</code>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> callCountOf(<a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a> target)</code>
   </header>
   <p>Returns a function that returns the call count of the given target when called with the given
 arguments. For example: <code>Spies.callCountOf(fn)(1, 2)</code> returns the number of calls that function
@@ -121,7 +121,7 @@ fn was called with arguments <code>(1, 2)</code>.</p>
         
           <td><code>target</code></td>
         
-        <td><code>!SpiedFn</code></td>
+        <td><code><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code></td>
         <td>
           <p>The function whose call count should be returned.</p>
 
@@ -132,7 +132,7 @@ fn was called with arguments <code>(1, 2)</code>.</p>
   
     
     <div class="method-returns">
-      <strong>returns</strong> <code>!Function</code><p>Function that returns the call counts of the given function.</p>
+      <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code><p>Function that returns the call counts of the given function.</p>
 
     </div>
     
@@ -145,7 +145,7 @@ fn was called with arguments <code>(1, 2)</code>.</p>
       
         <section class="method">
   <header>
-    <code class="method-signature">!Function invocationsOf(!SpiedFn target)</code>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> invocationsOf(<a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a> target)</code>
   </header>
   <p>Returns a function that returns the invocations of the given target when called with the given
 arguments. For example: <code>Spies.invocationsOf(fn)(1, 2)</code> returns an array of invocations
@@ -163,7 +163,7 @@ time.</li>
         
           <td><code>target</code></td>
         
-        <td><code>!SpiedFn</code></td>
+        <td><code><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code></td>
         <td>
           <p>The function whose invocations should be returned.</p>
 
@@ -174,7 +174,7 @@ time.</li>
   
     
     <div class="method-returns">
-      <strong>returns</strong> <code>!Function</code><p>Function thar returns the invocations of the given function.</p>
+      <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code><p>Function thar returns the invocations of the given function.</p>
 
     </div>
     
@@ -187,7 +187,7 @@ time.</li>
       
         <section class="method">
   <header>
-    <code class="method-signature"> reset(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | Undefined target)</code>
+    <code class="method-signature"> reset(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> target)</code>
   </header>
   <p>Restores the given function or recursively all functions in the given object to its original
 implementation and removes all records related to it. Or, restores all known functions, if no
@@ -197,11 +197,11 @@ arguments is given.</p>
     
       <tr>
         
-          <td><code>target</code></td>
+          <td><code>[target]</code></td>
         
-        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | Undefined</code></td>
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
         <td>
-          <p>The function or object to be reset, or undefined.</p>
+          <p>The function or object to be reset.</p>
 
         </td>
       </tr>
@@ -226,7 +226,7 @@ arguments is given.</p>
   
     
     <div class="method-returns">
-      <strong>returns</strong> <code><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><p>Spied function.</p>
+      <code><span class="keyword">return</span> <a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><p>Spied function.</p>
 
     </div>
     
@@ -239,7 +239,7 @@ arguments is given.</p>
       
         <section class="method">
   <header>
-    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | !Function spy(!Object scope, String= name)</code>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> spy(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> scope, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> name)</code>
   </header>
   <p>Spies the given function, or recursively all functions in the given object.</p>
 
@@ -249,7 +249,7 @@ arguments is given.</p>
         
           <td><code>scope</code></td>
         
-        <td><code>!Object</code></td>
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
         <td>
           <p>The Object to be spied on, or the object containing the function to 
     be spied on.</p>
@@ -259,9 +259,9 @@ arguments is given.</p>
     
       <tr>
         
-          <td><code>name</code></td>
+          <td><code>[name]</code></td>
         
-        <td><code>String=</code></td>
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code></td>
         <td>
           <p>The name of the function to be spied on. If not specified, this will
     spy all functions in the scope recursively.</p>
@@ -273,7 +273,7 @@ arguments is given.</p>
   
     
     <div class="method-returns">
-      <strong>returns</strong> <code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | !Function</code><p>The spied function, or the spied object.</p>
+      <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code><p>The spied function, or the spied object.</p>
 
     </div>
     
@@ -286,7 +286,7 @@ arguments is given.</p>
       
         <section class="method">
   <header>
-    <code class="method-signature">!Object stub(!Function | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> ctor)</code>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> stub(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> ctor)</code>
   </header>
   <p>Creates a stub for the given constructor or object. All functions will be replaced by a noop
 function.</p>
@@ -297,7 +297,7 @@ function.</p>
         
           <td><code>ctor</code></td>
         
-        <td><code>!Function | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
         <td>
           <p>The constructor to be stubbed, or object.</p>
 
@@ -308,7 +308,7 @@ function.</p>
   
     
     <div class="method-returns">
-      <strong>returns</strong> <code>!Object</code><p>The stub object.</p>
+      <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code><p>The stub object.</p>
 
     </div>
     

@@ -171,12 +171,14 @@
                 {
                     "name": "scope",
                     "description": "The scope that the function is in. If undefined, then the original \n    function will never be called and #restore will do nothing.",
-                    "type": "Object="
+                    "type": "Object",
+                    "optional": true
                 },
                 {
                     "name": "name",
                     "description": "The name of the function that is spied, if scope is given.",
-                    "type": "String="
+                    "type": "String",
+                    "optional": true
                 }
             ],
             "is_constructor": 1
@@ -246,7 +248,8 @@
                 {
                     "name": "arg",
                     "description": "The argument to be checked.",
-                    "type": "Object="
+                    "type": "Object",
+                    "optional": true
                 }
             ],
             "return": {
@@ -394,7 +397,8 @@
                 {
                     "name": "returnValue",
                     "description": "Return value to return instead of calling the original function.",
-                    "type": "Object="
+                    "type": "Object",
+                    "optional": true
                 }
             ],
             "return": {
@@ -406,8 +410,9 @@
         {
             "file": "src/spiedfn.js",
             "line": 86,
+            "description": "Array of record objects, each containing an invocation for the function. Each \ninvocation is a mapping of timestamp -> array of arguments used to invoke it.",
             "itemtype": "property",
-            "name": "records Array of record objects, each containing an invocation for the function. Each \n    invocation is a mapping of timestamp -> array of arguments used to invoke it.",
+            "name": "records",
             "type": "Array",
             "readonly": "",
             "class": "SpiedFn"
@@ -422,12 +427,12 @@
                 {
                     "name": "ctor",
                     "description": "The constructor to be stubbed, or object.",
-                    "type": "!Function|Object"
+                    "type": "Function|Object"
                 }
             ],
             "return": {
                 "description": "The stub object.",
-                "type": "!Object"
+                "type": "Object"
             },
             "class": "Spies"
         },
@@ -441,17 +446,18 @@
                 {
                     "name": "scope",
                     "description": "The Object to be spied on, or the object containing the function to \n    be spied on.",
-                    "type": "!Object"
+                    "type": "Object"
                 },
                 {
                     "name": "name",
                     "description": "The name of the function to be spied on. If not specified, this will\n    spy all functions in the scope recursively.",
-                    "type": "String="
+                    "type": "String",
+                    "optional": true
                 }
             ],
             "return": {
                 "description": "The spied function, or the spied object.",
-                "type": "Object|!Function"
+                "type": "Object|Function"
             },
             "class": "Spies"
         },
@@ -465,12 +471,12 @@
                 {
                     "name": "target",
                     "description": "The function whose call count should be returned.",
-                    "type": "!SpiedFn"
+                    "type": "SpiedFn"
                 }
             ],
             "return": {
                 "description": "Function that returns the call counts of the given function.",
-                "type": "!Function"
+                "type": "Function"
             },
             "class": "Spies"
         },
@@ -484,12 +490,12 @@
                 {
                     "name": "target",
                     "description": "The function whose invocations should be returned.",
-                    "type": "!SpiedFn"
+                    "type": "SpiedFn"
                 }
             ],
             "return": {
                 "description": "Function thar returns the invocations of the given function.",
-                "type": "!Function"
+                "type": "Function"
             },
             "class": "Spies"
         },
@@ -503,7 +509,7 @@
                 {
                     "name": "target",
                     "description": "The function whose call count should be returned.",
-                    "type": "!Function"
+                    "type": "Function"
                 }
             ],
             "return": {
@@ -521,8 +527,9 @@
             "params": [
                 {
                     "name": "target",
-                    "description": "The function or object to be reset, or undefined.",
-                    "type": "Function|Object|undefined"
+                    "description": "The function or object to be reset.",
+                    "type": "Function|Object",
+                    "optional": true
                 }
             ],
             "class": "Spies"

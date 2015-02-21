@@ -69,8 +69,8 @@ const Spies = {
    * function.
    *
    * @method stub
-   * @param  {!Function|Object} ctor The constructor to be stubbed, or object.
-   * @return {!Object} The stub object.
+   * @param  {Function|Object} ctor The constructor to be stubbed, or object.
+   * @return {Object} The stub object.
    */
   stub(target) {
     let source = (typeof target === &#x27;function&#x27;) ?
@@ -92,11 +92,11 @@ const Spies = {
    * Spies the given function, or recursively all functions in the given object.
    *
    * @method spy
-   * @param {!Object} scope The Object to be spied on, or the object containing the function to 
+   * @param {Object} scope The Object to be spied on, or the object containing the function to 
    *     be spied on. 
-   * @param {string=} name The name of the function to be spied on. If not specified, this will
+   * @param {string} [name] The name of the function to be spied on. If not specified, this will
    *     spy all functions in the scope recursively.
-   * @return {Object|!Function} The spied function, or the spied object.
+   * @return {Object|Function} The spied function, or the spied object.
    */
   spy(scope, name) {
     if (name === undefined) {
@@ -125,8 +125,8 @@ const Spies = {
    * If the passed in function is not a spy, this will return 0.
    *
    * @method callCountOf
-   * @param {!SpiedFn} target The function whose call count should be returned.
-   * @return {!Function} Function that returns the call counts of the given function.
+   * @param {SpiedFn} target The function whose call count should be returned.
+   * @return {Function} Function that returns the call counts of the given function.
    */
   callCountOf(target) {
     return (...args) =&gt; {
@@ -145,8 +145,8 @@ const Spies = {
    * - &#x60;args&#x60;: This is an array of arguments that the function received at that time.
    *
    * @method invocationsOf
-   * @param {!SpiedFn} target The function whose invocations should be returned.
-   * @return {!Function} Function thar returns the invocations of the given function.
+   * @param {SpiedFn} target The function whose invocations should be returned.
+   * @return {Function} Function thar returns the invocations of the given function.
    */
   invocationsOf(target) {
     let records = target.records || [];
@@ -162,7 +162,7 @@ const Spies = {
    * Returns the number of call counts for the target of any arguments.
    *
    * @method anyCallCountOf
-   * @param {!Function} target The function whose call count should be returned.
+   * @param {Function} target The function whose call count should be returned.
    * @return {number} Number of invocations on the given function.
    */
   anyCallCountOf(target) {
@@ -175,7 +175,7 @@ const Spies = {
    * arguments is given.
    *
    * @method reset
-   * @param {Function|Object|undefined} target The function or object to be reset, or undefined.
+   * @param {Function|Object} [target] The function or object to be reset.
    */
   reset(target) {
     if (!target) {

@@ -54,3 +54,7 @@ section.main-main {
 pre, code {
   font-family: 'Ubuntu Mono', monospace;
 }
+
+code .keyword {
+  color: #808080;
+}
