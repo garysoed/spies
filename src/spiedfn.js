@@ -17,9 +17,9 @@ let timestamp = 0;
 export default class SpiedFn extends Function {
 
   /**
-   * @param {Object=} scope The scope that the function is in. If undefined, then the original 
+   * @param {Object} [scope] The scope that the function is in. If undefined, then the original 
    *     function will never be called and #restore will do nothing.
-   * @param {string=} name The name of the function that is spied, if scope is given.
+   * @param {string} [name] The name of the function that is spied, if scope is given.
    * @class SpiedFn
    * @constructor
    */
@@ -74,7 +74,7 @@ export default class SpiedFn extends Function {
    * Returns the given return value instead of the original function's.
    *
    * @method overrideReturn
-   * @param {Object=} returnValue Return value to return instead of calling the original function.
+   * @param {Object} [returnValue] Return value to return instead of calling the original function.
    * @return {SpiedFn} The current object.
    */
   overrideReturn(returnValue) {
@@ -84,10 +84,12 @@ export default class SpiedFn extends Function {
   }
 
   /**
-   * @property records Array of record objects, each containing an invocation for the function. Each 
-   *     invocation is a mapping of timestamp -> array of arguments used to invoke it.
+   * Array of record objects, each containing an invocation for the function. Each 
+   * invocation is a mapping of timestamp -> array of arguments used to invoke it.
+   * 
+   * @property records
    * @type Array
-   * @readOnly
+   * @readonly
    */
   get records() {
     return this[_RECORDS];
