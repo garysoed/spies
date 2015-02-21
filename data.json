@@ -3,7 +3,12 @@
         "name": "Spies",
         "description": "A simple library to spy on functions and create stubs for unit testing.",
         "version": "0.1.4",
-        "url": "http://garysoed.github.com/spies"
+        "url": "https://github.com/garysoed/spies",
+        "colorMain": "#004000",
+        "colorMainLight": "#008000",
+        "colorKeyboard": "#808080",
+        "colorLink": "gold",
+        "colorLinkVisited": "darkorange"
     },
     "files": {
         "src/matcher/any.js": {

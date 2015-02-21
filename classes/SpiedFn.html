@@ -8,19 +8,101 @@
   <link rel="stylesheet" href="../assets/css/method.css">
   <link rel="stylesheet" href="../assets/css/props.css">
   <link rel="stylesheet" href="../assets/css/sidebar.css">
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Roboto);
+    @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono);
+
+    body {
+      background-color: #222;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-size: smaller;
+      margin: 0;
+      height: 100vh;
+    }
+
+    h1, h2 {
+      margin: 5px 0;
+    }
+
+    a {
+      color: gold;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: darkorange;
+    }
+
+    pre, code {
+      font-family: 'Ubuntu Mono', monospace;
+    }
+
+    code .keyword {
+      color: ;
+    }
+
+    div.content {
+      max-width: 50em;
+    }
+
+    section.collapsible > header {
+      background-color: #004000;
+      padding: 5px 20px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      transition: padding .2s;
+      position: relative;
+    }
+
+    section.collapsible > header::after {
+      background-image: -webkit-linear-gradient(270deg, #004000, transparent);
+      content: '';
+      display: block;
+      height: 10px;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: -10px;
+    }
+
+    section.collapsible.collapsed > header {
+      padding-bottom: 5px;
+    }
+
+    section.collapsible > div {
+      overflow: hidden;
+      transition: height .2s;
+    }
+
+    footer {
+      border: 2px solid #004000;
+      padding: 15px;
+    }
+  </style>
+  <style>
+    header.main-header h1 a {
+      color: #008000;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1><a href="../index.html">Spies: SpiedFn</a></h1>
-    <span class="main-subtitle">v 0.1.4</span>
+  <header class="main-header">
+    <div>
+      <h1><a href="../index.html">Spies: SpiedFn</a></h1>
+      <span class="main-subtitle">v 0.1.4</span>
+    </div>
+    <a href="https://github.com/garysoed/spies">GitHub</a>
   </header>
   <section class="main-content">
     <section class="main-sidebar"><div class="sidebar">
-  <section>
+  <section class="collapsible">
     <header>
       <h2>Classes</h2>
     </header>
-    <section>
+    <div>
       <ul>
       
         <li><a href="../classes/Fakes.html">Fakes</a></li>
@@ -39,8 +121,8 @@
       
         <li><a href="../classes/Utils.html">Utils</a></li>
       
-      </ul
-    </section>
+      </ul>
+    </div>
   </section>
 </div>
 
@@ -55,165 +137,179 @@
       <p>Subclasses: </p>
     </header>
 
-    <div>
+    <div class="content">
       <p>Represents a function that is spied.</p>
 
     </div>
+  </section>  
 
-    
-      <h2>Constructor</h2>
+  
+    <section class="collapsible class-subsection">
+      <header>
+        <h2>Constructor</h2>
+      </header>
       <div>
         
           <section class="method">
   <header>
     <code class="method-signature"> SpiedFn(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> scope, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> name)</code>
   </header>
-  
-  <table>
+  <div class="content">
     
-      <tr>
-        
-          <td><code>[scope]</code></td>
-        
-        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
-        <td>
-          <p>The scope that the function is in. If undefined, then the original 
+    <table>
+      
+        <tr>
+          
+            <td><code>[scope]</code></td>
+          
+          <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
+          <td>
+            <p>The scope that the function is in. If undefined, then the original 
     function will never be called and #restore will do nothing.</p>
 
-        </td>
-      </tr>
-    
-      <tr>
-        
-          <td><code>[name]</code></td>
-        
-        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code></td>
-        <td>
-          <p>The name of the function that is spied, if scope is given.</p>
+          </td>
+        </tr>
+      
+        <tr>
+          
+            <td><code>[name]</code></td>
+          
+          <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code></td>
+          <td>
+            <p>The name of the function that is spied, if scope is given.</p>
 
-        </td>
-      </tr>
+          </td>
+        </tr>
+      
+    </table>
     
-  </table>
-  
-  
+    
+  </div>
 </section>
 
 
 
         
-      </div>
-    
-  </section>  
-
-  
-    <section class="class-subsection">
-      <header>
-        <h2>Properties</h2>
-      </header>
-      <div>
-      
-        <section class="props">
-  <header>
-    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> records</code>
-    
-  </header>
-  <p>Array of record objects, each containing an invocation for the function. Each 
-invocation is a mapping of timestamp -&gt; array of arguments used to invoke it.</p>
-
-</section>
-
-
-
-      
       </div>
     </section>
   
 
   
-    <section class="class-subsection">
+    <section class="collapsible class-subsection">
+      <header>
+        <h2>Properties</h2>
+      </header>
+      <div>
+        
+          <section class="props">
+  <header>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> records</code>
+    
+  </header>
+  <div class="content">
+    <p>Array of record objects, each containing an invocation for the function. Each 
+invocation is a mapping of timestamp -&gt; array of arguments used to invoke it.</p>
+
+  </div>
+</section>
+
+
+
+        
+      </div>
+    </section>
+  
+
+  
+    <section class="collapsible class-subsection">
       <header>
         <h2>Methods</h2>
       </header>
       <div>
-      
-        <section class="method">
+        
+          <section class="method">
   <header>
     <code class="method-signature"><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a> overrideReturn(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> returnValue)</code>
   </header>
-  <p>Returns the given return value instead of the original function&#39;s.</p>
+  <div class="content">
+    <p>Returns the given return value instead of the original function&#39;s.</p>
 
-  <table>
-    
-      <tr>
-        
-          <td><code>[returnValue]</code></td>
-        
-        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
-        <td>
-          <p>Return value to return instead of calling the original function.</p>
+    <table>
+      
+        <tr>
+          
+            <td><code>[returnValue]</code></td>
+          
+          <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
+          <td>
+            <p>Return value to return instead of calling the original function.</p>
 
-        </td>
-      </tr>
+          </td>
+        </tr>
+      
+    </table>
     
-  </table>
-  
-    
-    <div class="method-returns">
-      <code><span class="keyword">return</span> <a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><p>The current object.</p>
+      
+      <div class="method-returns">
+        <code><span class="keyword">return</span> <a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><p>The current object.</p>
 
-    </div>
+      </div>
+      
     
-  
-  
+    
+  </div>
 </section>
 
 
 
-      
-        <section class="method">
+        
+          <section class="method">
   <header>
     <code class="method-signature"> record(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> args)</code>
   </header>
-  <p>Records a function call.</p>
+  <div class="content">
+    <p>Records a function call.</p>
 
-  <table>
-    
-      <tr>
-        
-          <td><code>args</code></td>
-        
-        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></code></td>
-        <td>
-          <p>Array containing arguments to the function call.</p>
+    <table>
+      
+        <tr>
+          
+            <td><code>args</code></td>
+          
+          <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></code></td>
+          <td>
+            <p>Array containing arguments to the function call.</p>
 
-        </td>
-      </tr>
+          </td>
+        </tr>
+      
+    </table>
     
-  </table>
-  
-  
+    
+  </div>
 </section>
 
 
 
-      
-        <section class="method">
+        
+          <section class="method">
   <header>
     <code class="method-signature"> restore()</code>
   </header>
-  <p>Restores the spied function.</p>
+  <div class="content">
+    <p>Restores the spied function.</p>
 
-  <table>
+    <table>
+      
+    </table>
     
-  </table>
-  
-  
+    
+  </div>
 </section>
 
 
 
-      
+        
       </div>
     </section>
   
@@ -228,4 +324,18 @@ invocation is a mapping of timestamp -&gt; array of arguments used to invoke it.
 </body>
   <script src="../assets/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
+  <script>
+    var els = document.querySelectorAll('section.collapsible');
+    for (var i = 0; i < els.length; i++) {
+      var section = els.item(i);
+      var content = section.querySelector('div');
+      var header = section.querySelector('header');
+      var height = content.clientHeight + 'px';
+      header.addEventListener('click', function(section, content, contentHeight) {
+        section.classList.toggle('collapsed');
+        content.style.height = section.classList.contains('collapsed') ? '0' : contentHeight;
+      }.bind(header, section, content, height));
+      content.style.height = height;
+    }
+  </script>
 </html>
