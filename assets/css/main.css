@@ -1,0 +1,60 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono);
+
+body {
+  background-color: #222;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: smaller;
+  margin: 0;
+  height: 100vh;
+}
+
+body > header {
+  background-color: black;
+  padding: 20px;
+  -webkit-filter: drop-shadow(0px 2px 5px rgba(0,0,0,1));
+}
+
+.main-subtitle {
+  font-size: 0.75rem;
+}
+
+h1, h2 {
+  margin: 5px 0;
+}
+
+a {
+  color: orange;
+  text-decoration: none;
+}
+
+a:visited {
+  color: darkorange;
+}
+
+section.main-sidebar {
+  background-color: black;
+  -webkit-filter: drop-shadow(0px 2px 5px rgba(0,0,0,1));
+}
+
+section.main-content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+section.main-main {
+  overflow: scroll;
+  flex: 1;
+}
+
+pre, code {
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+code .keyword {
+  color: #808080;
+}
