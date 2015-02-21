@@ -20,6 +20,7 @@ export default class SpiedFn extends Function {
    * @param {Object=} scope The scope that the function is in. If undefined, then the original 
    *     function will never be called and #restore will do nothing.
    * @param {string=} name The name of the function that is spied, if scope is given.
+   * @class SpiedFn
    * @constructor
    */
   constructor(scope, name) {
@@ -83,8 +84,10 @@ export default class SpiedFn extends Function {
   }
 
   /**
-   * @return {Array} Array of record objects, each containing an invocation for the function. Each 
+   * @property records Array of record objects, each containing an invocation for the function. Each 
    *     invocation is a mapping of timestamp -> array of arguments used to invoke it.
+   * @type Array
+   * @readOnly
    */
   get records() {
     return this[_RECORDS];

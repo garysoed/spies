@@ -13,3 +13,6 @@
 [submodule "doc"]
 	path = doc
 	url = https://github.com/garysoed/spies.wiki.git
+[submodule "pages"]
+	path = pages
+	url = https://github.com/garysoed/spies.git

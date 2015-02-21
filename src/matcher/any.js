@@ -1,14 +1,13 @@
 import Matcher from 'src/matcher/matcher';
 
-/**
- * Matches anything.
- * @class matcher.Any
- * @extends matcher.Matcher
- */
+
 export default class Any extends Matcher {
 
   /**
+   * Matches anything.
+   * @class matcher.Any
    * @constructor
+   * @extends matcher.Matcher
    */
   constructor() {
     super.constructor();

@@ -11,8 +11,8 @@ const Fakes = {
    * constructor's prototype.
    *
    * @method ofType
-   * @param {!Function} ctor The constructor of the object to create a fake of.
-   * @return {!Object} The fake object.
+   * @param {Function} ctor The constructor of the object to create a fake of.
+   * @return {Object} The fake object.
    */
   ofType(ctor) {
     return Object.setPrototypeOf({} , ctor.prototype);
@@ -22,8 +22,8 @@ const Fakes = {
    * Creates a fake implementation of a NodeList.
    *
    * @method nodeList
-   * @param {!Array} data Array that represents the data in the NodeList.
-   * @return {!NodeList} A fake object mimicking a `NodeList`.
+   * @param {Array} data Array that represents the data in the NodeList.
+   * @return {NodeList} A fake object mimicking a `NodeList`.
    */
   nodeList(data) {
     return Object.setPrototypeOf({
@@ -39,8 +39,8 @@ const Fakes = {
    *
    * @method attr
    * @param {string} name Name of the attribute.
-   * @param {Object=} value Value of the attribute.
-   * @return {!Attr} A fake object mimicking an `Attr`.
+   * @param {Object} [value] Value of the attribute.
+   * @return {Attr} A fake object mimicking an `Attr`.
    */
   attr(name, value) {
     return Object.setPrototypeOf({

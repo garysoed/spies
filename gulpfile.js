@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
 var shell = require('gulp-shell');
+var yuidoc = require('gulp-yuidoc');
 
 var yuimd = require('yuimd');
 
@@ -56,6 +57,8 @@ gulp.task('doc', function() {
       }))
       .pipe(gulp.dest('doc'));
 });
+
+gulp.task('yuidoc', shell.task('yuidoc --config yuidoc.json'));
 
 gulp.task('push', ['test', 'doc'], shell.task('git push'));
 
