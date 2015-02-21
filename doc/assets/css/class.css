@@ -1,0 +1,13 @@
+.class-summary > header {
+  margin: 10px 0 0;
+  font-size: 1rem;
+}
+
+.class .class-summary {
+  padding: 20px 0 10px 20px
+}
+
+.class-subsection > header {
+  background-color: #004000;
+  padding: 5px 20px;
+}

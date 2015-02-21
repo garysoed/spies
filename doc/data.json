@@ -1,0 +1,568 @@
+{
+    "project": {
+        "name": "Spies",
+        "description": "A simple library to spy on functions and create stubs for unit testing.",
+        "version": "0.1.4",
+        "url": "http://garysoed.github.com/spies"
+    },
+    "files": {
+        "src/matcher/any.js": {
+            "name": "src/matcher/any.js",
+            "modules": {},
+            "classes": {
+                "matcher.Any": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/matcher/isa.js": {
+            "name": "src/matcher/isa.js",
+            "modules": {},
+            "classes": {
+                "matcher.IsA": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/matcher/matcher.js": {
+            "name": "src/matcher/matcher.js",
+            "modules": {},
+            "classes": {
+                "matcher.Matcher": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/matcher/matchers.js": {
+            "name": "src/matcher/matchers.js",
+            "modules": {},
+            "classes": {
+                "Matchers": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/fakes.js": {
+            "name": "src/fakes.js",
+            "modules": {},
+            "classes": {
+                "Fakes": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/spiedfn.js": {
+            "name": "src/spiedfn.js",
+            "modules": {},
+            "classes": {
+                "SpiedFn": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/spies.js": {
+            "name": "src/spies.js",
+            "modules": {},
+            "classes": {
+                "Spies": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/utils.js": {
+            "name": "src/utils.js",
+            "modules": {},
+            "classes": {
+                "Utils": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "matcher.Any": {
+            "name": "matcher.Any",
+            "shortname": "matcher.Any",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/matcher/any.js",
+            "line": 6,
+            "description": "Matches anything.",
+            "is_constructor": 1,
+            "extends": "matcher.Matcher"
+        },
+        "matcher.IsA": {
+            "name": "matcher.IsA",
+            "shortname": "matcher.IsA",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/matcher/isa.js",
+            "line": 7,
+            "description": "Matches arguments that is the instance of the given ctor, or has the expected type.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "expectedType",
+                    "description": "If function, this will check if the argument is an \n    instance of it. If a string, this will check if typeof argument is the specified string.",
+                    "type": "Function|string"
+                }
+            ],
+            "extends": "matcher.Matcher"
+        },
+        "matcher.Matcher": {
+            "name": "matcher.Matcher",
+            "shortname": "matcher.Matcher",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/matcher/matcher.js",
+            "line": 7,
+            "description": "Base class for matcher objects. These allow you to store arguments that have been pass into a\ngunction call.",
+            "is_constructor": 1
+        },
+        "Matchers": {
+            "name": "Matchers",
+            "shortname": "Matchers",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/matcher/matchers.js",
+            "line": 4,
+            "description": "Static class to create \"Matcher\" objects.",
+            "static": 1
+        },
+        "Fakes": {
+            "name": "Fakes",
+            "shortname": "Fakes",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/fakes.js",
+            "line": 1,
+            "description": "Static class to create various fake objects.",
+            "static": 1
+        },
+        "SpiedFn": {
+            "name": "SpiedFn",
+            "shortname": "SpiedFn",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/spiedfn.js",
+            "line": 19,
+            "description": "Represents a function that is spied.",
+            "extends": "Function",
+            "params": [
+                {
+                    "name": "scope",
+                    "description": "The scope that the function is in. If undefined, then the original \n    function will never be called and #restore will do nothing.",
+                    "type": "Object="
+                },
+                {
+                    "name": "name",
+                    "description": "The name of the function that is spied, if scope is given.",
+                    "type": "String="
+                }
+            ],
+            "is_constructor": 1
+        },
+        "Spies": {
+            "name": "Spies",
+            "shortname": "Spies",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/spies.js",
+            "line": 4,
+            "description": "Root object for the library.",
+            "static": 1
+        },
+        "Utils": {
+            "name": "Utils",
+            "shortname": "Utils",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/utils.js",
+            "line": 3,
+            "description": "Contains various utility functions.",
+            "static": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/matcher/any.js",
+            "line": 16,
+            "itemtype": "method",
+            "name": "matches",
+            "return": {
+                "description": "True. Always.",
+                "type": "Boolean"
+            },
+            "class": "matcher.Any"
+        },
+        {
+            "file": "src/matcher/isa.js",
+            "line": 20,
+            "itemtype": "method",
+            "name": "matches",
+            "params": [
+                {
+                    "name": "arg",
+                    "description": "Object to be checked.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True iff the given argument is an instance of the constructor.",
+                "type": "Boolean"
+            },
+            "class": "matcher.IsA"
+        },
+        {
+            "file": "src/matcher/matcher.js",
+            "line": 18,
+            "description": "Checks if the given argument matches the matcher. If so, records the invocation.",
+            "params": [
+                {
+                    "name": "arg",
+                    "description": "The argument to be checked.",
+                    "type": "Object="
+                }
+            ],
+            "return": {
+                "description": "True iff the given argument is a match.",
+                "type": "Boolean"
+            },
+            "itemtype": "method",
+            "name": "registerInvocation",
+            "class": "matcher.Matcher"
+        },
+        {
+            "file": "src/matcher/matcher.js",
+            "line": 33,
+            "description": "Array of recorded arguments that matches",
+            "itemtype": "property",
+            "name": "matchingArgs",
+            "type": "Array",
+            "readonly": "",
+            "class": "matcher.Matcher"
+        },
+        {
+            "file": "src/matcher/matchers.js",
+            "line": 12,
+            "description": "Creates a matcher that matches by type.",
+            "itemtype": "method",
+            "name": "isA",
+            "params": [
+                {
+                    "name": "expectedType",
+                    "description": "Type to be checked.",
+                    "type": "Function|string"
+                }
+            ],
+            "return": {
+                "description": "The IsA matcher.",
+                "type": "matcher.IsA"
+            },
+            "class": "Matchers"
+        },
+        {
+            "file": "src/matcher/matchers.js",
+            "line": 23,
+            "description": "Creates a matcher that matches anything.",
+            "itemtype": "method",
+            "name": "any",
+            "return": {
+                "description": "The Any matcher.",
+                "type": "matcher.Any"
+            },
+            "class": "Matchers"
+        },
+        {
+            "file": "src/fakes.js",
+            "line": 9,
+            "description": "Creates a fake of the given constructor. The fake object's proto link will simply point to the\nconstructor's prototype.",
+            "itemtype": "method",
+            "name": "ofType",
+            "params": [
+                {
+                    "name": "ctor",
+                    "description": "The constructor of the object to create a fake of.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "The fake object.",
+                "type": "Object"
+            },
+            "class": "Fakes"
+        },
+        {
+            "file": "src/fakes.js",
+            "line": 21,
+            "description": "Creates a fake implementation of a NodeList.",
+            "itemtype": "method",
+            "name": "nodeList",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Array that represents the data in the NodeList.",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "A fake object mimicking a `NodeList`.",
+                "type": "NodeList"
+            },
+            "class": "Fakes"
+        },
+        {
+            "file": "src/fakes.js",
+            "line": 37,
+            "description": "Creates a fake implementation of an Attr.",
+            "itemtype": "method",
+            "name": "attr",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Name of the attribute.",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "Value of the attribute.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A fake object mimicking an `Attr`.",
+                "type": "Attr"
+            },
+            "class": "Fakes"
+        },
+        {
+            "file": "src/spiedfn.js",
+            "line": 52,
+            "description": "Restores the spied function.",
+            "itemtype": "method",
+            "name": "restore",
+            "class": "SpiedFn"
+        },
+        {
+            "file": "src/spiedfn.js",
+            "line": 62,
+            "description": "Records a function call.",
+            "itemtype": "method",
+            "name": "record",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "Array containing arguments to the function call.",
+                    "type": "Array"
+                }
+            ],
+            "class": "SpiedFn"
+        },
+        {
+            "file": "src/spiedfn.js",
+            "line": 73,
+            "description": "Returns the given return value instead of the original function's.",
+            "itemtype": "method",
+            "name": "overrideReturn",
+            "params": [
+                {
+                    "name": "returnValue",
+                    "description": "Return value to return instead of calling the original function.",
+                    "type": "Object="
+                }
+            ],
+            "return": {
+                "description": "The current object.",
+                "type": "SpiedFn"
+            },
+            "class": "SpiedFn"
+        },
+        {
+            "file": "src/spiedfn.js",
+            "line": 86,
+            "itemtype": "property",
+            "name": "records Array of record objects, each containing an invocation for the function. Each \n    invocation is a mapping of timestamp -> array of arguments used to invoke it.",
+            "type": "Array",
+            "readonly": "",
+            "class": "SpiedFn"
+        },
+        {
+            "file": "src/spies.js",
+            "line": 15,
+            "description": "Creates a stub for the given constructor or object. All functions will be replaced by a noop\nfunction.",
+            "itemtype": "method",
+            "name": "stub",
+            "params": [
+                {
+                    "name": "ctor",
+                    "description": "The constructor to be stubbed, or object.",
+                    "type": "!Function|Object"
+                }
+            ],
+            "return": {
+                "description": "The stub object.",
+                "type": "!Object"
+            },
+            "class": "Spies"
+        },
+        {
+            "file": "src/spies.js",
+            "line": 39,
+            "description": "Spies the given function, or recursively all functions in the given object.",
+            "itemtype": "method",
+            "name": "spy",
+            "params": [
+                {
+                    "name": "scope",
+                    "description": "The Object to be spied on, or the object containing the function to \n    be spied on.",
+                    "type": "!Object"
+                },
+                {
+                    "name": "name",
+                    "description": "The name of the function to be spied on. If not specified, this will\n    spy all functions in the scope recursively.",
+                    "type": "String="
+                }
+            ],
+            "return": {
+                "description": "The spied function, or the spied object.",
+                "type": "Object|!Function"
+            },
+            "class": "Spies"
+        },
+        {
+            "file": "src/spies.js",
+            "line": 68,
+            "description": "Returns a function that returns the call count of the given target when called with the given\narguments. For example: `Spies.callCountOf(fn)(1, 2)` returns the number of calls that function\nfn was called with arguments `(1, 2)`.\n\nIf the passed in function is not a spy, this will return 0.",
+            "itemtype": "method",
+            "name": "callCountOf",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "The function whose call count should be returned.",
+                    "type": "!SpiedFn"
+                }
+            ],
+            "return": {
+                "description": "Function that returns the call counts of the given function.",
+                "type": "!Function"
+            },
+            "class": "Spies"
+        },
+        {
+            "file": "src/spies.js",
+            "line": 85,
+            "description": "Returns a function that returns the invocations of the given target when called with the given\narguments. For example: `Spies.invocationsOf(fn)(1, 2)` returns an array of invocations\nmatching when `fn` is called with arguments `(1, 2)`.\n\nAn invocation object consists of two values:\n- `timestamp`: This is the timestamp of the call. This only determines ordering, not actual \n  time.\n- `args`: This is an array of arguments that the function received at that time.",
+            "itemtype": "method",
+            "name": "invocationsOf",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "The function whose invocations should be returned.",
+                    "type": "!SpiedFn"
+                }
+            ],
+            "return": {
+                "description": "Function thar returns the invocations of the given function.",
+                "type": "!Function"
+            },
+            "class": "Spies"
+        },
+        {
+            "file": "src/spies.js",
+            "line": 109,
+            "description": "Returns the number of call counts for the target of any arguments.",
+            "itemtype": "method",
+            "name": "anyCallCountOf",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "The function whose call count should be returned.",
+                    "type": "!Function"
+                }
+            ],
+            "return": {
+                "description": "Number of invocations on the given function.",
+                "type": "Number"
+            },
+            "class": "Spies"
+        },
+        {
+            "file": "src/spies.js",
+            "line": 120,
+            "description": "Restores the given function or recursively all functions in the given object to its original\nimplementation and removes all records related to it. Or, restores all known functions, if no\narguments is given.",
+            "itemtype": "method",
+            "name": "reset",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "The function or object to be reset, or undefined.",
+                    "type": "Function|Object|undefined"
+                }
+            ],
+            "class": "Spies"
+        },
+        {
+            "file": "src/spies.js",
+            "line": 145,
+            "description": "Creates a spied function.",
+            "itemtype": "method",
+            "name": "spiedFunction",
+            "return": {
+                "description": "Spied function.",
+                "type": "SpiedFn"
+            },
+            "class": "Spies"
+        },
+        {
+            "file": "src/utils.js",
+            "line": 10,
+            "description": "Deep equals the two objects.",
+            "itemtype": "method",
+            "name": "deepEqual",
+            "params": [
+                {
+                    "name": "obj1",
+                    "description": "The first object to compare.",
+                    "type": "Object"
+                },
+                {
+                    "name": "obj2",
+                    "description": "The second object to compare.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "True iff the two objects are deeply equal.",
+                "type": "Boolean"
+            },
+            "class": "Utils"
+        }
+    ],
+    "warnings": []
+}
