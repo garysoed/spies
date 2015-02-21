@@ -6,42 +6,46 @@
       <p>Subclasses: {{#each extension_for}}<a href="{{this}}.html">{{this}}</a>{{/each}}</p>
     </header>
 
-    <div>
+    <div class="content">
       {{{classDescription}}}
     </div>
+  </section>  
 
-    {{#if is_constructor}}
-      <h2>Constructor</h2>
+  {{#if is_constructor}}
+    <section class="collapsible class-subsection">
+      <header>
+        <h2>Constructor</h2>
+      </header>
       <div>
         {{#is_constructor}}
           {{>method}}
         {{/is_constructor}}
       </div>
-    {{/if}}
-  </section>  
+    </section>
+  {{/if}}
 
   {{#if properties}}
-    <section class="class-subsection">
+    <section class="collapsible class-subsection">
       <header>
         <h2>Properties</h2>
       </header>
       <div>
-      {{#properties}}
-        {{>props}}
-      {{/properties}}
+        {{#properties}}
+          {{>props}}
+        {{/properties}}
       </div>
     </section>
   {{/if}}
 
   {{#if methods}}
-    <section class="class-subsection">
+    <section class="collapsible class-subsection">
       <header>
         <h2>Methods</h2>
       </header>
       <div>
-      {{#methods}}
-        {{>method}}
-      {{/methods}}
+        {{#methods}}
+          {{>method}}
+        {{/methods}}
       </div>
     </section>
   {{/if}}

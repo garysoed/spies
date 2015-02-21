@@ -13,7 +13,7 @@
 
 .method table {
   border-collapse: collapse;
-  margin-left: 20px;
+  margin: 0 20px;
 }
 
 .method tr:nth-child(2n) {
@@ -46,9 +46,4 @@
 .method-returns p {
   display: inline-block;
   -webkit-margin-start: 1em;
-}
-
-.method-note {
-  border: 2px solid #004000;
-  padding: 15px;
 }

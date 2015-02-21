@@ -8,11 +8,93 @@
   <link rel="stylesheet" href="{{projectAssets}}/css/method.css">
   <link rel="stylesheet" href="{{projectAssets}}/css/props.css">
   <link rel="stylesheet" href="{{projectAssets}}/css/sidebar.css">
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Roboto);
+    @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono);
+
+    body {
+      background-color: #222;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-size: smaller;
+      margin: 0;
+      height: 100vh;
+    }
+
+    h1, h2 {
+      margin: 5px 0;
+    }
+
+    a {
+      color: {{projectColorLink}};
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: {{projectColorLinkVisited}};
+    }
+
+    pre, code {
+      font-family: 'Ubuntu Mono', monospace;
+    }
+
+    code .keyword {
+      color: {{projectColorKeyword}};
+    }
+
+    div.content {
+      max-width: 50em;
+    }
+
+    section.collapsible > header {
+      background-color: {{projectColorMain}};
+      padding: 5px 20px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      transition: padding .2s;
+      position: relative;
+    }
+
+    section.collapsible > header::after {
+      background-image: -webkit-linear-gradient(270deg, {{projectColorMain}}, transparent);
+      content: '';
+      display: block;
+      height: 10px;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: -10px;
+    }
+
+    section.collapsible.collapsed > header {
+      padding-bottom: 5px;
+    }
+
+    section.collapsible > div {
+      overflow: hidden;
+      transition: height .2s;
+    }
+
+    footer {
+      border: 2px solid {{projectColorMain}};
+      padding: 15px;
+    }
+  </style>
+  <style>
+    header.main-header h1 a {
+      color: {{projectColorMainLight}};
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1><a href="{{projectRoot}}index.html">{{title}}</a></h1>
-    <span class="main-subtitle">v {{projectVersion}}</span>
+  <header class="main-header">
+    <div>
+      <h1><a href="{{projectRoot}}index.html">{{title}}</a></h1>
+      <span class="main-subtitle">v {{projectVersion}}</span>
+    </div>
+    <a href="{{projectUrl}}">GitHub</a>
   </header>
   <section class="main-content">
     <section class="main-sidebar">{{> sidebar}}</section>
@@ -21,4 +103,18 @@
 </body>
   <script src="{{projectAssets}}/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
+  <script>
+    var els = document.querySelectorAll('section.collapsible');
+    for (var i = 0; i < els.length; i++) {
+      var section = els.item(i);
+      var content = section.querySelector('div');
+      var header = section.querySelector('header');
+      var height = content.clientHeight + 'px';
+      header.addEventListener('click', function(section, content, contentHeight) {
+        section.classList.toggle('collapsed');
+        content.style.height = section.classList.contains('collapsed') ? '0' : contentHeight;
+      }.bind(header, section, content, height));
+      content.style.height = height;
+    }
+  </script>
 </html>

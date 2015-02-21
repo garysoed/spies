@@ -2,38 +2,40 @@
   <header>
     <code class="method-signature">{{#if returnType}}{{#crossLink returnType}}{{/crossLink}} {{/if}}{{name}}({{#params}}{{#if @index}}, {{/if}}{{#crossLink type}}{{/crossLink}} {{name}}{{/params}})</code>
   </header>
-  {{{methodDescription}}}
-  <table>
-    {{#params}}
-      <tr>
-        {{#if optional}}
-          <td>`[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]`</td>
-        {{else}}
-          <td>`{{name}}`</td>
-        {{/if}}
-        <td><code>{{#crossLink type}}{{/crossLink}}</code></td>
-        <td>
-          {{{description}}}
-        </td>
-      </tr>
-    {{/params}}
-  </table>
-  {{#if return}}
-    {{#return}}
-    <div class="method-returns">
-      <code><span class="keyword">return</span> {{#crossLink type}}{{/crossLink}}</code>{{{description}}}
-    </div>
-    {{/return}}
-  {{/if}}
-  {{#if overwritten_from}}
-    <section class="method-note">
-      Overrides <code><a href="{{overwritten_from/class}}.html#method_{{overwritten_from/name}}">{{overwritten_from/class}}</a></code> 
-    </section>
-  {{else}}{{#if extended_from}}
-    <section class="method-note">
-      Defined in <code><a href="{{extended_from}}.html#method_{{name}}">{{extended_from}}</a></code>
-    </section>
-  {{/if}}{{/if}}
+  <div class="content">
+    {{{methodDescription}}}
+    <table>
+      {{#params}}
+        <tr>
+          {{#if optional}}
+            <td>`[{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]`</td>
+          {{else}}
+            <td>`{{name}}`</td>
+          {{/if}}
+          <td><code>{{#crossLink type}}{{/crossLink}}</code></td>
+          <td>
+            {{{description}}}
+          </td>
+        </tr>
+      {{/params}}
+    </table>
+    {{#if return}}
+      {{#return}}
+      <div class="method-returns">
+        <code><span class="keyword">return</span> {{#crossLink type}}{{/crossLink}}</code>{{{description}}}
+      </div>
+      {{/return}}
+    {{/if}}
+    {{#if overwritten_from}}
+      <footer>
+        Overrides <code><a href="{{overwritten_from/class}}.html#method_{{overwritten_from/name}}">{{overwritten_from/class}}</a></code> 
+      </footer>
+    {{else}}{{#if extended_from}}
+      <footer>
+        Defined in <code><a href="{{extended_from}}.html#method_{{name}}">{{extended_from}}</a></code>
+      </footer>
+    {{/if}}{{/if}}
+  </div>
 </section>
 
 {{!-- <div class="method item{{#if access}} {{access}}{{/if}}">
