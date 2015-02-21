@@ -1,0 +1,14 @@
+{
+  "name": "Spies",
+  "description": "A simple library to spy on functions and create stubs for unit testing.",
+  "version": "0.1.4",
+  "url": "http://garysoed.github.com/spies",
+  "options": {
+    "linkNatives": "true",
+    "outdir": "./doc",
+    "themedir": "./theme",
+    "paths": [
+      "./src"
+    ]
+  }
+}

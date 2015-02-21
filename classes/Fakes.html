@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fakes - Spies</title>
+  <link rel="stylesheet" href="../assets/css/class.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/method.css">
+  <link rel="stylesheet" href="../assets/css/props.css">
+  <link rel="stylesheet" href="../assets/css/sidebar.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">Spies: Fakes</a></h1>
+    <span class="main-subtitle">v 0.1.4</span>
+  </header>
+  <section class="main-content">
+    <section class="main-sidebar"><div class="sidebar">
+  <section>
+    <header>
+      <h2>Classes</h2>
+    </header>
+    <section>
+      <ul>
+      
+        <li><a href="../classes/Fakes.html">Fakes</a></li>
+      
+        <li><a href="../classes/matcher.Any.html">matcher.Any</a></li>
+      
+        <li><a href="../classes/matcher.IsA.html">matcher.IsA</a></li>
+      
+        <li><a href="../classes/matcher.Matcher.html">matcher.Matcher</a></li>
+      
+        <li><a href="../classes/Matchers.html">Matchers</a></li>
+      
+        <li><a href="../classes/SpiedFn.html">SpiedFn</a></li>
+      
+        <li><a href="../classes/Spies.html">Spies</a></li>
+      
+        <li><a href="../classes/Utils.html">Utils</a></li>
+      
+      </ul
+    </section>
+  </section>
+</div>
+
+
+
+</section>
+    <section class="main-main"><div class="class">
+  <section class="class-summary">
+    <header>
+      <code>static Fakes</code>
+      
+      
+    </header>
+
+    <div>
+      <p>Static class to create various fake objects.</p>
+
+    </div>
+
+    
+  </section>  
+
+  
+
+  
+    <section class="class-subsection">
+      <header>
+        <h2>Methods</h2>
+      </header>
+      <div>
+      
+        <section class="method">
+  <header>
+    <code class="method-signature">Attr attr(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> name, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> value)</code>
+  </header>
+  <p>Creates a fake implementation of an Attr.</p>
+
+  <table>
+    
+      <tr>
+        
+          <td><code>name</code></td>
+        
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code></td>
+        <td>
+          <p>Name of the attribute.</p>
+
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td><code>[value]</code></td>
+        
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></td>
+        <td>
+          <p>Value of the attribute.</p>
+
+        </td>
+      </tr>
+    
+  </table>
+  
+    
+    <div class="method-returns">
+      <strong>returns</strong> <code>Attr</code><p>A fake object mimicking an <code>Attr</code>.</p>
+
+    </div>
+    
+  
+  
+</section>
+
+
+
+      
+        <section class="method">
+  <header>
+    <code class="method-signature">NodeList nodeList(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> data)</code>
+  </header>
+  <p>Creates a fake implementation of a NodeList.</p>
+
+  <table>
+    
+      <tr>
+        
+          <td><code>data</code></td>
+        
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></code></td>
+        <td>
+          <p>Array that represents the data in the NodeList.</p>
+
+        </td>
+      </tr>
+    
+  </table>
+  
+    
+    <div class="method-returns">
+      <strong>returns</strong> <code>NodeList</code><p>A fake object mimicking a <code>NodeList</code>.</p>
+
+    </div>
+    
+  
+  
+</section>
+
+
+
+      
+        <section class="method">
+  <header>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> ofType(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> ctor)</code>
+  </header>
+  <p>Creates a fake of the given constructor. The fake object&#39;s proto link will simply point to the
+constructor&#39;s prototype.</p>
+
+  <table>
+    
+      <tr>
+        
+          <td><code>ctor</code></td>
+        
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code></td>
+        <td>
+          <p>The constructor of the object to create a fake of.</p>
+
+        </td>
+      </tr>
+    
+  </table>
+  
+    
+    <div class="method-returns">
+      <strong>returns</strong> <code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code><p>The fake object.</p>
+
+    </div>
+    
+  
+  
+</section>
+
+
+
+      
+      </div>
+    </section>
+  
+</div>
+
+
+
+
+    
+</section>
+  </section>
+</body>
+  <script src="../assets/vendor/prettify/prettify-min.js"></script>
+  <script>prettyPrint();</script>
+</html>

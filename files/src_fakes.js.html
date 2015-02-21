@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>src/fakes.js - Spies</title>
+  <link rel="stylesheet" href="../assets/css/class.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/method.css">
+  <link rel="stylesheet" href="../assets/css/props.css">
+  <link rel="stylesheet" href="../assets/css/sidebar.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">Spies: src/fakes.js</a></h1>
+    <span class="main-subtitle">v 0.1.4</span>
+  </header>
+  <section class="main-content">
+    <section class="main-sidebar"><div class="sidebar">
+  <section>
+    <header>
+      <h2>Classes</h2>
+    </header>
+    <section>
+      <ul>
+      
+        <li><a href="../classes/Fakes.html">Fakes</a></li>
+      
+        <li><a href="../classes/matcher.Any.html">matcher.Any</a></li>
+      
+        <li><a href="../classes/matcher.IsA.html">matcher.IsA</a></li>
+      
+        <li><a href="../classes/matcher.Matcher.html">matcher.Matcher</a></li>
+      
+        <li><a href="../classes/Matchers.html">Matchers</a></li>
+      
+        <li><a href="../classes/SpiedFn.html">SpiedFn</a></li>
+      
+        <li><a href="../classes/Spies.html">Spies</a></li>
+      
+        <li><a href="../classes/Utils.html">Utils</a></li>
+      
+      </ul
+    </section>
+  </section>
+</div>
+
+
+
+</section>
+    <section class="main-main"><h4>src/fakes.js</h4>
+
+<pre class="code prettyprint linenums">
+/**
+ * Static class to create various fake objects.
+ *
+ * @class Fakes
+ * @static
+ */
+const Fakes = {
+
+  /**
+   * Creates a fake of the given constructor. The fake object&#x27;s proto link will simply point to the
+   * constructor&#x27;s prototype.
+   *
+   * @method ofType
+   * @param {Function} ctor The constructor of the object to create a fake of.
+   * @return {Object} The fake object.
+   */
+  ofType(ctor) {
+    return Object.setPrototypeOf({} , ctor.prototype);
+  },
+
+  /**
+   * Creates a fake implementation of a NodeList.
+   *
+   * @method nodeList
+   * @param {Array} data Array that represents the data in the NodeList.
+   * @return {NodeList} A fake object mimicking a &#x60;NodeList&#x60;.
+   */
+  nodeList(data) {
+    return Object.setPrototypeOf({
+      length: data.length,
+      item(i) {
+        return data[i];
+      }
+    }, NodeList.prototype);
+  },
+
+  /**
+   * Creates a fake implementation of an Attr.
+   *
+   * @method attr
+   * @param {string} name Name of the attribute.
+   * @param {Object} [value] Value of the attribute.
+   * @return {Attr} A fake object mimicking an &#x60;Attr&#x60;.
+   */
+  attr(name, value) {
+    return Object.setPrototypeOf({
+      name,
+      value
+    }, Attr.prototype);
+  }
+};
+
+export default Fakes;
+
+if (!window.spies) {
+  window.spies = {};
+}
+window.spies.Fakes = Fakes;
+
+</pre>
+
+</section>
+  </section>
+</body>
+  <script src="../assets/vendor/prettify/prettify-min.js"></script>
+  <script>prettyPrint();</script>
+</html>

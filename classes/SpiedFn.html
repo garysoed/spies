@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SpiedFn - Spies</title>
+  <link rel="stylesheet" href="../assets/css/class.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/method.css">
+  <link rel="stylesheet" href="../assets/css/props.css">
+  <link rel="stylesheet" href="../assets/css/sidebar.css">
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">Spies: SpiedFn</a></h1>
+    <span class="main-subtitle">v 0.1.4</span>
+  </header>
+  <section class="main-content">
+    <section class="main-sidebar"><div class="sidebar">
+  <section>
+    <header>
+      <h2>Classes</h2>
+    </header>
+    <section>
+      <ul>
+      
+        <li><a href="../classes/Fakes.html">Fakes</a></li>
+      
+        <li><a href="../classes/matcher.Any.html">matcher.Any</a></li>
+      
+        <li><a href="../classes/matcher.IsA.html">matcher.IsA</a></li>
+      
+        <li><a href="../classes/matcher.Matcher.html">matcher.Matcher</a></li>
+      
+        <li><a href="../classes/Matchers.html">Matchers</a></li>
+      
+        <li><a href="../classes/SpiedFn.html">SpiedFn</a></li>
+      
+        <li><a href="../classes/Spies.html">Spies</a></li>
+      
+        <li><a href="../classes/Utils.html">Utils</a></li>
+      
+      </ul
+    </section>
+  </section>
+</div>
+
+
+
+</section>
+    <section class="main-main"><div class="class">
+  <section class="class-summary">
+    <header>
+      <code>SpiedFn extends <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code>
+      
+      
+    </header>
+
+    <div>
+      <p>Represents a function that is spied.</p>
+
+    </div>
+
+    
+      <h2>Constructor</h2>
+      <div>
+        
+          <section class="method">
+  <header>
+    <code class="method-signature"> SpiedFn(Object= scope, String= name)</code>
+  </header>
+  
+  <table>
+    
+      <tr>
+        
+          <td><code>scope</code></td>
+        
+        <td><code>Object=</code></td>
+        <td>
+          <p>The scope that the function is in. If undefined, then the original 
+    function will never be called and #restore will do nothing.</p>
+
+        </td>
+      </tr>
+    
+      <tr>
+        
+          <td><code>name</code></td>
+        
+        <td><code>String=</code></td>
+        <td>
+          <p>The name of the function that is spied, if scope is given.</p>
+
+        </td>
+      </tr>
+    
+  </table>
+  
+  
+</section>
+
+
+
+        
+      </div>
+    
+  </section>  
+
+  
+    <section class="class-subsection">
+      <header>
+        <h2>Properties</h2>
+      </header>
+      <div>
+      
+        <section class="props">
+  <header>
+    <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> records Array of record objects, each containing an invocation for the function. Each 
+    invocation is a mapping of timestamp -&gt; array of arguments used to invoke it.</code>
+  </header>
+  
+</section>
+
+
+
+      
+      </div>
+    </section>
+  
+
+  
+    <section class="class-subsection">
+      <header>
+        <h2>Methods</h2>
+      </header>
+      <div>
+      
+        <section class="method">
+  <header>
+    <code class="method-signature"><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a> overrideReturn(Object= returnValue)</code>
+  </header>
+  <p>Returns the given return value instead of the original function&#39;s.</p>
+
+  <table>
+    
+      <tr>
+        
+          <td><code>returnValue</code></td>
+        
+        <td><code>Object=</code></td>
+        <td>
+          <p>Return value to return instead of calling the original function.</p>
+
+        </td>
+      </tr>
+    
+  </table>
+  
+    
+    <div class="method-returns">
+      <strong>returns</strong> <code><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><p>The current object.</p>
+
+    </div>
+    
+  
+  
+</section>
+
+
+
+      
+        <section class="method">
+  <header>
+    <code class="method-signature"> record(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> args)</code>
+  </header>
+  <p>Records a function call.</p>
+
+  <table>
+    
+      <tr>
+        
+          <td><code>args</code></td>
+        
+        <td><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></code></td>
+        <td>
+          <p>Array containing arguments to the function call.</p>
+
+        </td>
+      </tr>
+    
+  </table>
+  
+  
+</section>
+
+
+
+      
+        <section class="method">
+  <header>
+    <code class="method-signature"> restore()</code>
+  </header>
+  <p>Restores the spied function.</p>
+
+  <table>
+    
+  </table>
+  
+  
+</section>
+
+
+
+      
+      </div>
+    </section>
+  
+</div>
+
+
+
+
+    
+</section>
+  </section>
+</body>
+  <script src="../assets/vendor/prettify/prettify-min.js"></script>
+  <script>prettyPrint();</script>
+</html>
