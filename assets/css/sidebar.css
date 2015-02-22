@@ -5,9 +5,15 @@
 .sidebar ul {
   list-style-type: none;
   -webkit-padding-start: 0;
-  padding: 0 20px;
 }
 
 .sidebar li {
-  line-height: 1.2em;
+  padding: 0 20px;
+  line-height: 2em;
+}
+
+li.sidebar-selected {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #222;
 }

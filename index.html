@@ -3,9 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Spies</title>
+
+  <link rel="stylesheet" href="./assets/vendor/prettify/prettify-min.css">
+
   <link rel="stylesheet" href="./assets/css/class.css">
+  <link rel="stylesheet" href="./assets/css/events.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="./assets/css/method.css">
+  <link rel="stylesheet" href="./assets/css/prettyprint.css">
   <link rel="stylesheet" href="./assets/css/props.css">
   <link rel="stylesheet" href="./assets/css/sidebar.css">
   <style>
@@ -19,8 +25,13 @@
       flex-direction: column;
       font-family: 'Roboto', Helvetica, Arial, sans-serif;
       font-size: smaller;
+      line-height: 3ex;
       margin: 0;
       height: 100vh;
+    }
+
+    .description code {
+      color: #F6F080;
     }
 
     h1, h2 {
@@ -34,6 +45,10 @@
 
     a:visited {
       color: darkorange;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     pre, code {
@@ -80,6 +95,7 @@
     footer {
       border: 2px solid #004000;
       padding: 15px;
+      -webkit-margin-before: 20px;
     }
   </style>
   <style>
@@ -104,32 +120,42 @@
     </header>
     <div>
       <ul>
-      
-        <li><a href="./classes/Fakes.html">Fakes</a></li>
-      
-        <li><a href="./classes/matcher.Any.html">matcher.Any</a></li>
-      
-        <li><a href="./classes/matcher.IsA.html">matcher.IsA</a></li>
-      
-        <li><a href="./classes/matcher.Matcher.html">matcher.Matcher</a></li>
-      
-        <li><a href="./classes/Matchers.html">Matchers</a></li>
-      
-        <li><a href="./classes/SpiedFn.html">SpiedFn</a></li>
-      
-        <li><a href="./classes/Spies.html">Spies</a></li>
-      
-        <li><a href="./classes/Utils.html">Utils</a></li>
-      
+        <li class="">
+          <a href="./classes/Fakes.html">Fakes</a>
+        </li>
+        <li class="">
+          <a href="./classes/matcher.Any.html">matcher.Any</a>
+        </li>
+        <li class="">
+          <a href="./classes/matcher.IsA.html">matcher.IsA</a>
+        </li>
+        <li class="">
+          <a href="./classes/matcher.Matcher.html">matcher.Matcher</a>
+        </li>
+        <li class="">
+          <a href="./classes/Matchers.html">Matchers</a>
+        </li>
+        <li class="">
+          <a href="./classes/SpiedFn.html">SpiedFn</a>
+        </li>
+        <li class="">
+          <a href="./classes/Spies.html">Spies</a>
+        </li>
+        <li class="">
+          <a href="./classes/Utils.html">Utils</a>
+        </li>
       </ul>
     </div>
   </section>
 </div>
 
 
-
 </section>
-    <section class="main-main"></section>
+    <section class="main-main"><div class="index">
+  <div class="content">
+    A simple library to spy on functions and create stubs for unit testing.
+  </div>
+</div></section>
   </section>
 </body>
   <script src="./assets/vendor/prettify/prettify-min.js"></script>

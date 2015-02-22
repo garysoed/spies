@@ -14,21 +14,23 @@
 .method table {
   border-collapse: collapse;
   margin: 0 20px;
+  width: 100%;
 }
 
-.method tr:nth-child(2n) {
+.method tbody:nth-child(2n) {
   background-color: black;
 }
 
-.method tr:nth-child(2n+1) {
+.method tbody:nth-child(2n+1) {
   background-color: #222;
 }
 
 .method td {
   padding: 0 10px;
+  vertical-align: top;
 }
 
-.method td:nth-child(2) {
+.method td.method-type {
   white-space: nowrap;
 }
 
