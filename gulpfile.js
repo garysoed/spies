@@ -47,16 +47,7 @@ gulp.task('test-dev', ['traceur'], function() {
       .on('error', handleError);
 });
 
-gulp.task('doc', function() {
-  return gulp.src('gulpfile.js')
-      .pipe(yuimd({
-        'projectName': 'Spies',
-        '$home': 'doc-theme/Home.theme',
-        '$class': '../spies/doc-theme/class.theme',
-        'src': './src/'
-      }))
-      .pipe(gulp.dest('doc'));
-});
+gulp.task('doc', shell.task('yuidoc --config yuidoc.json --extension .js --no-code --helpers ./node_modules/doctheme/helpers.js'));
 
 gulp.task('yuidoc', shell.task('yuidoc --config yuidoc.json'));
 
