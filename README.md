@@ -4,6 +4,9 @@ libraries that do this out there, but they're all tied to a specific assertion f
 not tied to any assertion frameworks. You can use any assertion frameworks you want, though it comes
 with a plugin for Chai expect (and possibly more in the future).
 
+# API Reference
+Go [here](http://garysoed.github.io/spies/) for the complete API.
+
 # Usage
 To use this, HTML import the `main.html` file.
 
