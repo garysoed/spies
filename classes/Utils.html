@@ -51,7 +51,9 @@
       text-decoration: underline;
     }
 
-    pre, code {
+    pre,
+    code,
+    a.crosslink {
       font-family: 'Ubuntu Mono', monospace;
     }
 
@@ -70,6 +72,10 @@
       -webkit-user-select: none;
       transition: padding .2s;
       position: relative;
+    }
+
+    section.collapsible > header h2 {
+      font-size: 1.2em;
     }
 
     section.collapsible > header::after {
@@ -107,55 +113,79 @@
 <body>
   <header class="main-header">
     <div>
-      <h1><a href="../index.html">Spies: Utils</a></h1>
+      <h1><a href="../index.html">Spies</a></h1>
       <span class="main-subtitle">v 0.1.4</span>
     </div>
     <a href="https://github.com/garysoed/spies">GitHub</a>
   </header>
   <section class="main-content">
     <section class="main-sidebar"><div class="sidebar">
-  <section class="collapsible">
-    <header>
-      <h2>Classes</h2>
-    </header>
-    <div>
-      <ul>
-        <li class="">
-          <a href="../classes/Fakes.html">Fakes</a>
-        </li>
-        <li class="">
-          <a href="../classes/matcher.Any.html">matcher.Any</a>
-        </li>
-        <li class="">
-          <a href="../classes/matcher.IsA.html">matcher.IsA</a>
-        </li>
-        <li class="">
-          <a href="../classes/matcher.Matcher.html">matcher.Matcher</a>
-        </li>
-        <li class="">
-          <a href="../classes/Matchers.html">Matchers</a>
-        </li>
-        <li class="">
-          <a href="../classes/SpiedFn.html">SpiedFn</a>
-        </li>
-        <li class="">
-          <a href="../classes/Spies.html">Spies</a>
-        </li>
-        <li class="sidebar-selected">
-          <a href="../classes/Utils.html">Utils</a>
-        </li>
-      </ul>
-    </div>
-  </section>
+    <section class="collapsible ">
+      <header>
+        <h2>tutorial</h2>
+      </header>
+      <div>
+        <ul>
+          <li class="">
+            <a href="../classes/1. Setup.html">1. Setup</a>
+          </li>
+          <li class="">
+            <a href="../classes/2. Spies.html">2. Spies</a>
+          </li>
+          <li class="">
+            <a href="../classes/3. Matchers.html">3. Matchers</a>
+          </li>
+          <li class="">
+            <a href="../classes/4. Fakes.html">4. Fakes</a>
+          </li>
+          <li class="">
+            <a href="../classes/5. Plugins.html">5. Plugins</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="collapsible selected">
+      <header>
+        <h2>api</h2>
+      </header>
+      <div>
+        <ul>
+          <li class="">
+            <a href="../classes/Fakes.html">Fakes</a>
+          </li>
+          <li class="">
+            <a href="../classes/matcher.Any.html">matcher.Any</a>
+          </li>
+          <li class="">
+            <a href="../classes/matcher.IsA.html">matcher.IsA</a>
+          </li>
+          <li class="">
+            <a href="../classes/matcher.Matcher.html">matcher.Matcher</a>
+          </li>
+          <li class="">
+            <a href="../classes/Matchers.html">Matchers</a>
+          </li>
+          <li class="">
+            <a href="../classes/SpiedFn.html">SpiedFn</a>
+          </li>
+          <li class="">
+            <a href="../classes/Spies.html">Spies</a>
+          </li>
+          <li class="sidebar-selected">
+            <a href="../classes/Utils.html">Utils</a>
+          </li>
+        </ul>
+      </div>
+    </section>
 </div>
 
 
 </section>
     <section class="main-main"><div class="class">
   <section class="class-summary">
-    <header>
-      <code><span class="keyword">static</span> Utils</code>
-    </header>
+      <header>
+        <code><span class="keyword">static</span> Utils</code>
+      </header>
 
     <div class="content description">
       <p>Contains various utility functions.</p>

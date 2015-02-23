@@ -12,8 +12,21 @@
   line-height: 2em;
 }
 
+.sidebar h2 {
+  text-transform: uppercase;
+}
+
 li.sidebar-selected {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #222;
+}
+
+section.collapsible.selected > header {
+  background-color: gold;
+  color: black;
+}
+
+section.collapsible.selected > header::after {
+  background-image: -webkit-linear-gradient(270deg, gold, transparent);
 }

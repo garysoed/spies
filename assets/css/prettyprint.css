@@ -3,6 +3,7 @@ pre.prettyprint {
   border: 2px solid #515559;
   padding: 20px;
   margin: 10px;
+  line-height: 2.7ex;
 }
 
 pre.prettyprint .com {

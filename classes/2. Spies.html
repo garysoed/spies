@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Matchers - Spies</title>
+  <title>2. Spies - Spies</title>
 
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
 
@@ -120,7 +120,7 @@
   </header>
   <section class="main-content">
     <section class="main-sidebar"><div class="sidebar">
-    <section class="collapsible ">
+    <section class="collapsible selected">
       <header>
         <h2>tutorial</h2>
       </header>
@@ -129,7 +129,7 @@
           <li class="">
             <a href="../classes/1. Setup.html">1. Setup</a>
           </li>
-          <li class="">
+          <li class="sidebar-selected">
             <a href="../classes/2. Spies.html">2. Spies</a>
           </li>
           <li class="">
@@ -144,7 +144,7 @@
         </ul>
       </div>
     </section>
-    <section class="collapsible selected">
+    <section class="collapsible ">
       <header>
         <h2>api</h2>
       </header>
@@ -162,7 +162,7 @@
           <li class="">
             <a href="../classes/matcher.Matcher.html">matcher.Matcher</a>
           </li>
-          <li class="sidebar-selected">
+          <li class="">
             <a href="../classes/Matchers.html">Matchers</a>
           </li>
           <li class="">
@@ -184,11 +184,44 @@
     <section class="main-main"><div class="class">
   <section class="class-summary">
       <header>
-        <code><span class="keyword">static</span> Matchers</code>
+        <h2>2. Spies</h2>
       </header>
 
     <div class="content description">
-      <p>Static class to create "Matcher" objects.</p>
+      <p><a href="../classes/Spies.html" class="crosslink">Spies</a> watch over function calls. When writing unit tests, spy on
+functions that you are interested in watching. For example:</p>
+<pre class="code prettyprint"><code class="lang-javascript">// Source Code
+IceCream = function() {};
+IceCream.prototype.scoop = function() {};
+
+Person = function() {};
+Person.prototype.iceCream = new IceCream();
+Person.prototype.eatIceCream = function(amount) {
+  iceCream.scoop(amount);
+};
+
+// Test Code
+var _ = spies.Spies;
+
+var person = new Person();
+_.spy(person.iceCream, &#39;scoop&#39;);
+
+person.eatIceCream(2);
+
+expect(_.callCountOf(person.iceCream.scoop)(2)).to.be.equal(1);
+
+_.reset(); // Resets all spied functions.
+</code></pre>
+<p>To ignore any arguments, use <a href="../classes/Spies.html#method_anyCallCountOf" class="crosslink">anyCallCountOf</a>:</p>
+<pre class="code prettyprint"><code class="lang-javascript">_.spy(person.iceCream, &#39;scoop&#39;);
+
+person.eatIceCream(1);
+person.eatIceCream(3);
+
+expect(_.anyCallCountOf(person.iceCream.scoop)).to.be.equal(2);
+
+_.reset();
+</code></pre>
 
     </div>
 
@@ -196,62 +229,6 @@
 
 
 
-    <section class="collapsible class-subsection">
-      <header>
-        <h2>Methods</h2>
-      </header>
-      <div>
-          <section class="method">
-            <header>
-              <code class="method-signature">any() => <a href="../classes/matcher.Any.html" class="crosslink">matcher.Any</a></code>
-            </header>
-            <div class="content">
-              <span class="description"><p>Creates a matcher that matches anything.</p>
-          </span>
-              <table>
-              </table>
-                <div class="method-returns">
-                  <code><span class="keyword">return</span> <a href="../classes/matcher.Any.html" class="crosslink">matcher.Any</a></code><span class="description"><p>The Any matcher.</p>
-          </span>
-                </div>
-          
-            </div>
-          </section>
-          
-          <section class="method">
-            <header>
-              <code class="method-signature">isA(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> expectedType) => <a href="../classes/matcher.IsA.html" class="crosslink">matcher.IsA</a></code>
-            </header>
-            <div class="content">
-              <span class="description"><p>Creates a matcher that matches by type.</p>
-          </span>
-              <table>
-                <tbody>
-                  <tr>
-                    <td colspan="2">
-                      <p><code>expectedType</code></p>
-                    </td>
-                    <td class="method-type">
-                      <p><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code></p>
-                    </td>
-                    <td class="description">
-                      <p>Type to be checked.</p>
-          
-                    </td>
-                  </tr>
-          
-                </tbody>
-              </table>
-                <div class="method-returns">
-                  <code><span class="keyword">return</span> <a href="../classes/matcher.IsA.html" class="crosslink">matcher.IsA</a></code><span class="description"><p>The IsA matcher.</p>
-          </span>
-                </div>
-          
-            </div>
-          </section>
-          
-      </div>
-    </section>
 
 </div>
 

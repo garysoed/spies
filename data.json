@@ -8,15 +8,7 @@
         "colorMainLight": "#008000",
         "colorKeyword": "#808080",
         "colorLink": "gold",
-        "colorLinkVisited": "darkorange",
-        "tutorials": {
-            "dir": "./tutorial",
-            "contents": [
-                {
-                    "usage": "usage.html"
-                }
-            ]
-        }
+        "colorLinkVisited": "darkorange"
     },
     "files": {
         "src/matcher/any.js": {
@@ -64,6 +56,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src/main.js": {
+            "name": "src/main.js",
+            "modules": {
+                "api": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "src/spiedfn.js": {
             "name": "src/spiedfn.js",
             "modules": {},
@@ -90,9 +91,100 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "tutorials/01_setup.js": {
+            "name": "tutorials/01_setup.js",
+            "modules": {
+                "tutorial": 1
+            },
+            "classes": {
+                "1. Setup": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "tutorials/02_spies.js": {
+            "name": "tutorials/02_spies.js",
+            "modules": {},
+            "classes": {
+                "2. Spies": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "tutorials/03_matcher.js": {
+            "name": "tutorials/03_matcher.js",
+            "modules": {},
+            "classes": {
+                "3. Matchers": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "tutorials/04_fakes.js": {
+            "name": "tutorials/04_fakes.js",
+            "modules": {},
+            "classes": {
+                "4. Fakes": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "tutorials/05_plugins.js": {
+            "name": "tutorials/05_plugins.js",
+            "modules": {},
+            "classes": {
+                "5. Plugins": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "tutorials/module.js": {
+            "name": "tutorials/module.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
         }
     },
-    "modules": {},
+    "modules": {
+        "api": {
+            "name": "api",
+            "submodules": {},
+            "classes": {
+                "matcher.Any": 1,
+                "matcher.IsA": 1,
+                "matcher.Matcher": 1,
+                "Matchers": 1,
+                "Fakes": 1,
+                "SpiedFn": 1,
+                "Spies": 1,
+                "Utils": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/utils.js",
+            "line": 3
+        },
+        "tutorial": {
+            "name": "tutorial",
+            "submodules": {},
+            "classes": {
+                "1. Setup": 1,
+                "2. Spies": 1,
+                "3. Matchers": 1,
+                "4. Fakes": 1,
+                "5. Plugins": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "tutorials/05_plugins.js",
+            "line": 1,
+            "description": "There are several ways to use this library:\n- HTML Import `main.html`:\n```html\n<link rel=\"import\" href=\"path/to/main.html\">\n```\n- Or you can import the JS file directly:\n```html\n<script src=\"path/to/main.js\"></script>\n```\n- If you use the expect pattern of <a href=\"http://chaijs.com/\">Chai JS</a>, import\n  `main_chai_expect.html`, or import the plugin under `src/plugin/chai-expect.js`. If you load\n  the JS file, make sure to import the plugin after importing `chai.js`."
+        }
+    },
     "classes": {
         "matcher.Any": {
             "name": "matcher.Any",
@@ -102,6 +194,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "api",
             "file": "src/matcher/any.js",
             "line": 6,
             "description": "Matches anything.",
@@ -116,6 +209,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "api",
             "file": "src/matcher/isa.js",
             "line": 7,
             "description": "Matches arguments that is the instance of the given ctor, or has the expected type.",
@@ -137,6 +231,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "api",
             "file": "src/matcher/matcher.js",
             "line": 7,
             "description": "Base class for matcher objects. These allow you to store arguments that have been pass into a\ngunction call.",
@@ -150,6 +245,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "api",
             "file": "src/matcher/matchers.js",
             "line": 4,
             "description": "Static class to create \"Matcher\" objects.",
@@ -163,6 +259,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "api",
             "file": "src/fakes.js",
             "line": 1,
             "description": "Static class to create various fake objects.",
@@ -176,6 +273,8 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "api",
+            "namespace": "",
             "file": "src/spiedfn.js",
             "line": 19,
             "description": "Represents a function that is spied.",
@@ -204,6 +303,8 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "api",
+            "namespace": "",
             "file": "src/spies.js",
             "line": 4,
             "description": "Root object for the library.",
@@ -217,10 +318,82 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "module": "api",
+            "namespace": "",
             "file": "src/utils.js",
             "line": 3,
             "description": "Contains various utility functions.",
             "static": 1
+        },
+        "1. Setup": {
+            "name": "1. Setup",
+            "shortname": "1. Setup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "tutorial",
+            "namespace": "",
+            "file": "tutorials/01_setup.js",
+            "line": 1,
+            "description": "There are several ways to use this library:\n- HTML Import `main.html`:\n```html\n<link rel=\"import\" href=\"path/to/main.html\">\n```\n- Or you can import the JS file directly:\n```html\n<script src=\"path/to/main.js\"></script>\n```\n- If you use the expect pattern of <a href=\"http://chaijs.com/\">Chai JS</a>, import\n  `main_chai_expect.html`, or import the plugin under `src/plugin/chai-expect.js`. If you load\n  the JS file, make sure to import the plugin after importing `chai.js`."
+        },
+        "2. Spies": {
+            "name": "2. Spies",
+            "shortname": "2. Spies",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "tutorial",
+            "namespace": "",
+            "file": "tutorials/02_spies.js",
+            "line": 1,
+            "description": "{{#crossLink \"Spies\"}}{{/crossLink}} watch over function calls. When writing unit tests, spy on\nfunctions that you are interested in watching. For example:\n```javascript\n// Source Code\nIceCream = function() {};\nIceCream.prototype.scoop = function() {};\n\nPerson = function() {};\nPerson.prototype.iceCream = new IceCream();\nPerson.prototype.eatIceCream = function(amount) {\n  iceCream.scoop(amount);\n};\n\n// Test Code\nvar _ = spies.Spies;\n\nvar person = new Person();\n_.spy(person.iceCream, 'scoop');\n\nperson.eatIceCream(2);\n\nexpect(_.callCountOf(person.iceCream.scoop)(2)).to.be.equal(1);\n\n_.reset(); // Resets all spied functions.\n```\n\nTo ignore any arguments, use {{#crossLink \"Spies/anyCallCountOf:method\"}}{{/crossLink}}:\n\n```javascript\n_.spy(person.iceCream, 'scoop');\n\nperson.eatIceCream(1);\nperson.eatIceCream(3);\n\nexpect(_.anyCallCountOf(person.iceCream.scoop)).to.be.equal(2);\n\n_.reset();\n```"
+        },
+        "3. Matchers": {
+            "name": "3. Matchers",
+            "shortname": "3. Matchers",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "tutorial",
+            "namespace": "",
+            "file": "tutorials/03_matcher.js",
+            "line": 1,
+            "description": "You can relax the matching condition by using {{#crossLink \"matcher.Matcher\"}}{{/crossLink}} objects:\n```javascript\nvar _M = spies.Matchers;\n\n_.spy(person.iceCream, 'scoop');\n\nperson.eatIceCream(1);\nperson.eatIceCream('gallon');\n\nexpect(_.callCountOf(person.iceCream.scoop)(Matchers.isA('number'))).to.be.equal(1);\n\n_.reset();\n```\n\nYou can also get the matched arguments by getting the\n{{#crossLink \"matcher.Matcher/matchingArgs:property\"}}{{/crossLink}} on the matcher object. This is\nvery useful for getting event handlers:\n\n```javascript\n// Source Code\nvar object = {\n  fn: function() {};\n};\n\nvar handler = function() {\n  object.fn();\n};\n\nvar f = function() {\n  document.addEventHandler('click', handler);\n};\n\n\n// Test Code\nvar _ = spies.Spies;\nvar _M = spies.Matcher;\n\nvar isAFunction = _M.isA(Function);\n_.spy(object, 'fn');\n_.spy(document, 'addEventHandler');\n\nf();\n\nexpect(_.callCountOf(document.addEventHandler)('click', isAFunction)).to.be.equal(1);\n\n// Now call the handler.\nisAFunction.matchingArgs[0]();\nexpect(_.callCountOf(object.fn)()).to.be.equal(1);\n```\n\nFor more list of Matchers, go to the API section page."
+        },
+        "4. Fakes": {
+            "name": "4. Fakes",
+            "shortname": "4. Fakes",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "tutorial",
+            "namespace": "",
+            "file": "tutorials/04_fakes.js",
+            "line": 1,
+            "description": "Spies also comes with {{#crossLink \"Fakes\"}}{{/crossLink}}, which is a convenience library to\ncreate fake objects. This covers some general DOM objects."
+        },
+        "5. Plugins": {
+            "name": "5. Plugins",
+            "shortname": "5. Plugins",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "tutorial",
+            "namespace": "",
+            "file": "tutorials/05_plugins.js",
+            "line": 1,
+            "description": "Spies comes with a Chai-expect plugin. To use it, HTML import the `main_chai_expect.html` file.\n\nExample of basic usage:\n```javascript\n// Test code\nvar _ = spies.Spies;\n_.spy(object, 'fn');\n\nobject.fn(1);\nobject.fn();\n\nexpect(object.fn).calledWith(1).at.least(1);\nexpect(object.fn).called().at.least(2);\n```\n\nAsserting order:\n```javascript\nvar _ = spies.Spies;\n_.spy(object, 'fn');\n\nobject.fn(1);\nobject.fn();\n\nexpect(object.fn).calledWith(1).before(object.fn).calledWith();\nexpect(object.fn).called().before(object.fn).calledWith();\n```"
         }
     },
     "classitems": [
@@ -280,7 +453,7 @@
             "itemtype": "property",
             "name": "matchingArgs",
             "type": "Array",
-            "readonly": "",
+            "final": 1,
             "class": "matcher.Matcher"
         },
         {
@@ -383,7 +556,8 @@
             "description": "Restores the spied function.",
             "itemtype": "method",
             "name": "restore",
-            "class": "SpiedFn"
+            "class": "SpiedFn",
+            "module": "api"
         },
         {
             "file": "src/spiedfn.js",
@@ -398,7 +572,8 @@
                     "type": "Array"
                 }
             ],
-            "class": "SpiedFn"
+            "class": "SpiedFn",
+            "module": "api"
         },
         {
             "file": "src/spiedfn.js",
@@ -418,7 +593,8 @@
                 "description": "The current object.",
                 "type": "SpiedFn"
             },
-            "class": "SpiedFn"
+            "class": "SpiedFn",
+            "module": "api"
         },
         {
             "file": "src/spiedfn.js",
@@ -428,7 +604,8 @@
             "name": "records",
             "type": "Array",
             "readonly": "",
-            "class": "SpiedFn"
+            "class": "SpiedFn",
+            "module": "api"
         },
         {
             "file": "src/spies.js",
@@ -447,7 +624,8 @@
                 "description": "The stub object.",
                 "type": "Object"
             },
-            "class": "Spies"
+            "class": "Spies",
+            "module": "api"
         },
         {
             "file": "src/spies.js",
@@ -472,7 +650,8 @@
                 "description": "The spied function, or the spied object.",
                 "type": "Object|Function"
             },
-            "class": "Spies"
+            "class": "Spies",
+            "module": "api"
         },
         {
             "file": "src/spies.js",
@@ -491,7 +670,8 @@
                 "description": "Function that returns the call counts of the given function.",
                 "type": "Function"
             },
-            "class": "Spies"
+            "class": "Spies",
+            "module": "api"
         },
         {
             "file": "src/spies.js",
@@ -510,7 +690,8 @@
                 "description": "Function thar returns the invocations of the given function.",
                 "type": "Function"
             },
-            "class": "Spies"
+            "class": "Spies",
+            "module": "api"
         },
         {
             "file": "src/spies.js",
@@ -529,7 +710,8 @@
                 "description": "Number of invocations on the given function.",
                 "type": "Number"
             },
-            "class": "Spies"
+            "class": "Spies",
+            "module": "api"
         },
         {
             "file": "src/spies.js",
@@ -545,7 +727,8 @@
                     "optional": true
                 }
             ],
-            "class": "Spies"
+            "class": "Spies",
+            "module": "api"
         },
         {
             "file": "src/spies.js",
@@ -557,7 +740,8 @@
                 "description": "Spied function.",
                 "type": "SpiedFn"
             },
-            "class": "Spies"
+            "class": "Spies",
+            "module": "api"
         },
         {
             "file": "src/utils.js",
@@ -581,7 +765,8 @@
                 "description": "True iff the two objects are deeply equal.",
                 "type": "Boolean"
             },
-            "class": "Utils"
+            "class": "Utils",
+            "module": "api"
         }
     ],
     "warnings": []
