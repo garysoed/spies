@@ -35,7 +35,7 @@ export default class Matcher {
    *
    * @property matchingArgs
    * @type Array
-   * @readOnly
+   * @final
    */
   get matchingArgs() {
     return this[_MATCHING_ARGS];

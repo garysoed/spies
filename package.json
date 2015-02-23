@@ -25,6 +25,7 @@
     "gulp-sourcemaps": "^1.2.8",
     "gulp-traceur": "^0.14.1",
     "gulp-yuidoc": "^0.1.2",
+    "handlebars": "^3.0.0",
     "jshint-stylish": "^1.0.0",
     "karma": "^0.12.24",
     "karma-chrome-launcher": "^0.1.5",
