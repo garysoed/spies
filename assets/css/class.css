@@ -6,3 +6,8 @@
 .class .class-summary {
   padding: 20px 0 10px 20px
 }
+
+.divider {
+  border-bottom: 1px solid;
+  margin: 2em -2em 0;
+}

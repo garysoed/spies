@@ -15,36 +15,37 @@
   <link rel="stylesheet" href="../assets/css/props.css">
   <link rel="stylesheet" href="../assets/css/sidebar.css">
   <style>
-    @import url(http://fonts.googleapis.com/css?family=Roboto);
-    @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono);
+    @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Roboto:400,700);
 
     body {
-      background-color: #222;
-      color: white;
       display: flex;
       flex-direction: column;
       font-family: 'Roboto', Helvetica, Arial, sans-serif;
       font-size: smaller;
-      line-height: 3ex;
+      line-height: 3.5ex;
       margin: 0;
       height: 100vh;
     }
 
     .description code {
-      color: #F6F080;
+      border-radius: 4px;
+      padding: 2px 4px;
+      white-space: pre;
+    }
+
+    .since {
+      font-family: 'Ubuntu Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 2ex;
+      text-transform: uppercase;
     }
 
     h1, h2 {
       margin: 5px 0;
     }
 
-    a {
-      color: gold;
+    a, a:visited {
       text-decoration: none;
-    }
-
-    a:visited {
-      color: darkorange;
     }
 
     a:hover {
@@ -57,8 +58,10 @@
       font-family: 'Ubuntu Mono', monospace;
     }
 
-    code .keyword {
-      color: #808080;
+    .prettyprint code {
+      background-color: transparent;
+      border-radius: 0;
+      padding: 0;
     }
 
     div.content {
@@ -66,7 +69,6 @@
     }
 
     section.collapsible > header {
-      background-color: #004000;
       padding: 5px 20px;
       cursor: pointer;
       -webkit-user-select: none;
@@ -76,17 +78,6 @@
 
     section.collapsible > header h2 {
       font-size: 1.2em;
-    }
-
-    section.collapsible > header::after {
-      background-image: -webkit-linear-gradient(270deg, #004000, transparent);
-      content: '';
-      display: block;
-      height: 10px;
-      position: absolute;
-      width: 100%;
-      left: 0;
-      bottom: -10px;
     }
 
     section.collapsible.collapsed > header {
@@ -99,27 +90,126 @@
     }
 
     footer {
-      border: 2px solid #004000;
       padding: 15px;
       -webkit-margin-before: 20px;
     }
+
+    footer.warn {
+      border-color: crimson;
+      color: crimson;
+    }
+
+    table {
+      border: 1px solid;
+    }
+
+    header {
+      font-weight: 700;
+    }
   </style>
+
+  <!-- COLORS!!! -->
   <style>
-    header.main-header h1 a {
-      color: #008000;
+    body {
+      background-color: white;
+      color: black;
+    }
+    .reverse {
+      background-color: #347A7D;
+      color: white;
+    }
+
+    table {
+      border-color: #347A7D;
+    }
+
+    a, a:visited,
+    a.external, a.external:visited {
+      color: #347A7D;
+    }
+    .reverse a, .reverse a:visited,
+    .reverse a.external, .reverse a.external:visited {
+      color: #BCD8D9;
+    }
+
+    .since {
+      color: #347A7D;
+    }
+    .reverse .since {
+      color: #BCD8D9;
+    }
+
+    header.main-header, header.main-sidebar {
+      -webkit-filter: drop-shadow(0px 2px 5px #347A7D);
+    }
+
+    li.sidebar-selected {
+      background-color: #BCD8D9;
+    }
+    .reverse li.sidebar-selected a {
+      color: black;
+    }
+
+    section.collapsible > header {
+      background-color: #347A7D;
+      color: white;
+    }
+    .reverse section.collapsible > header {
+      background-color: #6CA2A4;
+      color: black;
+    }
+
+    section.collapsible > header:hover h2 {
+      -webkit-filter: drop-shadow(0px 0px 5px white);
+    }
+    .reverse section.collapsible > header:hover h2 {
+      -webkit-filter: drop-shadow(0px 0px 5px black);
+    }
+
+    .description code {
+      color: #42578B;
+      background-color: #C5CDE0;
+    }
+
+    code .keyword {
+      color: #42578B;
+    }
+
+    .description pre code {
+      background-color: transparent;
+    }
+
+    header.tutorial {
+      color: #347A7D;
+    }
+
+    footer {
+      border: 2px solid #347A7D;
+    }
+
+    .divider {
+      border-color: #347A7D;
+    }
+
+    .method tbody:nth-child(2n) {
+      background-color: #BCD8D9;
+    }
+
+    .method tbody:nth-child(2n+1) {
+      background-color: white;
     }
   </style>
 </head>
 <body>
-  <header class="main-header">
+  <header class="main-header reverse">
     <div>
       <h1><a href="../index.html">Spies</a></h1>
-      <span class="main-subtitle">v 0.1.4</span>
+      <span class="since">v 0.1.4</span>
     </div>
     <a href="https://github.com/garysoed/spies">GitHub</a>
   </header>
   <section class="main-content">
-    <section class="main-sidebar"><div class="sidebar">
+    <section class="main-sidebar reverse"><div class="sidebar">
     <section class="collapsible ">
       <header>
         <h2>tutorial</h2>
@@ -202,7 +292,7 @@
       </header>
       <div>
           <section class="method">
-            <header>
+            <header id="method_anyCallCountOf">
               <code class="method-signature">anyCallCountOf(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> target) => <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></code>
             </header>
             <div class="content">
@@ -231,10 +321,12 @@
                 </div>
           
             </div>
+          
+            <div class="divider"></div>
           </section>
           
           <section class="method">
-            <header>
+            <header id="method_callCountOf">
               <code class="method-signature">callCountOf(<a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a> target) => <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code>
             </header>
             <div class="content">
@@ -266,10 +358,12 @@
                 </div>
           
             </div>
+          
+            <div class="divider"></div>
           </section>
           
           <section class="method">
-            <header>
+            <header id="method_invocationsOf">
               <code class="method-signature">invocationsOf(<a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a> target) => <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code>
             </header>
             <div class="content">
@@ -306,10 +400,12 @@
                 </div>
           
             </div>
+          
+            <div class="divider"></div>
           </section>
           
           <section class="method">
-            <header>
+            <header id="method_reset">
               <code class="method-signature">reset(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> target)</code>
             </header>
             <div class="content">
@@ -336,27 +432,29 @@
               </table>
           
             </div>
+          
+            <div class="divider"></div>
           </section>
           
           <section class="method">
-            <header>
+            <header id="method_spiedFunction">
               <code class="method-signature">spiedFunction() => <a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code>
             </header>
             <div class="content">
               <span class="description"><p>Creates a spied function.</p>
           </span>
-              <table>
-              </table>
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><span class="description"><p>Spied function.</p>
           </span>
                 </div>
           
             </div>
+          
+            <div class="divider"></div>
           </section>
           
           <section class="method">
-            <header>
+            <header id="method_spy">
               <code class="method-signature">spy(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> scope, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> name) => <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code>
             </header>
             <div class="content">
@@ -402,10 +500,12 @@
                 </div>
           
             </div>
+          
+            <div class="divider"></div>
           </section>
           
           <section class="method">
-            <header>
+            <header id="method_stub">
               <code class="method-signature">stub(<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> ctor) => <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code>
             </header>
             <div class="content">
@@ -435,6 +535,7 @@
                 </div>
           
             </div>
+          
           </section>
           
       </div>
@@ -461,6 +562,11 @@
         content.style.height = section.classList.contains('collapsed') ? '0' : contentHeight;
       }.bind(header, section, content, height));
       content.style.height = height;
+    }
+
+    var selected = document.querySelector('.sidebar-selected');
+    if (selected) {
+      selected.scrollIntoView();
     }
   </script>
 </html>
