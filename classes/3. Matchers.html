@@ -139,8 +139,12 @@
       color: #BCD8D9;
     }
 
-    header.main-header, header.main-sidebar {
+    header.main-header {
       -webkit-filter: drop-shadow(0px 2px 5px #347A7D);
+    }
+
+    header.main-header.scroll-top {
+      -webkit-filter: none;
     }
 
     li.sidebar-selected {
@@ -179,6 +183,10 @@
       background-color: transparent;
     }
 
+    pre.prettyprint {
+      border-color: #347A7D;
+    }
+
     header.tutorial {
       color: #347A7D;
     }
@@ -201,7 +209,7 @@
   </style>
 </head>
 <body>
-  <header class="main-header reverse">
+  <header class="main-header reverse scroll-top">
     <div>
       <h1><a href="../index.html">Spies</a></h1>
       <span class="since">v 0.1.4</span>
@@ -359,5 +367,15 @@ expect(_.callCountOf(object.fn)()).to.be.equal(1);
     if (selected) {
       selected.scrollIntoView();
     }
+
+    var headerEl = document.querySelector('.main-header');
+    var mainEl = document.querySelector('.main-main');
+    mainEl.addEventListener('scroll', function() {
+      if (mainEl.scrollTop <= 0) {
+        headerEl.classList.add('scroll-top');
+      } else {
+        headerEl.classList.remove('scroll-top');
+      }
+    });
   </script>
 </html>
