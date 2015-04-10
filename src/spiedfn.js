@@ -17,7 +17,7 @@ let timestamp = 0;
 export default class SpiedFn extends Function {
 
   /**
-   * @param {Object} [scope] The scope that the function is in. If undefined, then the original 
+   * @param {Object} [scope] The scope that the function is in. If undefined, then the original
    *     function will never be called and #restore will do nothing.
    * @param {string} [name] The name of the function that is spied, if scope is given.
    * @class SpiedFn
@@ -57,11 +57,12 @@ export default class SpiedFn extends Function {
     if (this[_SCOPE]) {
       this[_SCOPE][this[_NAME]] = this[_ORIG_FN];
     }
+    this.records.splice(0, this.records.length);
   }
 
   /**
    * Records a function call.
-   * 
+   *
    * @method record
    * @param {Array} args Array containing arguments to the function call.
    */
@@ -84,9 +85,9 @@ export default class SpiedFn extends Function {
   }
 
   /**
-   * Array of record objects, each containing an invocation for the function. Each 
+   * Array of record objects, each containing an invocation for the function. Each
    * invocation is a mapping of timestamp -> array of arguments used to invoke it.
-   * 
+   *
    * @property records
    * @type Array
    * @readonly

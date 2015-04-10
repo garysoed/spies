@@ -159,6 +159,7 @@ var $__src_47_spiedfn__ = (function() {
       if (this[$traceurRuntime.toProperty(_SCOPE)]) {
         this[$traceurRuntime.toProperty(_SCOPE)][$traceurRuntime.toProperty(this[$traceurRuntime.toProperty(_NAME)])] = this[$traceurRuntime.toProperty(_ORIG_FN)];
       }
+      this.records.splice(0, this.records.length);
     },
     record: function(args) {
       timestamp++;

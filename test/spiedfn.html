@@ -45,7 +45,7 @@
       });
 
       describe('#restore', function() {
-        it('should restore original function', function() {
+        it('should restore original function and clear the records', function() {
           var spiedFn = new SpiedFn(TestClass, 'fn');
 
           // Replace the function.
@@ -55,6 +55,7 @@
           // Now restore the function.
           spiedFn.restore();
           expect(TestClass.fn()).to.equal(1);
+          expect(spiedFn.records).to.eql([]);
         });
         it('should handle anonymous function', function() {
           var fn = new SpiedFn();
