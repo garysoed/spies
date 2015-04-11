@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name=viewport content="width=device-width, initial-scale=1">
   <title>SpiedFn - Spies</title>
 
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
@@ -99,7 +100,11 @@
       color: crimson;
     }
 
-    table {
+    dl {
+      padding: 15px;
+    }
+
+    table, dl {
       border: 1px solid;
     }
 
@@ -116,10 +121,10 @@
     }
     .reverse {
       background-color: #347A7D;
-      color: white;
+      color: #BCD8D9;
     }
 
-    table {
+    table, dl {
       border-color: #347A7D;
     }
 
@@ -206,11 +211,19 @@
     .method tbody:nth-child(2n+1) {
       background-color: white;
     }
+
+    .main-bar {
+      background-color: #347A7D;
+      color: black;
+    }
   </style>
 </head>
 <body>
+  <section class="main-bar">
+  </section>
   <header class="main-header reverse scroll-top">
-    <div>
+    <div class="main-menu-button">&#9776;</div>
+    <div class="main-header-section">
       <h1><a href="../index.html">Spies</a></h1>
       <span class="since">v 0.1.4</span>
     </div>
@@ -303,7 +316,8 @@
             </header>
             <div class="content">
               <span class="description"></span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -313,7 +327,7 @@
                       <p><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code></p>
                     </td>
                     <td class="description">
-                      <p>The scope that the function is in. If undefined, then the original 
+                      <p>The scope that the function is in. If undefined, then the original
               function will never be called and #restore will do nothing.</p>
           
                     </td>
@@ -337,8 +351,20 @@
                 </tbody>
               </table>
           
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code> <code>[scope]</code></dt>
+                <dd><p>The scope that the function is in. If undefined, then the original
+              function will never be called and #restore will do nothing.</p>
+          </dd>
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code> <code>[name]</code></dt>
+                <dd><p>The name of the function that is spied, if scope is given.</p>
+          </dd>
+              </dl>
+          
+          
             </div>
           
+            <div class="divider"></div>
           </section>
           
       </div>
@@ -354,7 +380,7 @@
               <code class="method-signature"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> records</code>
             </header>
             <div class="content">
-              <span class="description"><p>Array of record objects, each containing an invocation for the function. Each 
+              <span class="description"><p>Array of record objects, each containing an invocation for the function. Each
           invocation is a mapping of timestamp -&gt; array of arguments used to invoke it.</p>
           </span>
           
@@ -377,7 +403,8 @@
             <div class="content">
               <span class="description"><p>Returns the given return value instead of the original function&#39;s.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -394,6 +421,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code> <code>[returnValue]</code></dt>
+                <dd><p>Return value to return instead of calling the original function.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code><span class="description"><p>The current object.</p>
           </span>
@@ -411,7 +445,8 @@
             <div class="content">
               <span class="description"><p>Records a function call.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -429,6 +464,13 @@
                 </tbody>
               </table>
           
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></code> <code>args</code></dt>
+                <dd><p>Array containing arguments to the function call.</p>
+          </dd>
+              </dl>
+          
+          
             </div>
           
             <div class="divider"></div>
@@ -444,6 +486,7 @@
           
             </div>
           
+            <div class="divider"></div>
           </section>
           
       </div>
@@ -459,7 +502,10 @@
   <script src="../assets/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
   <script>
-    var els = document.querySelectorAll('section.collapsible');
+
+    var isMobile = false;
+    var rootEl = isMobile ? document.querySelector('.main-main') : document;
+    var els = rootEl.querySelectorAll('section.collapsible');
     for (var i = 0; i < els.length; i++) {
       var section = els.item(i);
       var content = section.querySelector('div');
@@ -485,6 +531,10 @@
       } else {
         headerEl.classList.remove('scroll-top');
       }
+    });
+
+    document.querySelector('.main-menu-button').addEventListener('click', function() {
+      document.querySelector('section.main-sidebar').classList.toggle('expand');
     });
   </script>
 </html>

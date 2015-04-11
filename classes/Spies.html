@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name=viewport content="width=device-width, initial-scale=1">
   <title>Spies - Spies</title>
 
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
@@ -99,7 +100,11 @@
       color: crimson;
     }
 
-    table {
+    dl {
+      padding: 15px;
+    }
+
+    table, dl {
       border: 1px solid;
     }
 
@@ -116,10 +121,10 @@
     }
     .reverse {
       background-color: #347A7D;
-      color: white;
+      color: #BCD8D9;
     }
 
-    table {
+    table, dl {
       border-color: #347A7D;
     }
 
@@ -206,11 +211,19 @@
     .method tbody:nth-child(2n+1) {
       background-color: white;
     }
+
+    .main-bar {
+      background-color: #347A7D;
+      color: black;
+    }
   </style>
 </head>
 <body>
+  <section class="main-bar">
+  </section>
   <header class="main-header reverse scroll-top">
-    <div>
+    <div class="main-menu-button">&#9776;</div>
+    <div class="main-header-section">
       <h1><a href="../index.html">Spies</a></h1>
       <span class="since">v 0.1.4</span>
     </div>
@@ -306,7 +319,8 @@
             <div class="content">
               <span class="description"><p>Returns the number of call counts for the target of any arguments.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -323,6 +337,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code> <code>target</code></dt>
+                <dd><p>The function whose call count should be returned.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></code><span class="description"><p>Number of invocations on the given function.</p>
           </span>
@@ -343,7 +364,8 @@
           fn was called with arguments <code>(1, 2)</code>.</p>
           <p>If the passed in function is not a spy, this will return 0.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -360,6 +382,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code> <code>target</code></dt>
+                <dd><p>The function whose call count should be returned.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code><span class="description"><p>Function that returns the call counts of the given function.</p>
           </span>
@@ -385,7 +414,8 @@
           <li><code>args</code>: This is an array of arguments that the function received at that time.</li>
           </ul>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -402,6 +432,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="../classes/SpiedFn.html" class="crosslink">SpiedFn</a></code> <code>target</code></dt>
+                <dd><p>The function whose invocations should be returned.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code><span class="description"><p>Function thar returns the invocations of the given function.</p>
           </span>
@@ -421,7 +458,8 @@
           implementation and removes all records related to it. Or, restores all known functions, if no
           arguments is given.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -438,6 +476,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code> <code>[target]</code></dt>
+                <dd><p>The function or object to be reset.</p>
+          </dd>
+              </dl>
+          
           
             </div>
           
@@ -468,7 +513,8 @@
             <div class="content">
               <span class="description"><p>Spies the given function, or recursively all functions in the given object.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -502,6 +548,18 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code> <code>scope</code></dt>
+                <dd><p>The Object to be spied on, or the object containing the function to 
+              be spied on.</p>
+          </dd>
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code> <code>[name]</code></dt>
+                <dd><p>The name of the function to be spied on. If not specified, this will
+              spy all functions in the scope recursively.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code><span class="description"><p>The spied function, or the spied object.</p>
           </span>
@@ -520,7 +578,8 @@
               <span class="description"><p>Creates a stub for the given constructor or object. All functions will be replaced by a noop
           function.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -537,6 +596,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code> <code>ctor</code></dt>
+                <dd><p>The constructor to be stubbed, or object.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code><span class="description"><p>The stub object.</p>
           </span>
@@ -544,6 +610,7 @@
           
             </div>
           
+            <div class="divider"></div>
           </section>
           
       </div>
@@ -559,7 +626,10 @@
   <script src="../assets/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
   <script>
-    var els = document.querySelectorAll('section.collapsible');
+
+    var isMobile = false;
+    var rootEl = isMobile ? document.querySelector('.main-main') : document;
+    var els = rootEl.querySelectorAll('section.collapsible');
     for (var i = 0; i < els.length; i++) {
       var section = els.item(i);
       var content = section.querySelector('div');
@@ -585,6 +655,10 @@
       } else {
         headerEl.classList.remove('scroll-top');
       }
+    });
+
+    document.querySelector('.main-menu-button').addEventListener('click', function() {
+      document.querySelector('section.main-sidebar').classList.toggle('expand');
     });
   </script>
 </html>

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name=viewport content="width=device-width, initial-scale=1">
   <title>2. Spies - Spies</title>
 
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
@@ -99,7 +100,11 @@
       color: crimson;
     }
 
-    table {
+    dl {
+      padding: 15px;
+    }
+
+    table, dl {
       border: 1px solid;
     }
 
@@ -116,10 +121,10 @@
     }
     .reverse {
       background-color: #347A7D;
-      color: white;
+      color: #BCD8D9;
     }
 
-    table {
+    table, dl {
       border-color: #347A7D;
     }
 
@@ -206,11 +211,19 @@
     .method tbody:nth-child(2n+1) {
       background-color: white;
     }
+
+    .main-bar {
+      background-color: #347A7D;
+      color: black;
+    }
   </style>
 </head>
 <body>
+  <section class="main-bar">
+  </section>
   <header class="main-header reverse scroll-top">
-    <div>
+    <div class="main-menu-button">&#9776;</div>
+    <div class="main-header-section">
       <h1><a href="../index.html">Spies</a></h1>
       <span class="since">v 0.1.4</span>
     </div>
@@ -338,7 +351,10 @@ _.reset();
   <script src="../assets/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
   <script>
-    var els = document.querySelectorAll('section.collapsible');
+
+    var isMobile = false;
+    var rootEl = isMobile ? document.querySelector('.main-main') : document;
+    var els = rootEl.querySelectorAll('section.collapsible');
     for (var i = 0; i < els.length; i++) {
       var section = els.item(i);
       var content = section.querySelector('div');
@@ -364,6 +380,10 @@ _.reset();
       } else {
         headerEl.classList.remove('scroll-top');
       }
+    });
+
+    document.querySelector('.main-menu-button').addEventListener('click', function() {
+      document.querySelector('section.main-sidebar').classList.toggle('expand');
     });
   </script>
 </html>

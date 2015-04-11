@@ -44,3 +44,9 @@ pre.prettyprint .atv {
 pre.prettyprint .lit {
   color: #F6F080;
 }
+
+@media screen and (max-width: 900px) {
+  pre.prettyprint code {
+    white-space: pre-wrap;
+  }
+}

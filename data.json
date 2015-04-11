@@ -289,7 +289,7 @@
             "params": [
                 {
                     "name": "scope",
-                    "description": "The scope that the function is in. If undefined, then the original \n    function will never be called and #restore will do nothing.",
+                    "description": "The scope that the function is in. If undefined, then the original\n    function will never be called and #restore will do nothing.",
                     "type": "Object",
                     "optional": true
                 },
@@ -568,7 +568,7 @@
         },
         {
             "file": "src/spiedfn.js",
-            "line": 62,
+            "line": 63,
             "description": "Records a function call.",
             "itemtype": "method",
             "name": "record",
@@ -584,7 +584,7 @@
         },
         {
             "file": "src/spiedfn.js",
-            "line": 73,
+            "line": 74,
             "description": "Returns the given return value instead of the original function's.",
             "itemtype": "method",
             "name": "overrideReturn",
@@ -605,8 +605,8 @@
         },
         {
             "file": "src/spiedfn.js",
-            "line": 86,
-            "description": "Array of record objects, each containing an invocation for the function. Each \ninvocation is a mapping of timestamp -> array of arguments used to invoke it.",
+            "line": 87,
+            "description": "Array of record objects, each containing an invocation for the function. Each\ninvocation is a mapping of timestamp -> array of arguments used to invoke it.",
             "itemtype": "property",
             "name": "records",
             "type": "Array",

@@ -35,6 +35,24 @@
   -webkit-margin-end: 0px;
 }
 
+.method-params-small {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .method-returns {
+    flex-direction: column;
+  }
+
+  .method-params {
+    display: none;
+  }
+
+  .method-params-small {
+    display: block;
+  }
+}
+
 .method-returns strong {
   -webkit-margin-end: 1em;
 }
@@ -48,4 +66,8 @@
 
 .method-returns code {
   white-space: pre;
+}
+
+.method:last-child .divider {
+  border: none;
 }

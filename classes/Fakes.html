@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name=viewport content="width=device-width, initial-scale=1">
   <title>Fakes - Spies</title>
 
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
@@ -99,7 +100,11 @@
       color: crimson;
     }
 
-    table {
+    dl {
+      padding: 15px;
+    }
+
+    table, dl {
       border: 1px solid;
     }
 
@@ -116,10 +121,10 @@
     }
     .reverse {
       background-color: #347A7D;
-      color: white;
+      color: #BCD8D9;
     }
 
-    table {
+    table, dl {
       border-color: #347A7D;
     }
 
@@ -206,11 +211,19 @@
     .method tbody:nth-child(2n+1) {
       background-color: white;
     }
+
+    .main-bar {
+      background-color: #347A7D;
+      color: black;
+    }
   </style>
 </head>
 <body>
+  <section class="main-bar">
+  </section>
   <header class="main-header reverse scroll-top">
-    <div>
+    <div class="main-menu-button">&#9776;</div>
+    <div class="main-header-section">
       <h1><a href="../index.html">Spies</a></h1>
       <span class="since">v 0.1.4</span>
     </div>
@@ -306,7 +319,8 @@
             <div class="content">
               <span class="description"><p>Creates a fake implementation of an Attr.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -338,6 +352,16 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code> <code>name</code></dt>
+                <dd><p>Name of the attribute.</p>
+          </dd>
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code> <code>[value]</code></dt>
+                <dd><p>Value of the attribute.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="../assets/redirect.html#classes/developer.mozilla.org/en-US/docs/Web/API/Attr.html" class="crosslink external" target="_blank">Attr</a></code><span class="description"><p>A fake object mimicking an <code>Attr</code>.</p>
           </span>
@@ -355,7 +379,8 @@
             <div class="content">
               <span class="description"><p>Creates a fake implementation of a NodeList.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -372,6 +397,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></code> <code>data</code></dt>
+                <dd><p>Array that represents the data in the NodeList.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="../assets/redirect.html#classes/developer.mozilla.org/en-US/docs/Web/API/NodeList.html" class="crosslink external" target="_blank">NodeList</a></code><span class="description"><p>A fake object mimicking a <code>NodeList</code>.</p>
           </span>
@@ -390,7 +422,8 @@
               <span class="description"><p>Creates a fake of the given constructor. The fake object&#39;s proto link will simply point to the
           constructor&#39;s prototype.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -407,6 +440,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></code> <code>ctor</code></dt>
+                <dd><p>The constructor of the object to create a fake of.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code><span class="description"><p>The fake object.</p>
           </span>
@@ -414,6 +454,7 @@
           
             </div>
           
+            <div class="divider"></div>
           </section>
           
       </div>
@@ -429,7 +470,10 @@
   <script src="../assets/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
   <script>
-    var els = document.querySelectorAll('section.collapsible');
+
+    var isMobile = false;
+    var rootEl = isMobile ? document.querySelector('.main-main') : document;
+    var els = rootEl.querySelectorAll('section.collapsible');
     for (var i = 0; i < els.length; i++) {
       var section = els.item(i);
       var content = section.querySelector('div');
@@ -455,6 +499,10 @@
       } else {
         headerEl.classList.remove('scroll-top');
       }
+    });
+
+    document.querySelector('.main-menu-button').addEventListener('click', function() {
+      document.querySelector('section.main-sidebar').classList.toggle('expand');
     });
   </script>
 </html>

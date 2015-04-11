@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name=viewport content="width=device-width, initial-scale=1">
   <title>matcher.IsA - Spies</title>
 
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
@@ -99,7 +100,11 @@
       color: crimson;
     }
 
-    table {
+    dl {
+      padding: 15px;
+    }
+
+    table, dl {
       border: 1px solid;
     }
 
@@ -116,10 +121,10 @@
     }
     .reverse {
       background-color: #347A7D;
-      color: white;
+      color: #BCD8D9;
     }
 
-    table {
+    table, dl {
       border-color: #347A7D;
     }
 
@@ -206,11 +211,19 @@
     .method tbody:nth-child(2n+1) {
       background-color: white;
     }
+
+    .main-bar {
+      background-color: #347A7D;
+      color: black;
+    }
   </style>
 </head>
 <body>
+  <section class="main-bar">
+  </section>
   <header class="main-header reverse scroll-top">
-    <div>
+    <div class="main-menu-button">&#9776;</div>
+    <div class="main-header-section">
       <h1><a href="../index.html">Spies</a></h1>
       <span class="since">v 0.1.4</span>
     </div>
@@ -303,7 +316,8 @@
             </header>
             <div class="content">
               <span class="description"></span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -322,8 +336,17 @@
                 </tbody>
               </table>
           
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></code> <code>expectedType</code></dt>
+                <dd><p>If function, this will check if the argument is an 
+              instance of it. If a string, this will check if typeof argument is the specified string.</p>
+          </dd>
+              </dl>
+          
+          
             </div>
           
+            <div class="divider"></div>
           </section>
           
       </div>
@@ -364,7 +387,8 @@
             </header>
             <div class="content">
               <span class="description"></span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -381,6 +405,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code> <code>arg</code></dt>
+                <dd><p>Object to be checked.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></code><span class="description"><p>True iff the given argument is an instance of the constructor.</p>
           </span>
@@ -398,7 +429,8 @@
             <div class="content">
               <span class="description"><p>Checks if the given argument matches the matcher. If so, records the invocation.</p>
           </span>
-              <table>
+          
+              <table class="method-params">
                 <tbody>
                   <tr>
                     <td colspan="2">
@@ -415,6 +447,13 @@
           
                 </tbody>
               </table>
+          
+              <dl class="method-params-small">
+                <dt><code><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></code> <code>[arg]</code></dt>
+                <dd><p>The argument to be checked.</p>
+          </dd>
+              </dl>
+          
                 <div class="method-returns">
                   <code><span class="keyword">return</span> <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></code><span class="description"><p>True iff the given argument is a match.</p>
           </span>
@@ -426,6 +465,7 @@
               
             </div>
           
+            <div class="divider"></div>
           </section>
           
       </div>
@@ -441,7 +481,10 @@
   <script src="../assets/vendor/prettify/prettify-min.js"></script>
   <script>prettyPrint();</script>
   <script>
-    var els = document.querySelectorAll('section.collapsible');
+
+    var isMobile = false;
+    var rootEl = isMobile ? document.querySelector('.main-main') : document;
+    var els = rootEl.querySelectorAll('section.collapsible');
     for (var i = 0; i < els.length; i++) {
       var section = els.item(i);
       var content = section.querySelector('div');
@@ -467,6 +510,10 @@
       } else {
         headerEl.classList.remove('scroll-top');
       }
+    });
+
+    document.querySelector('.main-menu-button').addEventListener('click', function() {
+      document.querySelector('section.main-sidebar').classList.toggle('expand');
     });
   </script>
 </html>
