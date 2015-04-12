@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#347A7D">
+
   <title>matcher.Matcher - Spies</title>
 
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
@@ -32,6 +34,15 @@
       border-radius: 4px;
       padding: 2px 4px;
       white-space: pre;
+    }
+
+    .since {
+      font-family: 'Ubuntu Mono', monospace;
+      font-size: 0.8rem;
+      height: 25px;
+      line-height: 25px;
+      text-transform: uppercase;
+      overflow: hidden;
     }
 
     .since {
@@ -147,7 +158,6 @@
     header.main-header {
       -webkit-filter: drop-shadow(0px 2px 5px #347A7D);
     }
-
     header.main-header.scroll-top {
       -webkit-filter: none;
     }
@@ -211,21 +221,14 @@
     .method tbody:nth-child(2n+1) {
       background-color: white;
     }
-
-    .main-bar {
-      background-color: #347A7D;
-      color: black;
-    }
   </style>
 </head>
 <body>
-  <section class="main-bar">
-  </section>
   <header class="main-header reverse scroll-top">
     <div class="main-menu-button">&#9776;</div>
     <div class="main-header-section">
       <h1><a href="../index.html">Spies</a></h1>
-      <span class="since">v 0.1.4</span>
+      <div class="since">v 0.1.5</div>
     </div>
     <a href="https://github.com/garysoed/spies">GitHub</a>
   </header>
@@ -427,6 +430,7 @@ gunction call.</p>
       selected.scrollIntoView();
     }
 
+    var sinceEl = document.querySelector('.main-header-section .since');
     var headerEl = document.querySelector('.main-header');
     var mainEl = document.querySelector('.main-main');
     mainEl.addEventListener('scroll', function() {
@@ -435,6 +439,14 @@ gunction call.</p>
       } else {
         headerEl.classList.remove('scroll-top');
       }
+
+      var maxScroll = mainEl.scrollHeight - mainEl.clientHeight;
+      var ratio = Math.max(0, 1 - mainEl.scrollTop / maxScroll * 3);
+      sinceEl.style.height = ratio * 25 + 'px';
+
+      var padding = (10 + 10 * ratio) + 'px';
+      headerEl.style.paddingTop = padding;
+      headerEl.style.paddingBottom = padding;
     });
 
     document.querySelector('.main-menu-button').addEventListener('click', function() {

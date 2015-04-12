@@ -11,6 +11,10 @@ section.main-sidebar {
   z-index: 1;
 }
 
+section.main-content-scroll {
+  overflow: scroll;
+}
+
 .main-menu-button {
   align-self: center;
   display: none;
@@ -20,10 +24,30 @@ section.main-sidebar {
   cursor: pointer;
 }
 
+header > .main-header-section {
+  flex: 1;
+}
+
+section.main-content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  position: relative;
+}
+
+section.main-main {
+  overflow: scroll;
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (max-width: 900px) {
   section.main-sidebar {
-    height: 100%;
-    position: fixed;
+    position: absolute;
+    top: 0;
+    bottom: 0;
   }
 
   section.main-sidebar:not(.expand) {
@@ -39,20 +63,4 @@ section.main-sidebar {
   .main-menu-button {
     display: block;
   }
-}
-
-header > .main-header-section {
-  flex: 1;
-}
-
-section.main-content {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  z-index: 1;
-}
-
-section.main-main {
-  overflow: scroll;
-  flex: 1;
 }

@@ -2,7 +2,7 @@
     "project": {
         "name": "Spies",
         "description": "A simple library to spy on functions and create stubs for unit testing. Yes, there are many libraries that do this out there, but they're all tied to a specific assertion framework. Spies is not tied to any assertion frameworks. You can use any assertion frameworks you want, though it comes with a plugin for Chai expect (and possibly more in the future).",
-        "version": "0.1.4",
+        "version": "0.1.5",
         "url": "https://github.com/garysoed/spies",
         "colorBackground": "white",
         "colorForeground": "black",
