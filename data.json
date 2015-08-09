@@ -6,16 +6,11 @@
         "url": "https://github.com/garysoed/spies",
         "colorBackground": "white",
         "colorForeground": "black",
-        "colorSectionLightest": "#BCD8D9",
-        "colorSectionLight": "#94BFC1",
-        "colorSectionNormal": "#6CA2A4",
-        "colorSectionDark": "#4E8C8F",
-        "colorSectionDarkest": "#347A7D",
-        "colorCodeLightest": "#C5CDE0",
-        "colorCodeLight": "#A1ADCB",
-        "colorCodeNormal": "#7D8CB3",
-        "colorCodeDark": "#5E709F",
-        "colorCodeDarkest": "#42578B"
+        "colorBorder": "#B6B6B6",
+        "colorLightPrimary": "#B2DFDB",
+        "colorPrimary": "#009688",
+        "colorDarkPrimary": "#00796B",
+        "colorAccent": "#00BCD4"
     },
     "files": {
         "src/matcher/any.js": {

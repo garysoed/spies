@@ -10,7 +10,7 @@
 }
 
 .sidebar li {
-  padding: 0 20px 0 40px;
+  padding: 0 2em 0 4em;
   line-height: 2em;
 }
 
@@ -23,17 +23,4 @@
 
 .sidebar h2 {
   text-transform: uppercase;
-}
-
-li.sidebar-selected {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-li.sidebar-selected:not(:first-child) {
-  -webkit-margin-before: 1em;
-}
-
-li.sidebar-selected:not(:last-child) {
-  -webkit-margin-after: 1em;
 }
