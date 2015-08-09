@@ -5,18 +5,13 @@
   "url": "https://github.com/garysoed/spies",
   "colorBackground": "white",
   "colorForeground": "black",
+  "colorBorder": "#B6B6B6",
 
-  "colorSectionLightest": "#BCD8D9",
-  "colorSectionLight": "#94BFC1",
-  "colorSectionNormal": "#6CA2A4",
-  "colorSectionDark": "#4E8C8F",
-  "colorSectionDarkest": "#347A7D",
+  "colorLightPrimary": "#B2DFDB",
+  "colorPrimary": "#009688",
+  "colorDarkPrimary": "#00796B",
+  "colorAccent": "#00BCD4",
 
-  "colorCodeLightest": "#C5CDE0",
-  "colorCodeLight": "#A1ADCB",
-  "colorCodeNormal": "#7D8CB3",
-  "colorCodeDark": "#5E709F",
-  "colorCodeDarkest": "#42578B",
   "options": {
     "linkNatives": "true",
     "outdir": "./doc",
