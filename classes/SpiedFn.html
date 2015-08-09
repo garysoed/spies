@@ -62,10 +62,6 @@
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
     pre,
     code,
     a.crosslink {
@@ -136,8 +132,27 @@
 
   <!-- COLORS!!! -->
   <style>
-    .reverse h1 a, .reverse h1 a:visited {
+    .button, .main-main a {
+      color: #009688;
+    }
+    .button:hover, .main-main a:hover {
+      color: #CDDC39;
+    }
+    .reverse .button {
+      color: #B2DFDB;
+    }
+    .reverse .button:hover {
+      color: #CDDC39;
+    }
+    .reverse .button.primary {
       color: white;
+    }
+    .reverse .button.primary:hover {
+      color: #CDDC39;
+    }
+
+    .main-menu-button:hover {
+      color: #CDDC39;
     }
 
     body {
@@ -151,15 +166,6 @@
 
     table, dl {
       border-color: #009688;
-    }
-
-    a, a:visited,
-    a.external, a.external:visited {
-      color: #00BCD4;
-    }
-    .reverse a, .reverse a:visited,
-    .reverse a.external, .reverse a.external:visited {
-      color: #B2DFDB;
     }
 
     .since {
@@ -177,32 +183,11 @@
     }
 
     li.sidebar-selected {
-      border-right: 5px solid #00BCD4;
-    }
-    .reverse li.sidebar-selected a {
-      color: white;
+      border-right: 5px solid #CDDC39;
     }
 
-    section.collapsible > header {
-      background-color: #009688;
-      color: white;
-    }
-    .reverse section.collapsible > header {
-      background-color: #009688;
-      color: white;
-    }
     .reverse section.collapsible.collapsed > header {
       color: #B2DFDB;
-    }
-
-    section.collapsible > header:hover h2 {
-      -webkit-filter: drop-shadow(0px 0px 5px white);
-    }
-    .reverse section.collapsible > header:hover h2 {
-      -webkit-filter: drop-shadow(0px 0px 5px white);
-    }
-    .reverse section.collapsible.collapsed > header:hover h2 {
-      -webkit-filter: drop-shadow(0px 0px 5px #B2DFDB);
     }
 
     .description code {
@@ -245,69 +230,82 @@
 </head>
 <body>
   <header class="main-header reverse scroll-top">
-    <div class="main-menu-button">&#9776;</div>
+    <div class="main-menu-button button primary">&#9776;</div>
     <div class="main-header-section">
-      <h1><a href="../index.html">Spies</a></h1>
+      <h1><a class="button primary" href="../index.html">Spies</a></h1>
       <div class="since">v 0.1.5</div>
     </div>
-    <a href="https://github.com/garysoed/spies">GitHub</a>
+    <a class="button" href="https://github.com/garysoed/spies">GitHub</a>
   </header>
   <section class="main-content">
     <section class="main-sidebar reverse"><div class="sidebar">
     <section class="collapsible ">
       <header>
-        <h2>tutorial</h2>
+        <h2 class="button ">tutorial</h2>
       </header>
       <div>
         <ul>
-          <li class="">
-            <a href="../classes/1. Setup.html">1. Setup</a>
-          </li>
-          <li class="">
-            <a href="../classes/2. Spies.html">2. Spies</a>
-          </li>
-          <li class="">
-            <a href="../classes/3. Matchers.html">3. Matchers</a>
-          </li>
-          <li class="">
-            <a href="../classes/4. Fakes.html">4. Fakes</a>
-          </li>
-          <li class="">
-            <a href="../classes/5. Plugins.html">5. Plugins</a>
-          </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/1. Setup.html">1. Setup</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/2. Spies.html">2. Spies</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/3. Matchers.html">3. Matchers</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/4. Fakes.html">4. Fakes</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/5. Plugins.html">5. Plugins</a>
+            </li>
         </ul>
       </div>
     </section>
     <section class="collapsible selected">
       <header>
-        <h2>api</h2>
+        <h2 class="button primary">api</h2>
       </header>
       <div>
         <ul>
-          <li class="">
-            <a href="../classes/Fakes.html">Fakes</a>
-          </li>
-          <li class="">
-            <a href="../classes/matcher.Any.html">matcher.Any</a>
-          </li>
-          <li class="">
-            <a href="../classes/matcher.IsA.html">matcher.IsA</a>
-          </li>
-          <li class="">
-            <a href="../classes/matcher.Matcher.html">matcher.Matcher</a>
-          </li>
-          <li class="">
-            <a href="../classes/Matchers.html">Matchers</a>
-          </li>
-          <li class="sidebar-selected">
-            <a href="../classes/SpiedFn.html">SpiedFn</a>
-          </li>
-          <li class="">
-            <a href="../classes/Spies.html">Spies</a>
-          </li>
-          <li class="">
-            <a href="../classes/Utils.html">Utils</a>
-          </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/Fakes.html">Fakes</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/matcher.Any.html">matcher.Any</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/matcher.IsA.html">matcher.IsA</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/matcher.Matcher.html">matcher.Matcher</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/Matchers.html">Matchers</a>
+            </li>
+            <li class="sidebar-selected">
+              <a class="button primary"
+                  href="../classes/SpiedFn.html">SpiedFn</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/Spies.html">Spies</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/Utils.html">Utils</a>
+            </li>
         </ul>
       </div>
     </section>
@@ -328,8 +326,8 @@
   </section>
 
     <section class="collapsible class-subsection">
-      <header>
-        <h2>Constructor</h2>
+      <header class="reverse">
+        <h2 class="button primary">Constructor</h2>
       </header>
       <div>
           <section class="method ">
@@ -393,8 +391,8 @@
     </section>
 
     <section class="collapsible class-subsection">
-      <header>
-        <h2>Properties</h2>
+      <header class="reverse">
+        <h2 class="button primary">Properties</h2>
       </header>
       <div>
           <section class="props ">
@@ -414,8 +412,8 @@
     </section>
 
     <section class="collapsible class-subsection">
-      <header>
-        <h2>Methods</h2>
+      <header class="reverse">
+        <h2 class="button primary">Methods</h2>
       </header>
       <div>
           <section class="method ">
