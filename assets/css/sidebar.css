@@ -14,10 +14,7 @@
   line-height: 2em;
 }
 
-.sidebar li:not(.sidebar-selected):first-child {
-  -webkit-margin-before: 1em;
-}
-.sidebar li:not(.sidebar-selected):last-child {
+.sidebar li:last-child {
   -webkit-margin-after: 1em;
 }
 
