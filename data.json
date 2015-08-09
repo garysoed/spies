@@ -10,7 +10,7 @@
         "colorLightPrimary": "#B2DFDB",
         "colorPrimary": "#009688",
         "colorDarkPrimary": "#00796B",
-        "colorAccent": "#CDDC39"
+        "colorAccent": "#AEEA00"
     },
     "files": {
         "src/matcher/any.js": {
