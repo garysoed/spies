@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href=".">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#009688">
+
+  <title>5. Plugins - Spies</title>
+
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+
+  <link rel="stylesheet" href="../assets/css/class.css">
+  <link rel="stylesheet" href="../assets/css/events.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/method.css">
+  <link rel="stylesheet" href="../assets/css/prettyprint.css">
+  <link rel="stylesheet" href="../assets/css/props.css">
+  <link rel="stylesheet" href="../assets/css/sidebar.css">
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Roboto:400,700);
+
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      font-size: smaller;
+      line-height: 3ex;
+      margin: 0;
+      height: 100vh;
+    }
+
+    .description code {
+      border-radius: 4px;
+      padding: 2px 4px;
+      white-space: pre;
+    }
+
+    .since {
+      font-family: 'Ubuntu Mono', monospace;
+      font-size: 0.8rem;
+      height: 25px;
+      line-height: 25px;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .since {
+      font-family: 'Ubuntu Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 2ex;
+      text-transform: uppercase;
+    }
+
+    h1, h2 {
+      margin: 5px 0;
+    }
+
+    a, a:visited {
+      text-decoration: none;
+    }
+
+    pre,
+    code,
+    a.crosslink {
+      font-family: 'Ubuntu Mono', monospace;
+    }
+
+    .prettyprint code {
+      background-color: transparent;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    div.content {
+      max-width: 50em;
+    }
+
+    section.collapsible > header {
+      padding: 1em 2em;
+      cursor: pointer;
+      -webkit-user-select: none;
+      transition: padding .2s;
+      position: relative;
+    }
+
+    section.collapsible > header h2 {
+      font-size: 1.8em;
+    }
+
+    section.collapsible > div {
+      overflow: hidden;
+      transition: height .2s;
+    }
+
+    footer {
+      padding: 15px;
+      -webkit-margin-before: 20px;
+    }
+
+    footer.warn {
+      border-color: crimson;
+      color: crimson;
+    }
+
+    dl {
+      margin-left: 2em;
+      margin-right: 2em;
+      padding: 1.5em 2em;
+    }
+
+    table, dl {
+      border: 1px solid;
+    }
+
+    header {
+      font-weight: 700;
+    }
+
+    p {
+      margin-top: 2em;
+      margin-bottom: 2em;
+    }
+
+    dd p {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+  </style>
+
+  <!-- COLORS!!! -->
+  <style>
+    .button, .main-main a {
+      color: #009688;
+    }
+    .button:hover, .main-main a:hover {
+      color: #AEEA00;
+    }
+    .reverse .button {
+      color: #B2DFDB;
+    }
+    .reverse .button:hover {
+      color: #AEEA00;
+    }
+    .reverse .button.primary {
+      color: white;
+    }
+    .reverse .button.primary:hover {
+      color: #AEEA00;
+    }
+
+    .main-menu-button:hover {
+      color: #AEEA00;
+    }
+
+    body {
+      background-color: white;
+      color: black;
+    }
+    .reverse {
+      background-color: #009688;
+      color: #B2DFDB;
+    }
+
+    table, dl {
+      border-color: #009688;
+    }
+
+    .since {
+      color: #00796B;
+    }
+    .reverse .since {
+      color: #B2DFDB;
+    }
+
+    header.main-header {
+      -webkit-filter: drop-shadow(0px 2px 5px #00796B);
+    }
+    header.main-header.scroll-top {
+      -webkit-filter: none;
+    }
+
+    li.sidebar-selected {
+      border-right: 5px solid #AEEA00;
+    }
+
+    .reverse section.collapsible.collapsed > header {
+      color: #B2DFDB;
+    }
+
+    .description code {
+      color: black;
+      background-color: #B2DFDB;
+    }
+
+    code .keyword {
+      color: black;
+    }
+
+    .description pre code {
+      background-color: transparent;
+    }
+
+    pre.prettyprint {
+      border-color: #009688;
+    }
+
+    header.tutorial {
+      color: #00796B;
+    }
+
+    footer {
+      border: 2px solid #009688;
+    }
+
+    .divider {
+      border-color: #B6B6B6;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header reverse scroll-top">
+    <div class="main-menu-button button primary">&#9776;</div>
+    <div class="main-header-section">
+      <h1><a class="button primary" href="../index.html">Spies</a></h1>
+      <div class="since">v 0.1.5</div>
+    </div>
+    <a class="button" href="https://github.com/garysoed/spies">GitHub</a>
+  </header>
+  <section class="main-content">
+    <section class="main-sidebar reverse"><div class="sidebar">
+    <section class="collapsible selected">
+      <header>
+        <h2 class="button primary">tutorial</h2>
+      </header>
+      <div>
+        <ul>
+            <li class="">
+              <a class="button "
+                  href="../classes/1. Setup.html">1. Setup</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/2. Spies.html">2. Spies</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/3. Matchers.html">3. Matchers</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/4. Fakes.html">4. Fakes</a>
+            </li>
+            <li class="sidebar-selected">
+              <a class="button primary"
+                  href="../classes/5. Plugins.html">5. Plugins</a>
+            </li>
+        </ul>
+      </div>
+    </section>
+    <section class="collapsible ">
+      <header>
+        <h2 class="button ">api</h2>
+      </header>
+      <div>
+        <ul>
+            <li class="">
+              <a class="button "
+                  href="../classes/Fakes.html">Fakes</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/matcher.Any.html">matcher.Any</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/matcher.IsA.html">matcher.IsA</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/matcher.Matcher.html">matcher.Matcher</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/Matchers.html">Matchers</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/SpiedFn.html">SpiedFn</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/Spies.html">Spies</a>
+            </li>
+            <li class="">
+              <a class="button "
+                  href="../classes/Utils.html">Utils</a>
+            </li>
+        </ul>
+      </div>
+    </section>
+</div>
+
+</section>
+    <section class="main-main"><div class="class">
+  <section class="class-summary">
+      <header class="tutorial">
+        <h2>5. Plugins</h2>
+      </header>
+
+    <div class="content description">
+      <p>Spies comes with a Chai-expect plugin. To use it, HTML import the <code>main_chai_expect.html</code> file.</p>
+<p>Example of basic usage:</p>
+<pre class="code prettyprint"><code class="lang-javascript">// Test code
+var _ = spies.Spies;
+_.spy(object, &#39;fn&#39;);
+
+object.fn(1);
+object.fn();
+
+expect(object.fn).calledWith(1).at.least(1);
+expect(object.fn).called().at.least(2);
+</code></pre>
+<p>Asserting order:</p>
+<pre class="code prettyprint"><code class="lang-javascript">var _ = spies.Spies;
+_.spy(object, &#39;fn&#39;);
+
+object.fn(1);
+object.fn();
+
+expect(object.fn).calledWith(1).before(object.fn).calledWith();
+expect(object.fn).called().before(object.fn).calledWith();
+</code></pre>
+
+    </div>
+
+  </section>
+
+
+
+
+</div>
+
+
+
+</section>
+  </section>
+</body>
+  <script src="../assets/vendor/prettify/prettify-min.js"></script>
+  <script>prettyPrint();</script>
+  <script src="../assets/js/selection.js"></script>
+  <script src="../assets/js/collapse.js"></script>
+  <script src="../assets/js/scroll.js"></script>
+  <script src="../assets/js/xhr.js"></script>
+</html>

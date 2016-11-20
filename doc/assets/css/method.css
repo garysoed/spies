@@ -1,0 +1,74 @@
+.method {
+  padding: 0 4em;
+  -webkit-margin-after: 2em;
+}
+
+.method:first-child {
+  padding-top: 2em;
+}
+
+.method > header {
+  margin: 0 0 20px;
+  font-size: 1rem;
+}
+
+.method table {
+  border-collapse: collapse;
+  margin: 2em;
+  width: calc(100% - 40px);
+}
+
+.method td {
+  padding: 0 2em;
+  vertical-align: top;
+}
+
+.method td.method-type {
+  white-space: nowrap;
+}
+
+.method-returns {
+  display: flex;
+  margin: 2em 0;
+}
+
+.method-params-small {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .method-returns {
+    flex-direction: column;
+  }
+
+  .method-params {
+    display: none;
+  }
+
+  .method-params-small {
+    display: block;
+  }
+}
+
+.method-returns strong {
+  -webkit-margin-end: 1em;
+}
+
+.method-returns p {
+  display: inline-block;
+  margin: 1em 0 1em 2em;
+}
+
+.method-returns code {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  white-space: pre;
+}
+
+.method:last-child .divider {
+  border: none;
+}
+
+.method.deprecated .method-signature {
+  text-decoration: line-through;
+}

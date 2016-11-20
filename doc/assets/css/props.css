@@ -1,0 +1,21 @@
+.props {
+  padding: 0 4em;
+  -webkit-margin-after: 2em;
+}
+
+.props:first-child {
+  padding-top: 2em;
+}
+
+.props:last-child {
+  padding-bottom: 2em;
+}
+
+.props > header {
+  margin: 0 0 20px;
+  font-size: 1rem;
+}
+
+.props.deprecated .method-signature {
+  text-decoration: line-through;
+}

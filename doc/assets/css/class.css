@@ -1,0 +1,14 @@
+.class-summary > header {
+  margin: 10px 0 0;
+  font-size: 1rem;
+}
+
+.class .class-summary {
+  padding: 2em 4em 1em 4em;
+}
+
+.divider {
+  border-bottom: 1px solid;
+  margin: 0 -4em 0;
+  padding-bottom: 2em;
+}
